@@ -1,0 +1,14 @@
+[2026-09-12 17:27:59] [INFO ] TC01_RegisterUser - beforeSuite executing...
+[2026-09-12 17:28:00] [INFO ] TC01_RegisterUser - beforeMethod executing...
+[2026-09-12 17:28:07] [INFO ] TC01_RegisterUser - Pre-condition: User is at Register page
+[2026-09-12 17:28:08] [INFO ] TC01_RegisterUser - Step 1: Enter Account
+[2026-09-12 17:28:08] [INFO ] TC01_RegisterUser - Step 2: Enter Password
+[2026-09-12 17:28:08] [INFO ] TC01_RegisterUser - Step 3: Enter Confirm Password
+[2026-09-12 17:28:08] [INFO ] TC01_RegisterUser - Step 4: Enter full name
+[2026-09-12 17:28:08] [INFO ] TC01_RegisterUser - Step 5: Enter email
+[2026-09-12 17:28:08] [INFO ] TC01_RegisterUser - Step 6: Click register
+[2026-09-12 17:28:09] [INFO ] TC01_RegisterUser - Step 7: Verify user register successfully
+[2026-09-12 17:28:09] [INFO ] TC01_RegisterUser - VP1 (Verify Point): Message "Đăng ký thành công" displays
+[2026-09-12 17:28:10] [INFO ] TC01_RegisterUser - VP2: User login successfully with new account
+[2026-09-12 17:28:13] [INFO ] TC01_RegisterUser - afterMethod ended...
+[2026-09-12 17:28:13] [INFO ] TC01_RegisterUser - afterSuite ended...
