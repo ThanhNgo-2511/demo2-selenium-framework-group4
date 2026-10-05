@@ -24,6 +24,8 @@ dependencies {
 test {
     useTestNG()
         {
+            parallel = "methods"
+            threadCount = 3
             useDefaultListeners = true //dùng để tạo report testNG
             outputDirectory = file("$projectDir/testoutput") // folder chứa testNG report
         }

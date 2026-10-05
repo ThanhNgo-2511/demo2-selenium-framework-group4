@@ -15,7 +15,6 @@ import reports.ExtentReportManager;
 import java.lang.reflect.Method;
 
 public class BaseTest {
-    protected WebDriver driver;
     protected final Logger LOG = LogManager.getLogger(getClass());
 
     @BeforeSuite
@@ -37,18 +36,26 @@ public class BaseTest {
         ExtentReportManager.createTest(method.getName());
         DriverManager driverManager = DriverManagerFactory.getDriverManager("chrome");
         driverManager.createWebDriver();
-        driver =driverManager.getDriver();
     }
 
     @AfterMethod
     public void afterMethod(ITestResult result)
     {
         LOG.info("afterMethod ended...");
-        if(result.getStatus() == ITestResult.FAILURE) {
-            ExtentReportManager.captureScreenshot(driver, result.getMethod().getMethodName());
-            ExtentReportManager.fail(result.getThrowable().toString());
+        WebDriver currentDriver = DriverManager.getDriverOrNull();
+        try {
+            if(result.getStatus() == ITestResult.FAILURE) {
+                if (currentDriver != null) {
+                    ExtentReportManager.captureScreenshot(currentDriver, result.getMethod().getMethodName());
+                }
+                ExtentReportManager.fail(result.getThrowable().toString());
+            }
+        } finally {
+            try {
+                DriverManager.quitDriver();
+            } finally {
+                ExtentReportManager.removeTest();
+            }
         }
-        //Quit driver: close browser & kill process driver
-        driver.quit();
     }
 }

@@ -7,11 +7,13 @@ import org.openqa.selenium.WebDriver;
 
 public class CommonModal extends BasePage {
 
+    private By byLayout;
     private By byLblMessage;
     public CommonModal(WebDriver driver)
     {
         super(driver);
-        this.byLblMessage = By.id("swal2-title");
+        this.byLayout = By.cssSelector(".swal-overlay");
+        this.byLblMessage = By.xpath("//div[@class=\"swal-title\"]");
     }
     public String getMessageText()
     {
@@ -22,8 +24,19 @@ public class CommonModal extends BasePage {
     {
         waitInVisibilityOfElementLocated(byLblMessage,timeOutInSec);
     }
+
     public void waitModalDisappear()
     {
-        waitInVisibilityOfElementLocated(byLblMessage, TimeoutConstant.DEFAULT_TIMEOUT);
+        waitInVisibilityOfElementLocated(byLblMessage);
+    }
+
+    public void waitModalAppear(long timeOutInSec)
+    {
+        waitVisibilityOfElementLocated(byLblMessage,timeOutInSec);
+    }
+
+    public void waitModalAppear()
+    {
+        waitVisibilityOfElementLocated(byLblMessage);
     }
 }

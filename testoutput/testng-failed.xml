@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [Gradle suite]" verbose="0">
-  <test thread-count="5" name="Gradle test(failed)" verbose="0">
+<suite thread-count="3" parallel="methods" name="Failed suite [Gradle suite]" verbose="0">
+  <test thread-count="3" parallel="methods" name="Gradle test(failed)" verbose="0">
     <classes>
-      <class name="testcases.TC01_RegisterUser">
+      <class name="testcases.CourseDetailTest">
         <methods>
           <include name="afterMethod"/>
           <include name="beforeSuite"/>
           <include name="afterSuite"/>
-          <include name="verify_register_successfully"/>
           <include name="beforeMethod"/>
+          <include name="Verify_The_Course_That_Was_Registered"/>
         </methods>
-      </class> <!-- testcases.TC01_RegisterUser -->
+      </class> <!-- testcases.CourseDetailTest -->
     </classes>
   </test> <!-- Gradle test(failed) -->
 </suite> <!-- Failed suite [Gradle suite] -->

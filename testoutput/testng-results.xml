@@ -2,46 +2,46 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-09-12T17:28:00 GMT+07:00" name="Gradle suite" finished-at="2026-09-12T17:28:13 GMT+07:00" duration-ms="13283">
+  <suite started-at="2026-09-30T23:38:27 GMT+07:00" name="Gradle suite" finished-at="2026-09-30T23:38:35 GMT+07:00" duration-ms="8161">
     <groups>
     </groups>
-    <test started-at="2026-09-12T17:28:00 GMT+07:00" name="Gradle test" finished-at="2026-09-12T17:28:13 GMT+07:00" duration-ms="13283">
-      <class name="testcases.TC01_RegisterUser">
-        <test-method is-config="true" signature="beforeSuite()[pri:0, instance:testcases.TC01_RegisterUser@71ae31b0]" started-at="2026-09-12T17:27:59 GMT+07:00" name="beforeSuite" finished-at="2026-09-12T17:28:00 GMT+07:00" duration-ms="391" status="PASS">
+    <test started-at="2026-09-30T23:38:27 GMT+07:00" name="Gradle test" finished-at="2026-09-30T23:38:35 GMT+07:00" duration-ms="8161">
+      <class name="testcases.CourseDetailTest">
+        <test-method is-config="true" signature="beforeSuite()[pri:0, instance:testcases.CourseDetailTest@2c104774]" started-at="2026-09-30T23:38:27 GMT+07:00" name="beforeSuite" finished-at="2026-09-30T23:38:27 GMT+07:00" duration-ms="210" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeSuite -->
-        <test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:testcases.TC01_RegisterUser@71ae31b0]" started-at="2026-09-12T17:28:00 GMT+07:00" name="beforeMethod" finished-at="2026-09-12T17:28:06 GMT+07:00" duration-ms="6433" status="PASS">
+        <test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:testcases.CourseDetailTest@2c104774]" started-at="2026-09-30T23:38:27 GMT+07:00" name="beforeMethod" finished-at="2026-09-30T23:38:28 GMT+07:00" duration-ms="1344" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[public void testcases.TC01_RegisterUser.verify_register_successfully()]]>
+                <![CDATA[public void testcases.CourseDetailTest.Verify_The_Course_That_Was_Registered()]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method signature="verify_register_successfully()[pri:0, instance:testcases.TC01_RegisterUser@71ae31b0]" started-at="2026-09-12T17:28:06 GMT+07:00" name="verify_register_successfully" finished-at="2026-09-12T17:28:13 GMT+07:00" duration-ms="6638" status="PASS">
+        <test-method signature="Verify_The_Course_That_Was_Registered()[pri:0, instance:testcases.CourseDetailTest@2c104774]" started-at="2026-09-30T23:38:28 GMT+07:00" name="Verify_The_Course_That_Was_Registered" finished-at="2026-09-30T23:38:35 GMT+07:00" duration-ms="6631" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- verify_register_successfully -->
-        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:testcases.TC01_RegisterUser@71ae31b0]" started-at="2026-09-12T17:28:13 GMT+07:00" name="afterMethod" finished-at="2026-09-12T17:28:13 GMT+07:00" duration-ms="149" status="PASS">
+        </test-method> <!-- Verify_The_Course_That_Was_Registered -->
+        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:testcases.CourseDetailTest@2c104774]" started-at="2026-09-30T23:38:35 GMT+07:00" name="afterMethod" finished-at="2026-09-30T23:38:35 GMT+07:00" duration-ms="142" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=verify_register_successfully status=SUCCESS method=TC01_RegisterUser.verify_register_successfully()[pri:0, instance:testcases.TC01_RegisterUser@71ae31b0] output={null}]]]>
+                <![CDATA[[TestResult name=Verify_The_Course_That_Was_Registered status=SUCCESS method=CourseDetailTest.Verify_The_Course_That_Was_Registered()[pri:0, instance:testcases.CourseDetailTest@2c104774] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-        <test-method is-config="true" signature="afterSuite()[pri:0, instance:testcases.TC01_RegisterUser@71ae31b0]" started-at="2026-09-12T17:28:13 GMT+07:00" name="afterSuite" finished-at="2026-09-12T17:28:13 GMT+07:00" duration-ms="270" status="PASS">
+        <test-method is-config="true" signature="afterSuite()[pri:0, instance:testcases.CourseDetailTest@2c104774]" started-at="2026-09-30T23:38:35 GMT+07:00" name="afterSuite" finished-at="2026-09-30T23:38:35 GMT+07:00" duration-ms="354" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterSuite -->
-      </class> <!-- testcases.TC01_RegisterUser -->
+      </class> <!-- testcases.CourseDetailTest -->
     </test> <!-- Gradle test -->
   </suite> <!-- Gradle suite -->
 </testng-results>

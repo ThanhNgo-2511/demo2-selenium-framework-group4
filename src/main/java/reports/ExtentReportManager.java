@@ -39,6 +39,10 @@ public class ExtentReportManager {
         return test.get();
     }
 
+    public static void removeTest() {
+        test.remove();
+    }
+
     public static void info(String msg) {
         getTest().info(msg);
     }
