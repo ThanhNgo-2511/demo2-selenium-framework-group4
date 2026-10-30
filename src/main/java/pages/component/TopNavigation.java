@@ -21,7 +21,7 @@ public class TopNavigation extends BasePage {
         super(driver);
         this.byLnkLogin = By.xpath("//a[text()='Đăng nhập']");
         this.byLnkRegister = By.xpath("//a[h3[text()='Đăng Ký']]");
-        this.byImgAvatar = By.xpath("//img[@alt='Avatar']");
+        this.byImgAvatar = By.xpath("//img[@class='avatar']");
         this.byBtnLogout = By.xpath("//h3[text()='Đăng xuất']");
         this.byLnkCourseList = By.xpath("//ul[@class='menuHeader']/descendant::a[normalize-space()='Khóa học']");
     }

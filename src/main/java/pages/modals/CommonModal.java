@@ -7,12 +7,10 @@ import org.openqa.selenium.WebDriver;
 
 public class CommonModal extends BasePage {
 
-    private By byLayout;
     private By byLblMessage;
     public CommonModal(WebDriver driver)
     {
         super(driver);
-        this.byLayout = By.cssSelector(".swal-overlay");
         this.byLblMessage = By.xpath("//div[@class=\"swal-title\"]");
     }
     public String getMessageText()

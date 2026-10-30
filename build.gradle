@@ -10,15 +10,20 @@ repositories {
 }
 
 dependencies {
-// Source: https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
     implementation("org.seleniumhq.selenium:selenium-java:4.45.0")
-    // Source: https://mvnrepository.com/artifact/org.testng/testng
     implementation("org.testng:testng:7.12.0")
-
     implementation("org.apache.logging.log4j:log4j-core:2.26.1")
     implementation("org.apache.logging.log4j:log4j-api:2.26.1")
     implementation("org.apache.logging.log4j:log4j-slf4j2-impl:2.26.1")
     implementation("com.aventstack:extentreports:5.1.2")
+
+    // REST Assured
+    implementation 'io.rest-assured:rest-assured:5.4.0'
+
+    // JSON Path & Hamcrest (thường đi kèm với REST Assured để verify response)
+    implementation 'io.rest-assured:json-path:5.4.0'
+    implementation 'org.hamcrest:hamcrest:2.2'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.0'
 }
 
 test {

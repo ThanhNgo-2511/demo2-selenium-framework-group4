@@ -3,15 +3,15 @@
 <suite thread-count="3" parallel="methods" name="Failed suite [Gradle suite]" verbose="0">
   <test thread-count="3" parallel="methods" name="Gradle test(failed)" verbose="0">
     <classes>
-      <class name="testcases.CourseDetailTest">
+      <class name="testcases.course.CourseDetailTest">
         <methods>
           <include name="afterMethod"/>
           <include name="beforeSuite"/>
           <include name="afterSuite"/>
           <include name="beforeMethod"/>
-          <include name="Verify_The_Course_That_Was_Registered"/>
+          <include name="TC_CL_014_Verify_Hover_Card_Displays_When_Hover_Related_Course_Card"/>
         </methods>
-      </class> <!-- testcases.CourseDetailTest -->
+      </class> <!-- testcases.course.CourseDetailTest -->
     </classes>
   </test> <!-- Gradle test(failed) -->
 </suite> <!-- Failed suite [Gradle suite] -->
