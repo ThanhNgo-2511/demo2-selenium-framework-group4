@@ -1,0 +1,85 @@
+[2026-10-30 22:46:43] [INFO ] CourseListTest - beforeSuite executing...
+[2026-10-30 22:46:44] [INFO ] CourseListTest - beforeMethod executing...
+[2026-10-30 22:46:48] [INFO ] TestCaseHelper - User is at Course List page
+[2026-10-30 22:46:49] [INFO ] TestCaseHelper - Check the card at position (3)
+[2026-10-30 22:46:49] [INFO ] TestCaseHelper - VP1: The Course Name displays
+[2026-10-30 22:46:50] [INFO ] TestCaseHelper - Course Name: C++3333gaggggffgsdfg
+[2026-10-30 22:46:50] [INFO ] TestCaseHelper - VP2: The Course Short Description displays
+[2026-10-30 22:46:50] [INFO ] TestCaseHelper - Short Description: Lập trình hiện đang là xu hướng trên toàn thế giới...
+[2026-10-30 22:46:50] [INFO ] TestCaseHelper - VP3:The Course Image displays and doesn't break
+[2026-10-30 22:46:50] [INFO ] TestCaseHelper -  Course Image loaded=true
+[2026-10-30 22:46:51] [INFO ] TestCaseHelper -  Course Image loaded=true
+[2026-10-30 22:46:51] [INFO ] TestCaseHelper - VP4: The Instructor Avatar displays and doesn't break
+[2026-10-30 22:46:51] [INFO ] TestCaseHelper -  Instructor Avatar display=true
+[2026-10-30 22:46:51] [INFO ] TestCaseHelper -  Instructor Avatar loaded=true
+[2026-10-30 22:46:51] [INFO ] TestCaseHelper - VP5: The Instructor Name displays
+[2026-10-30 22:46:51] [INFO ] TestCaseHelper - Instructor Name: Elon Musk
+[2026-10-30 22:46:51] [INFO ] TestCaseHelper - VP6: The Price Sale displays
+[2026-10-30 22:46:51] [INFO ] TestCaseHelper - Price Sale: 400.000đ
+[2026-10-30 22:46:51] [INFO ] TestCaseHelper - VP7: The Price Original displays
+[2026-10-30 22:46:51] [INFO ] TestCaseHelper - Price Original: 800.000đ
+[2026-10-30 22:46:51] [INFO ] TestCaseHelper - VP8: The Rating displays
+[2026-10-30 22:46:51] [INFO ] TestCaseHelper - Rating: 4.9
+[2026-10-30 22:46:51] [INFO ] TestCaseHelper - VP9: The Review Number displays
+[2026-10-30 22:46:52] [INFO ] TestCaseHelper - Review Number : (7840)
+[2026-10-30 22:46:52] [INFO ] TestCaseHelper - VP10: The Course Card Href Link is valid
+[2026-10-30 22:46:52] [INFO ] TestCaseHelper - Course Card Href Link: https://demo2.cybersoft.edu.vn/chitiet/000
+[2026-10-30 22:46:52] [INFO ] TestCaseHelper - [TC_CL_003] PASS - All information on the card is valid
+[2026-10-30 22:46:52] [INFO ] CourseListTest - afterMethod ended...
+[2026-10-30 22:46:52] [INFO ] CourseListTest - beforeMethod executing...
+[2026-10-30 22:46:54] [INFO ] TestCaseHelper - User is at Course List page
+[2026-10-30 22:46:55] [INFO ] TestCaseHelper - Check the card at position (12)
+[2026-10-30 22:46:55] [INFO ] TestCaseHelper - VP1: The Course Name displays
+[2026-10-30 22:46:56] [INFO ] TestCaseHelper - Course Name: Machine Learning
+[2026-10-30 22:46:56] [INFO ] TestCaseHelper - VP2: The Course Short Description displays
+[2026-10-30 22:46:56] [INFO ] TestCaseHelper - Short Description: Lập trình hiện đang là xu hướng trên toàn thế giới...
+[2026-10-30 22:46:56] [INFO ] TestCaseHelper - VP3:The Course Image displays and doesn't break
+[2026-10-30 22:46:56] [INFO ] TestCaseHelper -  Course Image loaded=true
+[2026-10-30 22:46:56] [INFO ] TestCaseHelper -  Course Image loaded=true
+[2026-10-30 22:46:56] [INFO ] TestCaseHelper - VP4: The Instructor Avatar displays and doesn't break
+[2026-10-30 22:46:57] [INFO ] TestCaseHelper -  Instructor Avatar display=true
+[2026-10-30 22:46:57] [INFO ] TestCaseHelper -  Instructor Avatar loaded=true
+[2026-10-30 22:46:57] [INFO ] TestCaseHelper - VP5: The Instructor Name displays
+[2026-10-30 22:46:57] [INFO ] TestCaseHelper - Instructor Name: Elon Musk
+[2026-10-30 22:46:57] [INFO ] TestCaseHelper - VP6: The Price Sale displays
+[2026-10-30 22:46:57] [INFO ] TestCaseHelper - Price Sale: 400.000đ
+[2026-10-30 22:46:57] [INFO ] TestCaseHelper - VP7: The Price Original displays
+[2026-10-30 22:46:57] [INFO ] TestCaseHelper - Price Original: 800.000đ
+[2026-10-30 22:46:57] [INFO ] TestCaseHelper - VP8: The Rating displays
+[2026-10-30 22:46:57] [INFO ] TestCaseHelper - Rating: 4.9
+[2026-10-30 22:46:57] [INFO ] TestCaseHelper - VP9: The Review Number displays
+[2026-10-30 22:46:57] [INFO ] TestCaseHelper - Review Number : (7840)
+[2026-10-30 22:46:57] [INFO ] TestCaseHelper - VP10: The Course Card Href Link is valid
+[2026-10-30 22:46:57] [INFO ] TestCaseHelper - Course Card Href Link: https://demo2.cybersoft.edu.vn/chitiet/11205
+[2026-10-30 22:46:57] [INFO ] TestCaseHelper - [TC_CL_003] PASS - All information on the card is valid
+[2026-10-30 22:46:57] [INFO ] CourseListTest - afterMethod ended...
+[2026-10-30 22:46:58] [INFO ] CourseListTest - afterSuite ended...
+[2026-10-30 23:59:04] [INFO ] CourseListTest - beforeSuite executing...
+[2026-10-30 23:59:05] [INFO ] CourseListTest - beforeMethod executing...
+[2026-10-30 23:59:10] [INFO ] TestCaseHelper - User is at Course List page
+[2026-10-30 23:59:10] [INFO ] TestCaseHelper - Check the card at position (12)
+[2026-10-30 23:59:12] [INFO ] TestCaseHelper - VP1: The Course Name displays
+[2026-10-30 23:59:12] [INFO ] TestCaseHelper - Course Name: Machine Learning
+[2026-10-30 23:59:12] [INFO ] TestCaseHelper - VP2: The Course Short Description displays
+[2026-10-30 23:59:12] [INFO ] TestCaseHelper - Short Description: Lập trình hiện đang là xu hướng trên toàn thế giới...
+[2026-10-30 23:59:12] [INFO ] TestCaseHelper - VP3:The Course Image displays and doesn't break
+[2026-10-30 23:59:12] [INFO ] TestCaseHelper -  Course Image loaded=true
+[2026-10-30 23:59:12] [INFO ] TestCaseHelper -  Course Image loaded=true
+[2026-10-30 23:59:12] [INFO ] TestCaseHelper - VP4: The Instructor Avatar displays and doesn't break
+[2026-10-30 23:59:12] [INFO ] TestCaseHelper -  Instructor Avatar display=true
+[2026-10-30 23:59:12] [INFO ] TestCaseHelper -  Instructor Avatar loaded=true
+[2026-10-30 23:59:12] [INFO ] TestCaseHelper - VP5: The Instructor Name displays
+[2026-10-30 23:59:12] [INFO ] TestCaseHelper - Instructor Name: Elon Musk
+[2026-10-30 23:59:12] [INFO ] TestCaseHelper - VP6: The Price Sale displays
+[2026-10-30 23:59:12] [INFO ] TestCaseHelper - Price Sale: 400.000đ
+[2026-10-30 23:59:12] [INFO ] TestCaseHelper - VP7: The Price Original displays
+[2026-10-30 23:59:12] [INFO ] TestCaseHelper - Price Original: 800.000đ
+[2026-10-30 23:59:12] [INFO ] TestCaseHelper - VP8: The Rating displays
+[2026-10-30 23:59:12] [INFO ] TestCaseHelper - Rating: 4.9
+[2026-10-30 23:59:12] [INFO ] TestCaseHelper - VP9: The Review Number displays
+[2026-10-30 23:59:12] [INFO ] TestCaseHelper - Review Number : (7840)
+[2026-10-30 23:59:12] [INFO ] TestCaseHelper - VP10: The Course Card Href Link is valid
+[2026-10-30 23:59:12] [INFO ] TestCaseHelper - Course Card Href Link: https://demo2.cybersoft.edu.vn/chitiet/11205
+[2026-10-30 23:59:12] [INFO ] TestCaseHelper - [TC_CL_003] PASS - All information on the card is valid
+[2026-10-30 23:59:12] [INFO ] CourseListTest - afterMethod ended...
+[2026-10-30 23:59:12] [INFO ] CourseListTest - afterSuite ended...

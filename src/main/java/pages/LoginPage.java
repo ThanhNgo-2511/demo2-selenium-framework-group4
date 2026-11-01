@@ -10,7 +10,6 @@ public class LoginPage extends CommonPage {
     private By byBtnLogin;
     private By byTxtNameForm;
 
-    //Ham khoi tao (contructor)
     public LoginPage(WebDriver driver)
     {
         super(driver);

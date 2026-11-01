@@ -1,4 +1,4 @@
-package pages.component;
+package pages.components;
 
 import base.BasePage;
 import constants.TimeoutConstant;

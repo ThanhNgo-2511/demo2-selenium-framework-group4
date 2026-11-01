@@ -32,7 +32,7 @@ public class TestCaseHelper {
 
     public static CourseListPage navigateToCourseListPage() {
         HomePage homePage = openApplication();
-        logAndReport("User is at Course List page");
+        logAndReport("Open the Course List Page");
         homePage.getTopNavigation().navigateToCourseListPage();
         return new CourseListPage(DriverManager.getDriver());
     }
@@ -47,6 +47,7 @@ public class TestCaseHelper {
 
     public static LoginPage navigateToLoginPage() {
         HomePage homePage = openApplication();
+        logAndReport("Open the Login Page");
         homePage.getTopNavigation().navigateToLoginPage();
         return new LoginPage(DriverManager.getDriver());
     }

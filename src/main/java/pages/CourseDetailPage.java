@@ -3,13 +3,18 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import pages.components.FeaturedCourseCard;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CourseDetailPage extends CommonPage {
 
+//    // --- Locators for Banner   ---
+//    private By byLblBannerTitle;
+//    private By byLblBannerSubTitle;
+
     // --- Locators for Hero Section ---
-    private By byTitlePage;
     private By byCourseName;
     private By byInstructorImg;
     private By byInstructorTitle;
@@ -46,29 +51,30 @@ public class CourseDetailPage extends CommonPage {
     // --- Locators for Related Course Cards ---
     private By byRelatedCourseTitle;
     private By byRelatedCourseCards;
-    private By byLikeTag;
-    private By byRelatedCourseCardImage;
-    private By byRelatedCourseCardName;
-    private By byRelatedCourseCardShortDescription;
-    private By byRelatedCourseCardInstructorAvatar;
-    private By byRelatedCourseCardInstructorName;
-    private By byRelatedCourseCardSpecifications;
-    private By byRelatedCourseCardPriceSale;
-    private By byRelatedCourseCardPriceOriginal;
-
-    private By byHoverCourseCard;
-    private By byHoverCourseCardInstructorAvatar;
-    private By byHoverCourseCardInstructorName;
-    private By byHoverCourseCardName;
-    private By byHoverCourseCardShortDescription;
-    private By byHoverCourseCardSpecifications;
-    private By byBtnViewDetail;
+//    private By byLikeTag;
+//    private By byRelatedCourseCardImage;
+//    private By byRelatedCourseCardName;
+//    private By byRelatedCourseCardShortDescription;
+//    private By byRelatedCourseCardInstructorAvatar;
+//    private By byRelatedCourseCardInstructorName;
+//    private By byRelatedCourseCardSpecifications;
+//    private By byRelatedCourseCardPriceSale;
+//    private By byRelatedCourseCardPriceOriginal;
+//
+//    private By byHoverCourseCard;
+//    private By byHoverCourseCardInstructorAvatar;
+//    private By byHoverCourseCardInstructorName;
+//    private By byHoverCourseCardName;
+//    private By byHoverCourseCardShortDescription;
+//    private By byHoverCourseCardSpecifications;
+//    private By byBtnViewDetail;
 
     // --- Locators for Related Course Hover Cards ---
 
     public CourseDetailPage(WebDriver driver) {
         super(driver);
-        this.byTitlePage = By.xpath("//div[@class='titleCourse']/h3");
+//        this.byLblBannerTitle = By.xpath("//div[@class='titleCourse']/h3");
+//        this.byLblBannerSubTitle = By.xpath("//div[@class='titleCourse']/p");
 
         // --- Locators for Hero Section ---
         this.byCourseName = By.xpath("//h4[@class='titleDetailCourse']");
@@ -105,33 +111,48 @@ public class CourseDetailPage extends CommonPage {
 
         this.byRelatedCourseTitle = By.xpath("//h6[a[text()='Khóa học tham khảo']]");
         this.byRelatedCourseCards = By.xpath("//a[starts-with(@class,'cardGlobal')]");
-        this.byLikeTag = By.xpath(".//span[text()='Yêu thích']");
-        this.byRelatedCourseCardImage = By.xpath("./img");
-        this.byRelatedCourseCardName = By.xpath("./span[@class='stikerCard']");
-        this.byRelatedCourseCardShortDescription = By.xpath(".//div[@class='cardBodyGlobal']/h6");
-        this.byRelatedCourseCardInstructorAvatar = By.xpath(".//div[@class='imgCardFooter']/img");
-        this.byRelatedCourseCardInstructorName = By.xpath(".//div[@class='titleMaker']/span");
-        this.byRelatedCourseCardSpecifications = By.xpath(".//div[@class='cardBodyGlobal']//div[@class='cardIcon']");
-        this.byRelatedCourseCardPriceSale = By.xpath(".//div[@class='cardFooter']//p[2]");
-        this.byRelatedCourseCardPriceOriginal = By.xpath(".//div[@class='cardFooter']//p[1]");
-
-
-        this.byHoverCourseCard = By.xpath("./div[@class='subCard']");
-        this.byHoverCourseCardInstructorName  = By.xpath(".//img");
-        this.byHoverCourseCardName = By.xpath("./div[@class='subCardHead']/span");
-        this.byHoverCourseCardShortDescription = By.xpath(".//h6");
-        this.byHoverCourseCardSpecifications = By.xpath(".//div[@class='cardIcon']");
-        this.byBtnViewDetail = By.xpath("//a[text()='Xem chi tiết']");
+//        this.byLikeTag = By.xpath(".//span[text()='Yêu thích']");
+//        this.byRelatedCourseCardImage = By.xpath("./img");
+//        this.byRelatedCourseCardName = By.xpath("./span[@class='stikerCard']");
+//        this.byRelatedCourseCardShortDescription = By.xpath(".//div[@class='cardBodyGlobal']/h6");
+//        this.byRelatedCourseCardInstructorAvatar = By.xpath(".//div[@class='imgCardFooter']/img");
+//        this.byRelatedCourseCardInstructorName = By.xpath(".//div[@class='titleMaker']/span");
+//        this.byRelatedCourseCardSpecifications = By.xpath(".//div[@class='cardBodyGlobal']//div[@class='cardIcon']");
+//        this.byRelatedCourseCardPriceSale = By.xpath(".//div[@class='cardFooter']//p[2]");
+//        this.byRelatedCourseCardPriceOriginal = By.xpath(".//div[@class='cardFooter']//p[1]");
+//
+//
+//        this.byHoverCourseCard = By.xpath("./div[@class='subCard']");
+//        this.byHoverCourseCardInstructorAvatar = By.xpath(".//div[@class='subCardHead']/img");
+//        this.byHoverCourseCardInstructorName  = By.xpath(".//div[@class='subCardHead']/span");
+//        this.byHoverCourseCardName = By.xpath(".//h6");
+//        this.byHoverCourseCardShortDescription = By.xpath("./p[@class='colorCardTitle']");
+//        this.byHoverCourseCardSpecifications = By.xpath(".//div[@class='cardIcon']");
+//        this.byBtnViewDetail = By.xpath(".//a[text()='Xem chi tiết']");
 
 
     }
 
-    public String getTitleDetailPage() {
-        waitVisibilityOfElementLocated(byTitlePage);
-        return getText(byTitlePage);
-    }
-
-    // ====================== Hero Info ======================
+//    // ====================== Banner Methods ======================
+//    public boolean bannerTitleDisplayed()
+//    {
+//        return isDisplay(byLblBannerTitle);
+//    }
+//
+//    public String getBannerTitle()
+//    {
+//        return getText(byLblBannerTitle);
+//    }
+//
+//    public boolean bannerSubTitleDisplayed()
+//    {
+//        return isDisplay(byLblBannerSubTitle);
+//    }
+//
+//    public String getBannerSubTitle()
+//    {
+//        return getText(byLblBannerSubTitle);
+//    }
 
     /**
      * Get Course Name
@@ -140,6 +161,17 @@ public class CourseDetailPage extends CommonPage {
         waitVisibilityOfElementLocated(byCourseName);
         return getText(byCourseName);
     }
+
+    public boolean isCourseNameMatches(String expectedName)
+    {
+        return waitForTextDisplay(byCourseName, expectedName);
+    }
+    public void scrollToCourseName()
+    {
+        scrollToElement(byCourseName);
+    }
+
+
 
     //------------------ Instructor Section --------------------
 
@@ -453,7 +485,7 @@ public class CourseDetailPage extends CommonPage {
     /**
      * Get url of course image
      */
-    public String getCourseImageURL() {
+    public String getCourseImageLink() {
         waitVisibilityOfElementLocated(byCourseImage);
         return findElement(byCourseImage).getAttribute("src");
     }
@@ -483,7 +515,7 @@ public class CourseDetailPage extends CommonPage {
      * Check the Enroll button is enable
      */
     public boolean isEnrollButtonEnable() {
-        return isEnable(byBtnEnroll);
+        return isEnabled(byBtnEnroll);
     }
 
     //-------------- Stats Panel -------------
@@ -528,8 +560,14 @@ public class CourseDetailPage extends CommonPage {
     /**
      * Get all related course cards
      */
-    public List<WebElement> getAllRelatedCCourseCards() {
-        return findElements(byRelatedCourseCards);
+    public List<FeaturedCourseCard> getAllRelatedCCourseCards() {
+        List<WebElement> rawElements = findElements(byRelatedCourseCards);
+        List<FeaturedCourseCard> cards = new ArrayList<>();
+
+        for (WebElement element : rawElements) {
+            cards.add(new FeaturedCourseCard(getDriver(), element));
+        }
+        return cards;
     }
 
     /**
@@ -542,8 +580,8 @@ public class CourseDetailPage extends CommonPage {
     /**
      * Get related course card by index (1-based)
      */
-    public WebElement getRelatedCourseCard(int index) {
-        List<WebElement> courseCards = getAllRelatedCCourseCards();
+    public FeaturedCourseCard getRelatedCourseCard(int index) {
+        List<FeaturedCourseCard> courseCards = getAllRelatedCCourseCards();
         if (index < 1 || index > courseCards.size()) {
             throw new IndexOutOfBoundsException(
                     String.format(
@@ -554,272 +592,272 @@ public class CourseDetailPage extends CommonPage {
         return courseCards.get(index - 1);
     }
 
-    /**
-     * Get href of course card by index
-     */
-    public String getRelatedCourseCardHref(int index) {
-        WebElement card = getRelatedCourseCard(index);
-        String href = card.getAttribute("href");
-        return href != null ? href : "";
-    }
-
-    /**
-     * Check the like tag display on card
-     */
-    public boolean isLikeTagDisplay(int index)
-    {
-        WebElement card = getRelatedCourseCard(index);
-        WebElement likeTagEle = findChildElement(card, byRelatedCourseCardName);
-        return isDisplay(likeTagEle);
-    }
-
-    /**
-     * Check that the images in the card are displayed
-     */
-    public boolean isCardRelatedCourseImageDisplayed(int index) {
-        WebElement card = getRelatedCourseCard(index);
-        WebElement imageCourseElement = findChildElement(card, byRelatedCourseCardImage);
-        return isDisplay(imageCourseElement);
-    }
-
-    /**
-     * Check that the images in the card are not broken
-     */
-    public boolean isCardRelatedCourseImageLoaded(int index) {
-        WebElement card = getRelatedCourseCard(index);
-        WebElement imageCourseElement = findChildElement(card, byRelatedCourseCardImage);
-        return isImageLoaded(imageCourseElement);
-    }
-
-    /**
-     * Get name of course card by index
-     */
-    public String getCardRelatedCourseName(int index) {
-        WebElement card = getRelatedCourseCard(index);
-        WebElement nameElement = findChildElement(card, byRelatedCourseCardName);
-        String name = getText(nameElement).trim();
-        return name != null ? name : "";
-    }
-
-    /**
-     * Get short description of course card by index
-     */
-    public String getCardRelatedCourseShortDescription(int index)
-    {
-        WebElement card = getRelatedCourseCard(index);
-        WebElement shortDescElement = findChildElement(card, byRelatedCourseCardShortDescription);
-        String shortDesc = getText(shortDescElement).trim();
-        return shortDesc != null ? shortDesc : "";
-    }
-
-    /**
-     * Check the Specifications display on card
-     */
-    public boolean isRelateCourseCardSpecificationsDisplay(int index)
-    {
-        WebElement card = getRelatedCourseCard(index);
-        WebElement specificationsEle = findChildElement(card, byRelatedCourseCardSpecifications);
-        return isDisplay(specificationsEle);
-    }
-
-    /**
-     * Check that the avatar in the related card are not broken.
-     */
-    public boolean isAvatarOfRelatedCourseDisplayed(int index) {
-        WebElement card = getRelatedCourseCard(index);
-        WebElement avatarElement = findChildElement(card,byRelatedCourseCardInstructorAvatar);
-        return isImageLoaded(avatarElement);
-    }
-
-    /**
-     * Check that the avatar in the related card are not broken.
-     */
-    public boolean isAvatarOfRelatedCourseLoaded(int index) {
-        WebElement card = getRelatedCourseCard(index);
-        WebElement avatarElement = findChildElement(card,byRelatedCourseCardInstructorAvatar);
-        return isImageLoaded(avatarElement);
-    }
-
-    /**
-     * Get Instructor Name on the card by index
-     */
-    public String getCardRelatedCourseInstructorName(int index) {
-        WebElement card = getRelatedCourseCard(index);
-        WebElement instructorNameElement = findChildElement(card, byRelatedCourseCardInstructorName);
-        String name = getText(instructorNameElement).trim();
-        return name != null ? name : "";
-    }
-
-    /**
-     * Get Price Sale on the card by index
-     */
-    public String getCardRelatedCoursePriceSale(int index) {
-        WebElement card = getRelatedCourseCard(index);
-        WebElement priceSaleElement = findChildElement(card, byRelatedCourseCardPriceSale);
-        String priceSale = getText(priceSaleElement).trim();
-        return priceSale != null ? priceSale : "";
-    }
-
-    /**
-     * Get Price Original on the card by index
-     */
-    public String getCardRelatedCoursePriceOriginal(int index) {
-        WebElement card = getRelatedCourseCard(index);
-        WebElement priceOrigElement = findChildElement(card, byRelatedCourseCardPriceOriginal);
-        String priceOrig = getText(priceOrigElement).trim();
-        return priceOrig != null ? priceOrig : "";
-    }
-
-    /**
-     * Get the image's src of the course card by index
-     */
-    public String getImageCourseLink(int index) {
-        WebElement card = getRelatedCourseCard(index);
-        WebElement image = findChildElement(card, byRelatedCourseCardImage);
-        String src = image.getAttribute("src");
-        return src != null ? src : "";
-    }
-
-    /**
-     * Click on the course card by index
-     */
-    public void clickRelatedCourseCard(int index)
-    {
-        WebElement card = getRelatedCourseCard(index);
-        scrollToElement(card);
-        click(card);
-    }
-
-    /**
-     * Hover on the Related Card
-     */
-    public void hoverOnRelatedCourseCard(int index)
-    {
-        WebElement card = getRelatedCourseCard(index);
-        hover(card);
-    }
-
-    //-------------- Related Course Card Hover-------------
-    public boolean ishoverCardDisplay(int index)
-    {
-        WebElement relatedCourse = getRelatedCourseCard(index);
-        WebElement hoverCard = findChildElement(relatedCourse,byHoverCourseCard);
-        return isDisplay(hoverCard);
-    }
-
-    /**
-     * Get hover card of related course card
-     */
-    public WebElement getCourseHoverCard(int index) {
-        WebElement relatedCourse = getRelatedCourseCard(index);
-        WebElement hoverCard = findChildElement(relatedCourse,byHoverCourseCard);
-        return findChildElement(hoverCard,byHoverCourseCard);
-    }
-
-    /**
-     * Check that the avatar in the hover card are not broken.
-     */
-    public boolean isHoverCardCourseAvatarImageDisplayed(int index) {
-        WebElement relatedCourse = getRelatedCourseCard(index);
-        WebElement hoverCard = findChildElement(relatedCourse,byHoverCourseCard);
-        WebElement avatarElement = findChildElement(hoverCard,byHoverCourseCardInstructorAvatar);
-        return isDisplay(avatarElement);
-    }
-
-    /**
-     * Check that the avatar in the hover card are not broken.
-     */
-    public boolean isHoverCardCourseAvatarImageLoaded(int index) {
-        WebElement relatedCourse = getRelatedCourseCard(index);
-        WebElement hoverCard = findChildElement(relatedCourse,byHoverCourseCard);
-        WebElement avatarElement = findChildElement(hoverCard,byHoverCourseCardInstructorAvatar);
-        return isImageLoaded(avatarElement);
-    }
-
-    /**
-     * Get Instructor Name on hover course card
-     */
-    public String getHoverCardCourseInstructorName(int index) {
-        WebElement relatedCourse = getRelatedCourseCard(index);
-        WebElement hoverCard = findChildElement(relatedCourse,byHoverCourseCard);
-        WebElement instructorNameElement = findChildElement(hoverCard, byHoverCourseCardInstructorName);
-        String name = getText(instructorNameElement).trim();
-        return name != null ? name : "";
-    }
-
-    /**
-     * Get Course Name on hover course card
-     */
-    public String getHoverCardCourseCourseName(int index) {
-        WebElement relatedCourse = getRelatedCourseCard(index);
-        WebElement hoverCard = findChildElement(relatedCourse,byHoverCourseCard);
-        WebElement courseNameElement = findChildElement(hoverCard, byHoverCourseCardName);
-        String name = getText(courseNameElement).trim();
-        return name != null ? name : "";
-    }
-
-    /**
-     * Get short description on hover course card
-     */
-    public String getCardHoverCourseShortDescription(int index)
-    {
-        WebElement relatedCourse = getRelatedCourseCard(index);
-        WebElement hoverCard = findChildElement(relatedCourse,byHoverCourseCard);
-        WebElement shortDescElement = findChildElement(hoverCard, byHoverCourseCardShortDescription);
-        String shortDesc = getText(shortDescElement).trim();
-        return shortDesc != null ? shortDesc : "";
-    }
-
-    /**
-     * Check the Specifications display on hover card
-     */
-    public boolean isHoverCourseCardSpecificationsDisplay(int index)
-    {
-        WebElement relatedCourse = getRelatedCourseCard(index);
-        WebElement hoverCard = findChildElement(relatedCourse,byHoverCourseCard);
-        WebElement specificationsEle = findChildElement(hoverCard, byHoverCourseCardShortDescription);
-        return isDisplay(specificationsEle);
-    }
-
-
-    /**
-     * Click on View Detail button on hover card
-     */
-    public void clickOnViewDetailButton(int index) {
-        WebElement relatedCourse = getRelatedCourseCard(index);
-        WebElement hoverCard = findChildElement(relatedCourse,byHoverCourseCard);
-        WebElement viewDetailButton = findChildElement(hoverCard, byBtnViewDetail);
-        click(viewDetailButton);
-    }
-
-    /**
-     * Click on View Detail button on hover card
-     */
-    public String getViewDetailButtonHref(int index) {
-        WebElement relatedCourse = getRelatedCourseCard(index);
-        WebElement hoverCard = findChildElement(relatedCourse,byHoverCourseCard);
-        WebElement viewDetailButton = findChildElement(hoverCard, byBtnViewDetail);
-        String href = viewDetailButton.getAttribute("href");
-        return href != null ? href : "";
-    }
-
-    /**
-     * Check the View Detail button is display
-     */
-    public boolean isViewDetailButtonDisplayed(int index) {
-        WebElement relatedCourse = getRelatedCourseCard(index);
-        WebElement hoverCard = findChildElement(relatedCourse,byHoverCourseCard);
-        WebElement viewDetailButton = findChildElement(hoverCard, byBtnViewDetail);
-        return isDisplay(viewDetailButton);
-    }
-
-    /**
-     * Check the View Detail button is enable
-     */
-    public boolean isViewDetailButtonEnable(int index) {
-        WebElement relatedCourse = getRelatedCourseCard(index);
-        WebElement hoverCard = findChildElement(relatedCourse,byHoverCourseCard);
-        WebElement viewDetailButton = findChildElement(hoverCard, byBtnViewDetail);
-        return isEnable(viewDetailButton);
-    }
+//    /**
+//     * Get href of course card by index
+//     */
+//    public String getRelatedCourseCardHref(int index) {
+//        WebElement card = getRelatedCourseCard(index);
+//        String href = card.getAttribute("href");
+//        return href != null ? href : "";
+//    }
+//
+//    /**
+//     * Check the like tag display on card
+//     */
+//    public boolean isLikeTagDisplay(int index)
+//    {
+//        WebElement card = getRelatedCourseCard(index);
+//        WebElement likeTagEle = findChildElement(card, byLikeTag);
+//        return isDisplay(likeTagEle);
+//    }
+//
+//    /**
+//     * Check that the images in the card are displayed
+//     */
+//    public boolean isCardRelatedCourseImageDisplayed(int index) {
+//        WebElement card = getRelatedCourseCard(index);
+//        WebElement imageCourseElement = findChildElement(card, byRelatedCourseCardImage);
+//        return isDisplay(imageCourseElement);
+//    }
+//
+//    /**
+//     * Check that the images in the card are not broken
+//     */
+//    public boolean isCardRelatedCourseImageLoaded(int index) {
+//        WebElement card = getRelatedCourseCard(index);
+//        WebElement imageCourseElement = findChildElement(card, byRelatedCourseCardImage);
+//        return isImageLoaded(imageCourseElement);
+//    }
+//
+//    /**
+//     * Get name of course card by index
+//     */
+//    public String getCardRelatedCourseName(int index) {
+//        WebElement card = getRelatedCourseCard(index);
+//        WebElement nameElement = findChildElement(card, byRelatedCourseCardName);
+//        String name = getText(nameElement).trim();
+//        return name != null ? name : "";
+//    }
+//
+//    /**
+//     * Get short description of course card by index
+//     */
+//    public String getCardRelatedCourseShortDescription(int index)
+//    {
+//        WebElement card = getRelatedCourseCard(index);
+//        WebElement shortDescElement = findChildElement(card, byRelatedCourseCardShortDescription);
+//        String shortDesc = getText(shortDescElement).trim();
+//        return shortDesc != null ? shortDesc : "";
+//    }
+//
+//    /**
+//     * Check the Specifications display on card
+//     */
+//    public boolean isRelateCourseCardSpecificationsDisplay(int index)
+//    {
+//        WebElement card = getRelatedCourseCard(index);
+//        WebElement specificationsEle = findChildElement(card, byRelatedCourseCardSpecifications);
+//        return isDisplay(specificationsEle);
+//    }
+//
+//    /**
+//     * Check that the avatar in the related card are not broken.
+//     */
+//    public boolean isAvatarOfRelatedCourseDisplayed(int index) {
+//        WebElement card = getRelatedCourseCard(index);
+//        WebElement avatarElement = findChildElement(card,byRelatedCourseCardInstructorAvatar);
+//        return isImageLoaded(avatarElement);
+//    }
+//
+//    /**
+//     * Check that the avatar in the related card are not broken.
+//     */
+//    public boolean isAvatarOfRelatedCourseLoaded(int index) {
+//        WebElement card = getRelatedCourseCard(index);
+//        WebElement avatarElement = findChildElement(card,byRelatedCourseCardInstructorAvatar);
+//        return isImageLoaded(avatarElement);
+//    }
+//
+//    /**
+//     * Get Instructor Name on the card by index
+//     */
+//    public String getCardRelatedCourseInstructorName(int index) {
+//        WebElement card = getRelatedCourseCard(index);
+//        WebElement instructorNameElement = findChildElement(card, byRelatedCourseCardInstructorName);
+//        String name = getText(instructorNameElement).trim();
+//        return name != null ? name : "";
+//    }
+//
+//    /**
+//     * Get Price Sale on the card by index
+//     */
+//    public String getCardRelatedCoursePriceSale(int index) {
+//        WebElement card = getRelatedCourseCard(index);
+//        WebElement priceSaleElement = findChildElement(card, byRelatedCourseCardPriceSale);
+//        String priceSale = getText(priceSaleElement).trim();
+//        return priceSale != null ? priceSale : "";
+//    }
+//
+//    /**
+//     * Get Price Original on the card by index
+//     */
+//    public String getCardRelatedCoursePriceOriginal(int index) {
+//        WebElement card = getRelatedCourseCard(index);
+//        WebElement priceOrigElement = findChildElement(card, byRelatedCourseCardPriceOriginal);
+//        String priceOrig = getText(priceOrigElement).trim();
+//        return priceOrig != null ? priceOrig : "";
+//    }
+//
+//    /**
+//     * Get the image's src of the course card by index
+//     */
+//    public String getImageCourseLink(int index) {
+//        WebElement card = getRelatedCourseCard(index);
+//        WebElement image = findChildElement(card, byRelatedCourseCardImage);
+//        String src = image.getAttribute("src");
+//        return src != null ? src : "";
+//    }
+//
+//    /**
+//     * Click on the course card by index
+//     */
+//    public void clickRelatedCourseCard(int index)
+//    {
+//        WebElement card = getRelatedCourseCard(index);
+//        scrollToElement(card);
+//        click(card);
+//    }
+//
+//    /**
+//     * Hover on the Related Card
+//     */
+//    public void hoverOnRelatedCourseCard(int index)
+//    {
+//        WebElement card = getRelatedCourseCard(index);
+//        hover(card);
+//    }
+//
+//    //-------------- Related Course Card Hover-------------
+//    public boolean ishoverCardDisplay(int index)
+//    {
+//        WebElement relatedCourse = getRelatedCourseCard(index);
+//        WebElement hoverCard = findChildElement(relatedCourse,byHoverCourseCard);
+//        return isDisplay(hoverCard);
+//    }
+//
+//    /**
+//     * Get hover card of related course card
+//     */
+//    public WebElement getCourseHoverCard(int index) {
+//        WebElement relatedCourse = getRelatedCourseCard(index);
+//        WebElement hoverCard = findChildElement(relatedCourse,byHoverCourseCard);
+//        return findChildElement(hoverCard,byHoverCourseCard);
+//    }
+//
+//    /**
+//     * Check that the avatar in the hover card are not broken.
+//     */
+//    public boolean isHoverCardCourseAvatarImageDisplayed(int index) {
+//        WebElement relatedCourse = getRelatedCourseCard(index);
+//        WebElement hoverCard = findChildElement(relatedCourse,byHoverCourseCard);
+//        WebElement avatarElement = findChildElement(hoverCard,byHoverCourseCardInstructorAvatar);
+//        return isDisplay(avatarElement);
+//    }
+//
+//    /**
+//     * Check that the avatar in the hover card are not broken.
+//     */
+//    public boolean isHoverCardCourseAvatarImageLoaded(int index) {
+//        WebElement relatedCourse = getRelatedCourseCard(index);
+//        WebElement hoverCard = findChildElement(relatedCourse,byHoverCourseCard);
+//        WebElement avatarElement = findChildElement(hoverCard,byHoverCourseCardInstructorAvatar);
+//        return isImageLoaded(avatarElement);
+//    }
+//
+//    /**
+//     * Get Instructor Name on hover course card
+//     */
+//    public String getHoverCardCourseInstructorName(int index) {
+//        WebElement relatedCourse = getRelatedCourseCard(index);
+//        WebElement hoverCard = findChildElement(relatedCourse,byHoverCourseCard);
+//        WebElement instructorNameElement = findChildElement(hoverCard, byHoverCourseCardInstructorName);
+//        String name = getText(instructorNameElement).trim();
+//        return name != null ? name : "";
+//    }
+//
+//    /**
+//     * Get Course Name on hover course card
+//     */
+//    public String getHoverCardCourseCourseName(int index) {
+//        WebElement relatedCourse = getRelatedCourseCard(index);
+//        WebElement hoverCard = findChildElement(relatedCourse,byHoverCourseCard);
+//        WebElement courseNameElement = findChildElement(hoverCard, byHoverCourseCardName);
+//        String name = getText(courseNameElement).trim();
+//        return name != null ? name : "";
+//    }
+//
+//    /**
+//     * Get short description on hover course card
+//     */
+//    public String getCardHoverCourseShortDescription(int index)
+//    {
+//        WebElement relatedCourse = getRelatedCourseCard(index);
+//        WebElement hoverCard = findChildElement(relatedCourse,byHoverCourseCard);
+//        WebElement shortDescElement = findChildElement(hoverCard, byHoverCourseCardShortDescription);
+//        String shortDesc = getText(shortDescElement).trim();
+//        return shortDesc != null ? shortDesc : "";
+//    }
+//
+//    /**
+//     * Check the Specifications display on hover card
+//     */
+//    public boolean isHoverCourseCardSpecificationsDisplay(int index)
+//    {
+//        WebElement relatedCourse = getRelatedCourseCard(index);
+//        WebElement hoverCard = findChildElement(relatedCourse,byHoverCourseCard);
+//        WebElement specificationsEle = findChildElement(hoverCard, byHoverCourseCardSpecifications);
+//        return isDisplay(specificationsEle);
+//    }
+//
+//
+//    /**
+//     * Click on View Detail button on hover card
+//     */
+//    public void clickOnViewDetailButton(int index) {
+//        WebElement relatedCourse = getRelatedCourseCard(index);
+//        WebElement hoverCard = findChildElement(relatedCourse,byHoverCourseCard);
+//        WebElement viewDetailButton = findChildElement(hoverCard, byBtnViewDetail);
+//        click(viewDetailButton);
+//    }
+//
+//    /**
+//     * Click on View Detail button on hover card
+//     */
+//    public String getViewDetailButtonHref(int index) {
+//        WebElement relatedCourse = getRelatedCourseCard(index);
+//        WebElement hoverCard = findChildElement(relatedCourse,byHoverCourseCard);
+//        WebElement viewDetailButton = findChildElement(hoverCard, byBtnViewDetail);
+//        String href = viewDetailButton.getAttribute("href");
+//        return href != null ? href : "";
+//    }
+//
+//    /**
+//     * Check the View Detail button is display
+//     */
+//    public boolean isViewDetailButtonDisplayed(int index) {
+//        WebElement relatedCourse = getRelatedCourseCard(index);
+//        WebElement hoverCard = findChildElement(relatedCourse,byHoverCourseCard);
+//        WebElement viewDetailButton = findChildElement(hoverCard, byBtnViewDetail);
+//        return isDisplay(viewDetailButton);
+//    }
+//
+//    /**
+//     * Check the View Detail button is enable
+//     */
+//    public boolean isViewDetailButtonEnable(int index) {
+//        WebElement relatedCourse = getRelatedCourseCard(index);
+//        WebElement hoverCard = findChildElement(relatedCourse,byHoverCourseCard);
+//        WebElement viewDetailButton = findChildElement(hoverCard, byBtnViewDetail);
+//        return isEnabled(viewDetailButton);
+//    }
 }

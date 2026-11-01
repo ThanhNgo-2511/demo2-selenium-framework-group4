@@ -1,0 +1,173 @@
+[2026-11-01 15:49:59] [INFO ] CourseListTest - beforeSuite executing...
+[2026-11-01 15:49:59] [INFO ] CourseListTest - beforeMethod executing...
+[2026-11-01 15:49:59] [INFO ] CourseListTest - beforeMethod executing...
+[2026-11-01 15:49:59] [INFO ] CourseListTest - beforeMethod executing...
+[2026-11-01 15:50:05] [INFO ] TestCaseHelper - Open the Course List Page
+[2026-11-01 15:50:05] [INFO ] TestCaseHelper - Open the Course List Page
+[2026-11-01 15:50:06] [INFO ] TestCaseHelper - VP1: Verify the Insight Information section displays on the Course List
+[2026-11-01 15:50:06] [INFO ] TestCaseHelper - VP1: Verify the Banner Title "KHÓA HỌC" displays on the Course List
+[2026-11-01 15:50:06] [INFO ] TestCaseHelper - Banner Title displayed =true
+[2026-11-01 15:50:06] [INFO ] TestCaseHelper - Insight Information displayed =true
+[2026-11-01 15:50:06] [INFO ] TestCaseHelper - Banner Title: KHÓA HỌC
+[2026-11-01 15:50:06] [INFO ] TestCaseHelper - VP2: Verify the Banner Sub-title "BẮT ĐẦU HÀNH TRÌNH NÀO!!!" displays on the Course List
+[2026-11-01 15:50:06] [INFO ] TestCaseHelper - Banner Sub-Title displayed =true
+[2026-11-01 15:50:06] [INFO ] TestCaseHelper - Banner Sub-Title: BẮT ĐẦU HÀNH TRÌNH NÀO!!!
+[2026-11-01 15:50:06] [INFO ] CourseListTest - afterMethod ended...
+[2026-11-01 15:50:07] [INFO ] TestCaseHelper - VP2: The number of insight items displayed matches expectations!
+[2026-11-01 15:50:07] [INFO ] TestCaseHelper - VP3: Verify the context on the Insight Box (1).
+[2026-11-01 15:50:07] [INFO ] TestCaseHelper - Insight Title: CHƯƠNG TRÌNH HỌC
+[2026-11-01 15:50:07] [INFO ] TestCaseHelper - Insight Value: 300
+[2026-11-01 15:50:07] [INFO ] TestCaseHelper - VP4: Verify the context on the Insight Box (2).
+[2026-11-01 15:50:07] [INFO ] TestCaseHelper - Insight Title: NHÀ SÁNG TẠO
+[2026-11-01 15:50:07] [INFO ] TestCaseHelper - Insight Value: 10000
+[2026-11-01 15:50:07] [INFO ] TestCaseHelper - VP5: Verify the context on the Insight Box (3).
+[2026-11-01 15:50:07] [INFO ] TestCaseHelper - Insight Title: NHÀ THIẾT KẾ
+[2026-11-01 15:50:07] [INFO ] TestCaseHelper - Insight Value: 400
+[2026-11-01 15:50:07] [INFO ] TestCaseHelper - VP6: Verify the context on the Insight Box (4).
+[2026-11-01 15:50:07] [INFO ] TestCaseHelper - Insight Title: BÀI GIẢNG
+[2026-11-01 15:50:07] [INFO ] TestCaseHelper - Insight Value: 3000
+[2026-11-01 15:50:07] [INFO ] TestCaseHelper - VP7: Verify the context on the Insight Box (5).
+[2026-11-01 15:50:07] [INFO ] TestCaseHelper - Insight Title: VIDEO
+[2026-11-01 15:50:07] [INFO ] TestCaseHelper - Insight Value: 40000
+[2026-11-01 15:50:07] [INFO ] TestCaseHelper - VP8: Verify the context on the Insight Box (6).
+[2026-11-01 15:50:07] [INFO ] TestCaseHelper - Insight Title: LĨNH VỰC
+[2026-11-01 15:50:07] [INFO ] TestCaseHelper - Insight Value: 200
+[2026-11-01 15:50:07] [INFO ] CourseListTest - afterMethod ended...
+[2026-11-01 15:50:08] [INFO ] TestCaseHelper - Open the Course List Page
+[2026-11-01 15:50:09] [INFO ] TestCaseHelper - VP1: Verify URL
+[2026-11-01 15:50:09] [INFO ] TestCaseHelper - Current URL: https://demo2.cybersoft.edu.vn/khoahoc
+[2026-11-01 15:50:09] [INFO ] TestCaseHelper - VP2: Verify page title is not empty
+[2026-11-01 15:50:09] [INFO ] TestCaseHelper - Page Title: V learning
+[2026-11-01 15:50:09] [INFO ] TestCaseHelper - VP3: The title: "Danh sách khóa học" displays
+[2026-11-01 15:50:09] [INFO ] TestCaseHelper - Section Title displayed= true
+[2026-11-01 15:50:09] [INFO ] TestCaseHelper - VP4: Verify the page has course cards
+[2026-11-01 15:50:10] [INFO ] TestCaseHelper - Card count: 12
+[2026-11-01 15:50:10] [INFO ] CourseListTest - afterMethod ended...
+[2026-11-01 15:50:11] [INFO ] CourseListTest - beforeMethod executing...
+[2026-11-01 15:50:11] [INFO ] CourseListTest - beforeMethod executing...
+[2026-11-01 15:50:11] [INFO ] CourseListTest - beforeMethod executing...
+[2026-11-01 15:50:16] [INFO ] TestCaseHelper - Open the Course List Page
+[2026-11-01 15:50:16] [INFO ] TestCaseHelper - Open the Course List Page
+[2026-11-01 15:50:17] [INFO ] TestCaseHelper - VP: The count of Course Cards are >0 and <=12
+[2026-11-01 15:50:17] [INFO ] TestCaseHelper - Scroll to the card at position (3)
+[2026-11-01 15:50:19] [INFO ] TestCaseHelper - Number of Course Cards displayed: 12
+[2026-11-01 15:50:19] [INFO ] CourseListTest - afterMethod ended...
+[2026-11-01 15:50:19] [INFO ] TestCaseHelper - Check the card at position (3)
+[2026-11-01 15:50:19] [INFO ] TestCaseHelper - VP1:The Course Image displays and doesn't break
+[2026-11-01 15:50:19] [INFO ] TestCaseHelper - Course Image displayed=true
+[2026-11-01 15:50:19] [INFO ] CourseListTest - beforeMethod executing...
+[2026-11-01 15:50:19] [INFO ] TestCaseHelper - Course Image loaded=true
+[2026-11-01 15:50:19] [INFO ] TestCaseHelper - VP2: The Course Name displays
+[2026-11-01 15:50:19] [INFO ] TestCaseHelper - Course Name: C++3333gaggggffgsdfg
+[2026-11-01 15:50:19] [INFO ] TestCaseHelper - VP3: The Course Short Description displays
+[2026-11-01 15:50:20] [INFO ] TestCaseHelper - Short Description: Lập trình hiện đang là xu hướng trên toàn thế giới...
+[2026-11-01 15:50:20] [INFO ] TestCaseHelper - VP4: The Instructor Avatar displays and doesn't break
+[2026-11-01 15:50:20] [INFO ] TestCaseHelper -  Instructor Avatar display=true
+[2026-11-01 15:50:20] [INFO ] TestCaseHelper -  Instructor Avatar loaded=true
+[2026-11-01 15:50:20] [INFO ] TestCaseHelper - VP5: The Instructor Name displays
+[2026-11-01 15:50:20] [INFO ] TestCaseHelper - Instructor Name: Elon Musk
+[2026-11-01 15:50:20] [INFO ] TestCaseHelper - VP6: The Price Sale displays
+[2026-11-01 15:50:20] [INFO ] TestCaseHelper - Price Sale: 400.000đ
+[2026-11-01 15:50:20] [INFO ] TestCaseHelper - VP7: The Price Original displays
+[2026-11-01 15:50:20] [INFO ] TestCaseHelper - Price Original: 800.000đ
+[2026-11-01 15:50:20] [INFO ] TestCaseHelper - VP8: The Rating displays
+[2026-11-01 15:50:20] [INFO ] TestCaseHelper - Rating: 4.9
+[2026-11-01 15:50:20] [INFO ] TestCaseHelper - VP9: The Review Number displays
+[2026-11-01 15:50:20] [INFO ] TestCaseHelper - Review Number : (7840)
+[2026-11-01 15:50:20] [INFO ] TestCaseHelper - VP10: The Course Card Href Link is valid
+[2026-11-01 15:50:20] [INFO ] TestCaseHelper - Course Card Href Link: https://demo2.cybersoft.edu.vn/chitiet/000
+[2026-11-01 15:50:20] [INFO ] TestCaseHelper - [TC_CL_005] PASS - All information on the card is valid
+[2026-11-01 15:50:20] [INFO ] TestCaseHelper - Open the Course List Page
+[2026-11-01 15:50:20] [INFO ] CourseListTest - afterMethod ended...
+[2026-11-01 15:50:22] [INFO ] CourseListTest - beforeMethod executing...
+[2026-11-01 15:50:23] [INFO ] TestCaseHelper - Step 1: Scroll to the card at position (3)
+[2026-11-01 15:50:23] [INFO ] TestCaseHelper - Step 2: Click on the card at position (3)
+[2026-11-01 15:50:24] [INFO ] TestCaseHelper - VP1: The current URL page is the Detail Page
+[2026-11-01 15:50:24] [INFO ] TestCaseHelper - VP2: The current URL page matches the link card
+[2026-11-01 15:50:24] [INFO ] TestCaseHelper - Open the Course List Page
+[2026-11-01 15:50:24] [INFO ] TestCaseHelper - VP3: The title: "THÔNG TIN KHÓA HỌC" displays
+[2026-11-01 15:50:24] [INFO ] CourseListTest - afterMethod ended...
+[2026-11-01 15:50:24] [INFO ] CourseListTest - beforeMethod executing...
+[2026-11-01 15:50:25] [INFO ] TestCaseHelper - Open the Course List Page
+[2026-11-01 15:50:25] [INFO ] TestCaseHelper - Scroll to the card at position (12)
+[2026-11-01 15:50:27] [INFO ] TestCaseHelper - Check the card at position (12)
+[2026-11-01 15:50:27] [INFO ] TestCaseHelper - VP1:The Course Image displays and doesn't break
+[2026-11-01 15:50:27] [INFO ] TestCaseHelper - Course Image displayed=true
+[2026-11-01 15:50:27] [INFO ] TestCaseHelper - Course Image loaded=true
+[2026-11-01 15:50:27] [INFO ] TestCaseHelper - VP2: The Course Name displays
+[2026-11-01 15:50:27] [INFO ] TestCaseHelper - Step 1: Click on the Next button on the pagination
+[2026-11-01 15:50:27] [INFO ] TestCaseHelper - Course Name: Machine Learning
+[2026-11-01 15:50:27] [INFO ] TestCaseHelper - VP3: The Course Short Description displays
+[2026-11-01 15:50:27] [INFO ] TestCaseHelper - Short Description: Lập trình hiện đang là xu hướng trên toàn thế giới...
+[2026-11-01 15:50:27] [INFO ] TestCaseHelper - VP4: The Instructor Avatar displays and doesn't break
+[2026-11-01 15:50:27] [INFO ] TestCaseHelper -  Instructor Avatar display=true
+[2026-11-01 15:50:27] [INFO ] TestCaseHelper -  Instructor Avatar loaded=true
+[2026-11-01 15:50:27] [INFO ] TestCaseHelper - VP5: The Instructor Name displays
+[2026-11-01 15:50:27] [INFO ] TestCaseHelper - Open the Course List Page
+[2026-11-01 15:50:28] [INFO ] TestCaseHelper - Instructor Name: Elon Musk
+[2026-11-01 15:50:28] [INFO ] TestCaseHelper - VP6: The Price Sale displays
+[2026-11-01 15:50:28] [INFO ] TestCaseHelper - Price Sale: 400.000đ
+[2026-11-01 15:50:28] [INFO ] TestCaseHelper - VP7: The Price Original displays
+[2026-11-01 15:50:28] [INFO ] TestCaseHelper - Price Original: 800.000đ
+[2026-11-01 15:50:28] [INFO ] TestCaseHelper - VP8: The Rating displays
+[2026-11-01 15:50:28] [INFO ] TestCaseHelper - Rating: 4.9
+[2026-11-01 15:50:28] [INFO ] TestCaseHelper - VP9: The Review Number displays
+[2026-11-01 15:50:29] [INFO ] TestCaseHelper - Review Number : (7840)
+[2026-11-01 15:50:29] [INFO ] TestCaseHelper - VP10: The Course Card Href Link is valid
+[2026-11-01 15:50:29] [INFO ] TestCaseHelper - VP1: Current page is page 2
+[2026-11-01 15:50:29] [INFO ] TestCaseHelper - Course Card Href Link: https://demo2.cybersoft.edu.vn/chitiet/11205
+[2026-11-01 15:50:29] [INFO ] TestCaseHelper - [TC_CL_005] PASS - All information on the card is valid
+[2026-11-01 15:50:29] [INFO ] CourseListTest - afterMethod ended...
+[2026-11-01 15:50:29] [INFO ] TestCaseHelper - VP2: Course list content is refreshed
+[2026-11-01 15:50:29] [INFO ] CourseListTest - beforeMethod executing...
+[2026-11-01 15:50:30] [INFO ] CourseListTest - afterMethod ended...
+[2026-11-01 15:50:30] [INFO ] TestCaseHelper - Step 1: Scroll to the card at position (12)
+[2026-11-01 15:50:30] [INFO ] TestCaseHelper - Step 2: Click on the card at position (12)
+[2026-11-01 15:50:30] [INFO ] CourseListTest - beforeMethod executing...
+[2026-11-01 15:50:30] [INFO ] TestCaseHelper - VP1: The current URL page is the Detail Page
+[2026-11-01 15:50:30] [INFO ] TestCaseHelper - VP2: The current URL page matches the link card
+[2026-11-01 15:50:30] [INFO ] TestCaseHelper - VP3: The title: "THÔNG TIN KHÓA HỌC" displays
+[2026-11-01 15:50:30] [INFO ] CourseListTest - afterMethod ended...
+[2026-11-01 15:50:31] [INFO ] CourseListTest - beforeMethod executing...
+[2026-11-01 15:50:33] [INFO ] TestCaseHelper - Open the Course List Page
+[2026-11-01 15:50:33] [INFO ] TestCaseHelper - Open the Course List Page
+[2026-11-01 15:50:34] [INFO ] TestCaseHelper - Step 1: Click on the last page button on the pagination
+[2026-11-01 15:50:35] [INFO ] TestCaseHelper - Open the Course List Page
+[2026-11-01 15:50:37] [INFO ] TestCaseHelper - Step 2: Click on the Next button on the pagination
+[2026-11-01 15:50:37] [INFO ] TestCaseHelper - Step 1: Click on the Page 2 on pagination
+[2026-11-01 15:50:37] [INFO ] TestCaseHelper - Click on the page 5
+[2026-11-01 15:50:37] [INFO ] TestCaseHelper - Verify Point: Current page is still the last page
+[2026-11-01 15:50:37] [INFO ] CourseListTest - afterMethod ended...
+[2026-11-01 15:50:39] [INFO ] CourseListTest - beforeMethod executing...
+[2026-11-01 15:50:39] [INFO ] TestCaseHelper - Step 2: Click on the Previous button on the navigation
+[2026-11-01 15:50:41] [INFO ] TestCaseHelper - VP1: Current page is the page 1
+[2026-11-01 15:50:41] [INFO ] TestCaseHelper - VP2: Course list content is refreshed
+[2026-11-01 15:50:41] [INFO ] CourseListTest - afterMethod ended...
+[2026-11-01 15:50:42] [INFO ] CourseListTest - beforeMethod executing...
+[2026-11-01 15:50:42] [INFO ] TestCaseHelper - Open the Course List Page
+[2026-11-01 15:50:42] [INFO ] TestCaseHelper - VP1: Current page is page 5
+[2026-11-01 15:50:43] [INFO ] TestCaseHelper - VP2: Course list content is refreshed
+[2026-11-01 15:50:43] [INFO ] TestCaseHelper - Step1: Click on the Previous button on the navigation
+[2026-11-01 15:50:43] [INFO ] TestCaseHelper - VP: Current page is still the first page
+[2026-11-01 15:50:43] [INFO ] CourseListTest - afterMethod ended...
+[2026-11-01 15:50:44] [INFO ] CourseListTest - afterMethod ended...
+[2026-11-01 15:50:44] [INFO ] CourseListTest - beforeMethod executing...
+[2026-11-01 15:50:44] [INFO ] TestCaseHelper - Open the Course List Page
+[2026-11-01 15:50:46] [INFO ] TestCaseHelper - Step 1: Scroll to the card at position (3)
+[2026-11-01 15:50:46] [INFO ] TestCaseHelper - Step 2: Click on the card at position (3)
+[2026-11-01 15:50:46] [INFO ] TestCaseHelper - VP: Course Name on the detail page matches course name in card
+[2026-11-01 15:50:47] [INFO ] TestCaseHelper - Open the Course List Page
+[2026-11-01 15:50:47] [INFO ] CourseListTest - afterMethod ended...
+[2026-11-01 15:50:47] [INFO ] CourseListTest - beforeMethod executing...
+[2026-11-01 15:50:48] [INFO ] TestCaseHelper - Step 1: Scroll to the card at position (11)
+[2026-11-01 15:50:48] [INFO ] TestCaseHelper - Step 2: Click on the card at position (11)
+[2026-11-01 15:50:49] [INFO ] TestCaseHelper - VP: Course Image on the detail page matches course image in card
+[2026-11-01 15:50:49] [INFO ] TestCaseHelper - The src of Image course on the card: https://elearningnew.cybersoft.edu.vn/hinhanh/javascript-nang-cao-101_gp01.png
+[2026-11-01 15:50:49] [INFO ] TestCaseHelper - The src of Image course on the detail page: https://elearningnew.cybersoft.edu.vn/hinhanh/javascript-nang-cao-101_gp01.png
+[2026-11-01 15:50:49] [INFO ] CourseListTest - afterMethod ended...
+[2026-11-01 15:50:49] [INFO ] TestCaseHelper - Open the Course List Page
+[2026-11-01 15:50:51] [INFO ] TestCaseHelper - Step 1: Scroll to the card at position (11)
+[2026-11-01 15:50:51] [INFO ] TestCaseHelper - Step 2: Click on the card at position (11)
+[2026-11-01 15:50:51] [INFO ] TestCaseHelper - VP: Course Name on the detail page matches course name in card
+[2026-11-01 15:50:52] [INFO ] CourseListTest - afterMethod ended...
+[2026-11-01 15:50:52] [INFO ] CourseListTest - afterSuite ended...

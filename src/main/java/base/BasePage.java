@@ -1,19 +1,14 @@
 package base;
 
-import constants.TimeoutConstant;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 import java.util.List;
+import static constants.TimeoutConstant.*;
 
 public class BasePage {
-
     private WebDriver driver;
 
     public BasePage(WebDriver driver)
@@ -21,10 +16,17 @@ public class BasePage {
         this.driver= driver;
     }
 
-    //
+    public WebDriver getDriver() {
+        return driver;
+    }
+
+    //---------------------------------------------------------------------------
+    /**
+     * Initialize WebDriverWait
+     */
     public WebDriverWait getWebDriverWait()
     {
-        return getWebDriverWait(TimeoutConstant.DEFAULT_TIMEOUT);
+        return getWebDriverWait(DEFAULT_TIMEOUT);
     }
 
     public WebDriverWait getWebDriverWait(long timeOutInSec)
@@ -32,9 +34,13 @@ public class BasePage {
         return new WebDriverWait(this.driver, Duration.ofSeconds(timeOutInSec));
     }
 
-    // ---- Wait Helpers --- //
+    // ======================  Wait Helpers ======================
     // Wait for element to meet condition - presence, visibility, clickability, etc.
 
+    //---------------------------------------------------------------------------
+    /**
+     * Wait Visibility Of Element Located
+     */
     public WebElement waitVisibilityOfElementLocated(By locator, long timeOutInSec)
     {
         WebDriverWait wait = getWebDriverWait(timeOutInSec);
@@ -43,7 +49,7 @@ public class BasePage {
 
     public WebElement waitVisibilityOfElementLocated(By locator)
     {
-        return waitVisibilityOfElementLocated(locator,TimeoutConstant.DEFAULT_TIMEOUT);
+        return waitVisibilityOfElementLocated(locator,DEFAULT_TIMEOUT);
     }
 
     public WebElement waitVisibilityOf(WebElement element, long timeOutInSec)
@@ -54,8 +60,13 @@ public class BasePage {
 
     public WebElement waitVisibilityOf(WebElement element)
     {
-        return waitVisibilityOf(element,TimeoutConstant.DEFAULT_TIMEOUT);
+        return waitVisibilityOf(element,DEFAULT_TIMEOUT);
     }
+
+    //---------------------------------------------------------------------------
+    /**
+     * Wait Visibility Of Elements Located
+     */
 
     public List<WebElement> waitVisibilityOfElementsLocated(By locator, long timeOutInSec)
     {
@@ -65,10 +76,14 @@ public class BasePage {
 
     public List<WebElement> waitVisibilityOfElementsLocated(By locator)
     {
-        return waitVisibilityOfElementsLocated(locator, TimeoutConstant.DEFAULT_TIMEOUT);
+        return waitVisibilityOfElementsLocated(locator, DEFAULT_TIMEOUT);
     }
 
-    //=========================
+    //---------------------------------------------------------------------------
+    /**
+     * Wait Element To Be Clickable
+     */
+
     public WebElement waitElementToBeClickable(By locator, long timeOutInSec)
     {
         WebDriverWait wait = getWebDriverWait(timeOutInSec);
@@ -77,7 +92,7 @@ public class BasePage {
 
     public WebElement waitElementToBeClickable(By locator)
     {
-        return waitElementToBeClickable(locator, TimeoutConstant.DEFAULT_TIMEOUT);
+        return waitElementToBeClickable(locator, DEFAULT_TIMEOUT);
     }
 
     public WebElement waitElementToBeClickable(WebElement element, long timeOutInSec)
@@ -88,10 +103,15 @@ public class BasePage {
 
     public WebElement waitElementToBeClickable(WebElement element)
     {
-        return waitElementToBeClickable(element, TimeoutConstant.DEFAULT_TIMEOUT);
+        return waitElementToBeClickable(element, DEFAULT_TIMEOUT);
     }
 
-    //=========================
+
+    //---------------------------------------------------------------------------
+    /**
+     * Wait InVisibility Of Element Located
+     */
+
     public boolean waitInVisibilityOfElementLocated(By locator, long timeOutInSec)
     {
         WebDriverWait wait = getWebDriverWait(timeOutInSec);
@@ -100,55 +120,56 @@ public class BasePage {
 
     public boolean waitInVisibilityOfElementLocated(By locator)
     {
-        return waitInVisibilityOfElementLocated(locator,TimeoutConstant.DEFAULT_TIMEOUT);
+        return waitInVisibilityOfElementLocated(locator,DEFAULT_TIMEOUT);
     }
 
-    //=========================
+    // ======================  Common Actions ======================
+    // Send Keys, Get Text, Click Element, etc.
+
+    //---------------------------------------------------------------------------
     /**
-     * Chờ và trả về phần tử con hiển thị bên trong phần tử cha
+     * Send Keys
      */
-    public WebElement waitForChildElement(WebElement parent, By childLocator, long timeOutInSec) {
-        WebDriverWait wait = getWebDriverWait(timeOutInSec);
-        return wait.until(driver -> {
-            WebElement element = parent.findElement(childLocator);
-            return (element.isDisplayed()) ? element : null;
-        });
-    }
 
-    /**
-     * Overload với timeout mặc định
-     */
-    public WebElement waitForChildElement(WebElement parent, By childLocator) {
-        return waitForChildElement(parent, childLocator, TimeoutConstant.DEFAULT_TIMEOUT);
-    }
-
-    // ---- Common Actions ---- //
-    //Send Keys
-    public void sendKeys (By locator, String value,long timeOut)
+    public void sendKeys (By locator, String value,long timeOutInSec)
     {
-        WebElement element = waitVisibilityOfElementLocated(locator,timeOut);
+        WebElement element = waitVisibilityOfElementLocated(locator,timeOutInSec);
         element.sendKeys(value);
     }
 
     public void sendKeys (By locator, String value)
     {
-       sendKeys(locator,value, TimeoutConstant.DEFAULT_TIMEOUT);
+       sendKeys(locator,value, DEFAULT_TIMEOUT);
     }
 
-
-    //Click element
-    public void click (By locator, long timeOut)
+    public void sendKeys (WebElement element, String value,long timeOutInSec)
     {
-        WebElement element = waitElementToBeClickable(locator,timeOut);
+        waitVisibilityOf(element,timeOutInSec);
+        element.sendKeys(value);
+    }
+
+    public void sendKeys (WebElement element, String value)
+    {
+        sendKeys(element,value, DEFAULT_TIMEOUT);
+    }
+
+    //---------------------------------------------------------------------------
+    /**
+     * Click Element
+     */
+
+    public void click (By locator, long timeOutInSec)
+    {
+        WebElement element = waitElementToBeClickable(locator,timeOutInSec);
         element.click();
     }
 
     public void click (By locator)
     {
-        click(locator, TimeoutConstant.DEFAULT_TIMEOUT);
+        click(locator, DEFAULT_TIMEOUT);
     }
 
-    public void click (WebElement element, long timeOut)
+    public void click (WebElement element, long timeOutInSec)
     {
         waitElementToBeClickable(element);
         element.click();
@@ -156,23 +177,39 @@ public class BasePage {
 
     public void click (WebElement element)
     {
-        click(element, TimeoutConstant.DEFAULT_TIMEOUT);
+        click(element, DEFAULT_TIMEOUT);
     }
 
-    //Hover element
-    public void hover (By locator, long timeOut)
+    public void click (WebElement parent, By locator, long timeOutInSec)
     {
-        WebElement element = waitVisibilityOfElementLocated(locator,timeOut);
+        WebElement element = findChildElement(parent,locator,timeOutInSec);
+        waitElementToBeClickable(element);
+        element.click();
+    }
+
+    public void click (WebElement parent, By locator)
+    {
+        click(parent, locator, DEFAULT_TIMEOUT);
+    }
+
+    //---------------------------------------------------------------------------
+    /**
+     * Hover Element
+     */
+
+    public void hover (By locator, long timeOutInSec)
+    {
+        WebElement element = waitVisibilityOfElementLocated(locator,timeOutInSec);
         Actions actions = new Actions(driver);
         actions.moveToElement(element).perform();
     }
 
     public void hover (By locator)
     {
-        hover(locator, TimeoutConstant.DEFAULT_TIMEOUT);
+        hover(locator, DEFAULT_TIMEOUT);
     }
 
-    public void hover (WebElement element, long timeOut)
+    public void hover (WebElement element, long timeOutInSec)
     {
         waitVisibilityOf(element);
         Actions actions = new Actions(driver);
@@ -180,100 +217,213 @@ public class BasePage {
     }
 
     public void hover (WebElement element) {
-        hover(element, TimeoutConstant.DEFAULT_TIMEOUT);
+        hover(element, DEFAULT_TIMEOUT);
     }
-    //=========================
-    // Get text of element
-    public String getText (By locator, long timeOut)
+
+    //---------------------------------------------------------------------------
+    /**
+     * Get text of element
+     */
+
+    public String getText (By locator, long timeOutInSec)
     {
-        WebElement element = waitVisibilityOfElementLocated(locator,timeOut);
+        WebElement element = waitVisibilityOfElementLocated(locator,timeOutInSec);
         return element.getText();
     }
 
     public String getText (By locator)
     {
-        return getText(locator, TimeoutConstant.DEFAULT_TIMEOUT);
+        return getText(locator, DEFAULT_TIMEOUT);
     }
 
-    public String getText (WebElement element, long timeOut)
+    public String getText (WebElement element, long timeOutInSec)
     {
-        waitVisibilityOf(element,timeOut);
+        waitVisibilityOf(element,timeOutInSec);
         return element.getText();
     }
 
     public String getText (WebElement element) {
-        return getText(element, TimeoutConstant.DEFAULT_TIMEOUT);
+        return getText(element, DEFAULT_TIMEOUT);
     }
 
-    //=========================
-    // Check element is display
-    public boolean isDisplay (By locator, long timeOut)
+    public String getText (WebElement parent, By locator, long timeOutInSec)
     {
-        WebElement element = waitVisibilityOfElementLocated(locator,timeOut);
+        WebElement element = findChildElement(parent,locator,timeOutInSec);
+        return element.getText();
+    }
+
+    public String getText (WebElement parent,By locator)
+    {
+        return getText(parent, locator, DEFAULT_TIMEOUT);
+    }
+
+    //---------------------------------------------------------------------------
+    /**
+     * Get attribute of element
+     */
+
+    public String getAttribute (By locator, String name, long timeOutInSec)
+    {
+        WebElement element = waitVisibilityOfElementLocated(locator,timeOutInSec);
+        return element.getAttribute(name);
+    }
+
+    public String getAttribute (By locator, String name)
+    {
+        return getAttribute(locator, name, DEFAULT_TIMEOUT);
+    }
+
+    public String getAttribute (WebElement element,String name, long timeOutInSec)
+    {
+        waitVisibilityOf(element,timeOutInSec);
+        return element.getAttribute(name);
+    }
+
+    public String getAttribute (WebElement element,String name) {
+        return getAttribute(element,name, DEFAULT_TIMEOUT);
+    }
+
+    public String getAttribute (WebElement parent, By locator,String name, long timeOutInSec)
+    {
+        WebElement element = findChildElement(parent,locator,timeOutInSec);
+        return element.getAttribute(name);
+    }
+
+    public String getAttribute (WebElement parent, By locator,String name)
+    {
+        return getAttribute(parent,locator,name, DEFAULT_TIMEOUT);
+    }
+
+
+    //---------------------------------------------------------------------------
+    /**
+     * Check element is display
+     */
+
+    public boolean isDisplay (By locator, long timeOutInSec)
+    {
+        WebElement element = waitVisibilityOfElementLocated(locator,timeOutInSec);
         return element.isDisplayed();
     }
 
     public boolean isDisplay (By locator)
     {
-        return isDisplay(locator,TimeoutConstant.DEFAULT_TIMEOUT );
+        return isDisplay(locator,DEFAULT_TIMEOUT );
     }
 
-    public boolean isDisplay (WebElement element, long timeOut)
+    public boolean isDisplay (WebElement element, long timeOutInSec)
     {
-        waitVisibilityOf(element,timeOut);
+        waitVisibilityOf(element,timeOutInSec);
         return element.isDisplayed();
     }
 
     public boolean isDisplay (WebElement element)
     {
-        return isDisplay(element,TimeoutConstant.DEFAULT_TIMEOUT );
+        return isDisplay(element,DEFAULT_TIMEOUT );
     }
 
-    //=========================
-    // Check element is enable
-
-    public boolean isEnable (By locator, long timeOut)
+    public boolean isDisplay (WebElement element, By locator, long timeOutInSec)
     {
-        WebElement element = waitVisibilityOfElementLocated(locator,timeOut);
+        WebElement child = findChildElement(element,locator,timeOutInSec);
+        return child.isDisplayed();
+    }
+
+    public boolean isDisplay (WebElement element, By locator)
+    {
+        return isDisplay(element,locator,DEFAULT_TIMEOUT );
+    }
+
+    //---------------------------------------------------------------------------
+    /**
+     * Check element is enabled
+     */
+
+    public boolean isEnabled(By locator, long timeOutInSec)
+    {
+        WebElement element = waitVisibilityOfElementLocated(locator,timeOutInSec);
         return element.isEnabled();
     }
 
-    public boolean isEnable (By locator)
+    public boolean isEnabled(By locator)
     {
-        return isEnable(locator,TimeoutConstant.DEFAULT_TIMEOUT );
+        return isEnabled(locator,DEFAULT_TIMEOUT );
     }
 
-    public boolean isEnable (WebElement element, long timeOut) {
-        waitVisibilityOf(element, timeOut);
+    public boolean isEnabled(WebElement element, long timeOutInSec) {
+        waitVisibilityOf(element, timeOutInSec);
         return element.isEnabled();
     }
 
-    public boolean isEnable (WebElement element)
+    public boolean isEnabled(WebElement element)
     {
-        return isEnable(element,TimeoutConstant.DEFAULT_TIMEOUT );
+        return isEnabled(element,DEFAULT_TIMEOUT );
     }
 
-    //=========================
-    public List<WebElement> findElements(By locator) {
+    public boolean isEnabled(WebElement parent, By locator, long timeOutInSec)
+    {
+        WebElement element = findChildElement(parent,locator,timeOutInSec);
+        return element.isEnabled();
+    }
 
-        waitVisibilityOfElementsLocated(locator);
+    public boolean isEnabled(WebElement parent, By locator)
+    {
+        return isEnabled(parent, locator,DEFAULT_TIMEOUT );
+    }
+
+    //---------------------------------------------------------------------------
+    /**
+     * Find Elements
+     */
+    public List<WebElement> findElements(By locator,long timeoutInSeconds) {
+        waitVisibilityOfElementsLocated(locator,timeoutInSeconds);
         return driver.findElements(locator);
     }
 
-    public WebElement findElement(By locator) {
+    public List<WebElement> findElements(By locator) {
+        return findElements(locator,SHORT_TIMEOUT);
+    }
 
-        waitVisibilityOfElementsLocated(locator);
+    /**
+     * Find Element
+     */
+    public WebElement findElement(By locator,long timeoutInSeconds) {
+        waitVisibilityOfElementsLocated(locator,timeoutInSeconds);
         return driver.findElement(locator);
+    }
+
+    public WebElement findElement(By locator) {
+        return findElement(locator,SHORT_TIMEOUT);
+    }
+
+    /**
+     * Find Child Element of the element
+     */
+    public WebElement findChildElement(WebElement parent, By childLocator, long timeoutInSeconds)
+    {
+        WebDriverWait wait = getWebDriverWait(timeoutInSeconds);
+        return wait.until(driverInstance -> {
+            try {
+                WebElement element = parent.findElement(childLocator);
+                return element.isDisplayed() ? element : null;
+            } catch (NoSuchElementException | StaleElementReferenceException e) {
+                return null;
+            }
+        });
     }
 
     public WebElement findChildElement(WebElement parent, By childLocator)
     {
-        return waitForChildElement(parent, childLocator);
+        return findChildElement(parent,childLocator, SHORT_TIMEOUT);
     }
 
-    //=========================
-    public void highlight(By locator,long timeOut) {
-        WebElement element = waitVisibilityOfElementLocated(locator,timeOut);
+
+    //---------------------------------------------------------------------------
+    /**
+     * Highlight of element
+     */
+
+    public void highlight(By locator,long timeOutInSec) {
+        WebElement element = waitVisibilityOfElementLocated(locator,timeOutInSec);
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
         js.executeScript(
@@ -284,12 +434,31 @@ public class BasePage {
     }
 
     public void highlight(By locator) {
-        highlight(locator,TimeoutConstant.SHORT_TIMEOUT);
+        highlight(locator, SHORT_TIMEOUT);
     }
 
-    //=========================
-    public void unhighlight(By locator,long timeOut) {
-        WebElement element = waitVisibilityOfElementLocated(locator,timeOut);
+    public void highlight(WebElement element,long timeOutInSec) {
+        waitVisibilityOf(element,timeOutInSec);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        js.executeScript(
+                "arguments[0].style.border='2px solid red';" +
+                        "arguments[0].style.backgroundColor='yellow';",
+                element
+        );
+    }
+
+    public void highlight(WebElement element) {
+       highlight(element,SHORT_TIMEOUT);
+    }
+
+    //---------------------------------------------------------------------------
+    /**
+     * Unhighlight of element
+     */
+
+    public void unhighlight(By locator,long timeOutInSec) {
+        WebElement element = waitVisibilityOfElementLocated(locator,timeOutInSec);
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
         js.executeScript(
@@ -300,21 +469,10 @@ public class BasePage {
     }
 
     public void unhighlight(By locator) {
-        unhighlight(locator,TimeoutConstant.SHORT_TIMEOUT);
+        unhighlight(locator, SHORT_TIMEOUT);
     }
-
-    //=========================
-    public void highlight(WebElement element) {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-
-        js.executeScript(
-                "arguments[0].style.border='2px solid red';" +
-                        "arguments[0].style.backgroundColor='yellow';",
-                element
-        );
-    }
-
-    public void unhighlight(WebElement element) {
+    public void unhighlight(WebElement element,long timeOutInSec) {
+        waitVisibilityOf(element,timeOutInSec);
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
         js.executeScript(
@@ -323,62 +481,131 @@ public class BasePage {
                 element
         );
     }
+    public void unhighlight(WebElement element) {
+        unhighlight(element,SHORT_TIMEOUT);
+    }
 
-    //=========================
-    public void scrollToElement(By locator,long timeOut) {
-        WebElement element = waitVisibilityOfElementLocated(locator,timeOut);
+    //---------------------------------------------------------------------------
+    /**
+     * Scroll To Element
+     */
 
+    public void scrollToElement(By locator,long timeOutInSec) {
+        WebElement element = waitVisibilityOfElementLocated(locator,timeOutInSec);
         JavascriptExecutor js = (JavascriptExecutor) driver;
-
         js.executeScript(
-                "arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});",
+                "arguments[0].scrollIntoView({behavior: 'instant', block: 'center'});",
                 element
         );
     }
 
     public void scrollToElement(By locator)
     {
-        scrollToElement(locator,TimeoutConstant.SHORT_TIMEOUT);
+        scrollToElement(locator, SHORT_TIMEOUT);
     }
 
-    //=========================
-    public void scrollToElement(WebElement element) {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
+    public void scrollToElement(WebElement element, long timeOutInSec) {
+        waitVisibilityOf(element, timeOutInSec);
 
+        JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript(
                 "arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});",
                 element
         );
     }
 
-    //===========================
-    /**
-     * Kiểm tra ảnh trong card không bị broken
-     */
-    public boolean isImageLoaded(WebElement image) {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        Long naturalWidth = (Long) js.executeScript(
-                "return arguments[0].naturalWidth;",
-                image
-        );
-        if (naturalWidth == null || naturalWidth <= 0) {
-            return false;
-        }
-        return true;
+    public void scrollToElement(WebElement element) {
+        scrollToElement(element,SHORT_TIMEOUT);
     }
 
-    public boolean isImageLoaded(By locator,long timeOut) {
-        WebElement image = waitVisibilityOfElementLocated(locator,timeOut);
-        return isImageLoaded(image);
+    //---------------------------------------------------------------------------
+    /**
+     * Check that images are not broken
+     */
+
+    public boolean isImageLoaded(By locator,long timeOutInSec) {
+        try {
+            return getWebDriverWait(timeOutInSec).until(driverInstance -> {
+                try {
+                    WebElement image = driverInstance.findElement(locator);
+
+                    JavascriptExecutor js = (JavascriptExecutor) driverInstance;
+
+                    Long naturalWidth = (Long) js.executeScript(
+                            "return arguments[0].naturalWidth;", image);
+
+                    return naturalWidth != null && naturalWidth > 0;
+
+                } catch (NoSuchElementException | StaleElementReferenceException e) {
+                    return false;
+                }
+            });
+
+        } catch (TimeoutException e) {
+            return false;
+        }
     }
 
     public boolean isImageLoaded(By locator) {
-       return isImageLoaded(locator,TimeoutConstant.SHORT_TIMEOUT);
+        return isImageLoaded(locator, SHORT_TIMEOUT);
     }
 
+    public boolean isImageLoaded(WebElement image,long timeOutInSec) {
+        if (image == null) {
+            return false;
+        }
 
+        try {
+            return getWebDriverWait(timeOutInSec).until(driverInstance -> {
+                try {
+                    JavascriptExecutor js = (JavascriptExecutor) driverInstance;
 
-    //===========================
+                    Long naturalWidth = (Long) js.executeScript(
+                            "return arguments[0].naturalWidth;", image);
+
+                    return naturalWidth != null && naturalWidth > 0;
+
+                } catch (StaleElementReferenceException e) {
+                    return false;
+                }
+            });
+
+        } catch (TimeoutException e) {
+            return false;
+        }
+    }
+    
+    public boolean isImageLoaded(WebElement image) {
+        return isImageLoaded(image,SHORT_TIMEOUT);
+    }
+
+    public boolean isImageLoaded(WebElement parent, By locator, long timeOutInSec) {
+        if (parent == null) return false;
+
+        try {
+            return getWebDriverWait(timeOutInSec).until(driverInstance -> {
+                try {
+                    WebElement image = parent.findElement(locator);
+
+                    Long naturalWidth = (Long) ((JavascriptExecutor) driverInstance)
+                            .executeScript("return arguments[0].naturalWidth;", image);
+
+                    return naturalWidth != null && naturalWidth > 0;
+
+                } catch (NoSuchElementException | StaleElementReferenceException e) {
+                    return false;
+                }
+            });
+        } catch (TimeoutException e) {
+            return false;
+        }
+    }
+    
+    public boolean isImageLoaded(WebElement parent,By locator) {
+        return isImageLoaded(parent,locator,SHORT_TIMEOUT);
+    }
+
+    //---------------------------------------------------------------------------
     /**
      * Get URL of the page
      */
@@ -387,11 +614,26 @@ public class BasePage {
         return driver.getCurrentUrl();
     }
 
+    /**
+     * Get Title of the page
+     */
     public String getPageTitle()
     {
         return driver.getTitle();
     }
 
+    public boolean waitForTextDisplay(By locator, String expectedName, long timeOutInSec) {
+        WebDriverWait wait = getWebDriverWait(timeOutInSec);
+        return  wait.until(ExpectedConditions.textToBe(locator, expectedName));
+    }
 
+    public boolean waitForTextDisplay(By locator, String expectedName) {
+        WebDriverWait wait = getWebDriverWait(SHORT_TIMEOUT);
+        return  wait.until(ExpectedConditions.textToBe(locator, expectedName));
+    }
 
+    public void scrollToTop() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollTo(0, 0);");
+    }
 }

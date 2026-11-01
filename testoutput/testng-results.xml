@@ -1,47 +1,479 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="1" total="17" passed="16" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-10-30T16:50:31 GMT+07:00" name="Gradle suite" finished-at="2026-10-30T16:50:35 GMT+07:00" duration-ms="3722">
+  <suite started-at="2026-11-01T15:49:59 GMT+07:00" name="Gradle suite" finished-at="2026-11-01T15:50:52 GMT+07:00" duration-ms="52843">
     <groups>
     </groups>
-    <test started-at="2026-10-30T16:50:31 GMT+07:00" name="Gradle test" finished-at="2026-10-30T16:50:35 GMT+07:00" duration-ms="3722">
-      <class name="testcases.course.CourseDetailTest">
-        <test-method is-config="true" signature="beforeSuite()[pri:0, instance:testcases.course.CourseDetailTest@7997b197]" started-at="2026-10-30T16:50:31 GMT+07:00" name="beforeSuite" finished-at="2026-10-30T16:50:31 GMT+07:00" duration-ms="226" status="PASS">
+    <test started-at="2026-11-01T15:49:59 GMT+07:00" name="Gradle test" finished-at="2026-11-01T15:50:52 GMT+07:00" duration-ms="52843">
+      <class name="testcases.course.CourseListTest">
+        <test-method is-config="true" signature="beforeSuite()[pri:0, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:49:59 GMT+07:00" name="beforeSuite" finished-at="2026-11-01T15:49:59 GMT+07:00" duration-ms="328" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeSuite -->
-        <test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:testcases.course.CourseDetailTest@7997b197]" started-at="2026-10-30T16:50:31 GMT+07:00" name="beforeMethod" finished-at="2026-10-30T16:50:32 GMT+07:00" duration-ms="1401" status="PASS">
+        <test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:49:59 GMT+07:00" name="beforeMethod" finished-at="2026-11-01T15:50:03 GMT+07:00" duration-ms="3886" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[public void testcases.course.CourseDetailTest.Verify_Click_On_Detail_Button()]]>
+                <![CDATA[public void testcases.course.CourseListTest.TC_CL_001_Verify_Page_Course_Loads_Successfully()]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method signature="Verify_Click_On_Detail_Button()[pri:16, instance:testcases.course.CourseDetailTest@7997b197]" started-at="2026-10-30T16:50:32 GMT+07:00" name="Verify_Click_On_Detail_Button" description="TC_CD_016: Verify course listing page loads successfully" finished-at="2026-10-30T16:50:35 GMT+07:00" duration-ms="2125" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Verify_Click_On_Detail_Button -->
-        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:testcases.course.CourseDetailTest@7997b197]" started-at="2026-10-30T16:50:35 GMT+07:00" name="afterMethod" finished-at="2026-10-30T16:50:35 GMT+07:00" duration-ms="145" status="PASS">
+        <test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:49:59 GMT+07:00" name="beforeMethod" finished-at="2026-11-01T15:50:03 GMT+07:00" duration-ms="3882" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=Verify_Click_On_Detail_Button status=SUCCESS method=CourseDetailTest.Verify_Click_On_Detail_Button()[pri:16, instance:testcases.course.CourseDetailTest@7997b197] output={null}]]]>
+                <![CDATA[public void testcases.course.CourseListTest.TC_CL_003_Verify_The_Insight_Information_Section_Displayed()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:49:59 GMT+07:00" name="beforeMethod" finished-at="2026-11-01T15:50:03 GMT+07:00" duration-ms="3882" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void testcases.course.CourseListTest.TC_CL_002_Verify_The_Banner_Course_Displayed()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="TC_CL_001_Verify_Page_Course_Loads_Successfully()[pri:1, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:03 GMT+07:00" name="TC_CL_001_Verify_Page_Course_Loads_Successfully" description="TC_CL_001: Verify course listing page loads successfully" finished-at="2026-11-01T15:50:10 GMT+07:00" duration-ms="6890" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_CL_001_Verify_Page_Course_Loads_Successfully -->
+        <test-method signature="TC_CL_003_Verify_The_Insight_Information_Section_Displayed()[pri:3, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:03 GMT+07:00" name="TC_CL_003_Verify_The_Insight_Information_Section_Displayed" description="TC_CL_003: Verify the Insight Information of the Course List page" finished-at="2026-11-01T15:50:07 GMT+07:00" duration-ms="4121" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_CL_003_Verify_The_Insight_Information_Section_Displayed -->
+        <test-method signature="TC_CL_002_Verify_The_Banner_Course_Displayed()[pri:2, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:03 GMT+07:00" name="TC_CL_002_Verify_The_Banner_Course_Displayed" description="TC_CL_002: Verify the banner of the Course List page" finished-at="2026-11-01T15:50:06 GMT+07:00" duration-ms="3459" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_CL_002_Verify_The_Banner_Course_Displayed -->
+        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:06 GMT+07:00" name="afterMethod" finished-at="2026-11-01T15:50:11 GMT+07:00" duration-ms="4320" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_CL_002_Verify_The_Banner_Course_Displayed status=SUCCESS method=CourseListTest.TC_CL_002_Verify_The_Banner_Course_Displayed()[pri:2, instance:testcases.course.CourseListTest@21c64522] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-        <test-method is-config="true" signature="afterSuite()[pri:0, instance:testcases.course.CourseDetailTest@7997b197]" started-at="2026-10-30T16:50:35 GMT+07:00" name="afterSuite" finished-at="2026-10-30T16:50:35 GMT+07:00" duration-ms="345" status="PASS">
+        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:07 GMT+07:00" name="afterMethod" finished-at="2026-11-01T15:50:11 GMT+07:00" duration-ms="3782" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_CL_003_Verify_The_Insight_Information_Section_Displayed status=SUCCESS method=CourseListTest.TC_CL_003_Verify_The_Insight_Information_Section_Displayed()[pri:3, instance:testcases.course.CourseListTest@21c64522] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:10 GMT+07:00" name="afterMethod" finished-at="2026-11-01T15:50:11 GMT+07:00" duration-ms="926" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_CL_001_Verify_Page_Course_Loads_Successfully status=SUCCESS method=CourseListTest.TC_CL_001_Verify_Page_Course_Loads_Successfully()[pri:1, instance:testcases.course.CourseListTest@21c64522] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:11 GMT+07:00" name="beforeMethod" finished-at="2026-11-01T15:50:15 GMT+07:00" duration-ms="3780" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void testcases.course.CourseListTest.TC_CL_004_Verify_The_Number_Of_Course_Cards_Per_Page()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:11 GMT+07:00" name="beforeMethod" finished-at="2026-11-01T15:50:14 GMT+07:00" duration-ms="3617" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void testcases.course.CourseListTest.TC_CL_005_Verify_Course_Card_Contains_Complete_Information(int)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:11 GMT+07:00" name="beforeMethod" finished-at="2026-11-01T15:50:15 GMT+07:00" duration-ms="3883" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void testcases.course.CourseListTest.TC_CL_006_Verify_Navigation_To_Course_Detail(int)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="TC_CL_005_Verify_Course_Card_Contains_Complete_Information(int)[pri:5, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:14 GMT+07:00" name="TC_CL_005_Verify_Course_Card_Contains_Complete_Information" description="TC_CL_005: Verify course card contains complete information" data-provider="validCardCourse" finished-at="2026-11-01T15:50:20 GMT+07:00" duration-ms="5710" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[3]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_CL_005_Verify_Course_Card_Contains_Complete_Information -->
+        <test-method signature="TC_CL_004_Verify_The_Number_Of_Course_Cards_Per_Page()[pri:4, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:15 GMT+07:00" name="TC_CL_004_Verify_The_Number_Of_Course_Cards_Per_Page" description="TC_CL_004: Verify the number of course cards per page " finished-at="2026-11-01T15:50:19 GMT+07:00" duration-ms="4430" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_CL_004_Verify_The_Number_Of_Course_Cards_Per_Page -->
+        <test-method signature="TC_CL_006_Verify_Navigation_To_Course_Detail(int)[pri:6, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:15 GMT+07:00" name="TC_CL_006_Verify_Navigation_To_Course_Detail" description="TC_CL_006: Verify navigation to the details page when clicking on the card" data-provider="validCardCourse" finished-at="2026-11-01T15:50:24 GMT+07:00" duration-ms="9050" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[3]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_CL_006_Verify_Navigation_To_Course_Detail -->
+        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:19 GMT+07:00" name="afterMethod" finished-at="2026-11-01T15:50:19 GMT+07:00" duration-ms="380" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_CL_004_Verify_The_Number_Of_Course_Cards_Per_Page status=SUCCESS method=CourseListTest.TC_CL_004_Verify_The_Number_Of_Course_Cards_Per_Page()[pri:4, instance:testcases.course.CourseListTest@21c64522] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:19 GMT+07:00" name="beforeMethod" finished-at="2026-11-01T15:50:21 GMT+07:00" duration-ms="1436" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void testcases.course.CourseListTest.TC_CL_007_Verify_Click_Next_Button_In_Pagination()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:20 GMT+07:00" name="afterMethod" finished-at="2026-11-01T15:50:22 GMT+07:00" duration-ms="1425" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_CL_005_Verify_Course_Card_Contains_Complete_Information status=SUCCESS method=CourseListTest.TC_CL_005_Verify_Course_Card_Contains_Complete_Information(int)[pri:5, instance:testcases.course.CourseListTest@21c64522] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method signature="TC_CL_007_Verify_Click_Next_Button_In_Pagination()[pri:7, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:21 GMT+07:00" name="TC_CL_007_Verify_Click_Next_Button_In_Pagination" description="TC_CL_007: Verify the navigation to next page when click Next button" finished-at="2026-11-01T15:50:30 GMT+07:00" duration-ms="8766" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_CL_007_Verify_Click_Next_Button_In_Pagination -->
+        <test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:22 GMT+07:00" name="beforeMethod" finished-at="2026-11-01T15:50:23 GMT+07:00" duration-ms="1342" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void testcases.course.CourseListTest.TC_CL_005_Verify_Course_Card_Contains_Complete_Information(int)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="TC_CL_005_Verify_Course_Card_Contains_Complete_Information(int)[pri:5, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:23 GMT+07:00" name="TC_CL_005_Verify_Course_Card_Contains_Complete_Information" description="TC_CL_005: Verify course card contains complete information" data-provider="validCardCourse" finished-at="2026-11-01T15:50:29 GMT+07:00" duration-ms="6080" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[12]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_CL_005_Verify_Course_Card_Contains_Complete_Information -->
+        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:24 GMT+07:00" name="afterMethod" finished-at="2026-11-01T15:50:24 GMT+07:00" duration-ms="465" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_CL_006_Verify_Navigation_To_Course_Detail status=SUCCESS method=CourseListTest.TC_CL_006_Verify_Navigation_To_Course_Detail(int)[pri:6, instance:testcases.course.CourseListTest@21c64522] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:24 GMT+07:00" name="beforeMethod" finished-at="2026-11-01T15:50:26 GMT+07:00" duration-ms="1682" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void testcases.course.CourseListTest.TC_CL_006_Verify_Navigation_To_Course_Detail(int)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="TC_CL_006_Verify_Navigation_To_Course_Detail(int)[pri:6, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:26 GMT+07:00" name="TC_CL_006_Verify_Navigation_To_Course_Detail" description="TC_CL_006: Verify navigation to the details page when clicking on the card" data-provider="validCardCourse" finished-at="2026-11-01T15:50:30 GMT+07:00" duration-ms="4527" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[12]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_CL_006_Verify_Navigation_To_Course_Detail -->
+        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:29 GMT+07:00" name="afterMethod" finished-at="2026-11-01T15:50:29 GMT+07:00" duration-ms="484" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_CL_005_Verify_Course_Card_Contains_Complete_Information status=SUCCESS method=CourseListTest.TC_CL_005_Verify_Course_Card_Contains_Complete_Information(int)[pri:5, instance:testcases.course.CourseListTest@21c64522] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:29 GMT+07:00" name="beforeMethod" finished-at="2026-11-01T15:50:31 GMT+07:00" duration-ms="1795" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void testcases.course.CourseListTest.TC_CL_008_Verify_Next_Button_When_On_Last_Page()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:30 GMT+07:00" name="afterMethod" finished-at="2026-11-01T15:50:30 GMT+07:00" duration-ms="603" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_CL_007_Verify_Click_Next_Button_In_Pagination status=SUCCESS method=CourseListTest.TC_CL_007_Verify_Click_Next_Button_In_Pagination()[pri:7, instance:testcases.course.CourseListTest@21c64522] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:30 GMT+07:00" name="beforeMethod" finished-at="2026-11-01T15:50:32 GMT+07:00" duration-ms="1595" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void testcases.course.CourseListTest.TC_CL_009_Verify_Specific_Page_On_Navigation()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:30 GMT+07:00" name="afterMethod" finished-at="2026-11-01T15:50:31 GMT+07:00" duration-ms="482" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_CL_006_Verify_Navigation_To_Course_Detail status=SUCCESS method=CourseListTest.TC_CL_006_Verify_Navigation_To_Course_Detail(int)[pri:6, instance:testcases.course.CourseListTest@21c64522] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:31 GMT+07:00" name="beforeMethod" finished-at="2026-11-01T15:50:33 GMT+07:00" duration-ms="2281" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void testcases.course.CourseListTest.TC_CL_010_Verify_Click_Previous_Button_On_Pagination()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="TC_CL_008_Verify_Next_Button_When_On_Last_Page()[pri:8, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:31 GMT+07:00" name="TC_CL_008_Verify_Next_Button_When_On_Last_Page" description="TC_CL_008: Verify Next button when on the last page of pagination" finished-at="2026-11-01T15:50:37 GMT+07:00" duration-ms="5871" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_CL_008_Verify_Next_Button_When_On_Last_Page -->
+        <test-method signature="TC_CL_009_Verify_Specific_Page_On_Navigation()[pri:9, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:32 GMT+07:00" name="TC_CL_009_Verify_Specific_Page_On_Navigation" description="TC_CL_09: Verify the navigation to new course page when select a specific page number" finished-at="2026-11-01T15:50:43 GMT+07:00" duration-ms="11440" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_CL_009_Verify_Specific_Page_On_Navigation -->
+        <test-method signature="TC_CL_010_Verify_Click_Previous_Button_On_Pagination()[pri:10, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:33 GMT+07:00" name="TC_CL_010_Verify_Click_Previous_Button_On_Pagination" description="TC_CL_010: Verify the navigation to previous page when click Next button" finished-at="2026-11-01T15:50:41 GMT+07:00" duration-ms="7856" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_CL_010_Verify_Click_Previous_Button_On_Pagination -->
+        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:37 GMT+07:00" name="afterMethod" finished-at="2026-11-01T15:50:39 GMT+07:00" duration-ms="1599" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_CL_008_Verify_Next_Button_When_On_Last_Page status=SUCCESS method=CourseListTest.TC_CL_008_Verify_Next_Button_When_On_Last_Page()[pri:8, instance:testcases.course.CourseListTest@21c64522] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:39 GMT+07:00" name="beforeMethod" finished-at="2026-11-01T15:50:40 GMT+07:00" duration-ms="1718" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void testcases.course.CourseListTest.TC_CL_011_Verify_Previous_Button_When_On_First_Page()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="TC_CL_011_Verify_Previous_Button_When_On_First_Page()[pri:11, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:40 GMT+07:00" name="TC_CL_011_Verify_Previous_Button_When_On_First_Page" description="TC_CL_011: Verify Previous button when on the first page of pagination" finished-at="2026-11-01T15:50:44 GMT+07:00" duration-ms="3176" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_CL_011_Verify_Previous_Button_When_On_First_Page -->
+        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:41 GMT+07:00" name="afterMethod" finished-at="2026-11-01T15:50:42 GMT+07:00" duration-ms="415" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_CL_010_Verify_Click_Previous_Button_On_Pagination status=SUCCESS method=CourseListTest.TC_CL_010_Verify_Click_Previous_Button_On_Pagination()[pri:10, instance:testcases.course.CourseListTest@21c64522] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:42 GMT+07:00" name="beforeMethod" finished-at="2026-11-01T15:50:43 GMT+07:00" duration-ms="1375" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void testcases.course.CourseListTest.TC_CD_006_Verify_Course_Name_Card_Matches_Course_Name_Detail(int)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="TC_CD_006_Verify_Course_Name_Card_Matches_Course_Name_Detail(int)[pri:13, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:43 GMT+07:00" name="TC_CD_006_Verify_Course_Name_Card_Matches_Course_Name_Detail" description="TC_CL_013: Verify course name on the Course Detail page matches the selected course card." data-provider="validCardCourseMatchName" finished-at="2026-11-01T15:50:47 GMT+07:00" duration-ms="3999" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[3]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_CD_006_Verify_Course_Name_Card_Matches_Course_Name_Detail -->
+        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:43 GMT+07:00" name="afterMethod" finished-at="2026-11-01T15:50:44 GMT+07:00" duration-ms="850" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_CL_009_Verify_Specific_Page_On_Navigation status=SUCCESS method=CourseListTest.TC_CL_009_Verify_Specific_Page_On_Navigation()[pri:9, instance:testcases.course.CourseListTest@21c64522] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:44 GMT+07:00" name="afterMethod" finished-at="2026-11-01T15:50:44 GMT+07:00" duration-ms="491" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_CL_011_Verify_Previous_Button_When_On_First_Page status=SUCCESS method=CourseListTest.TC_CL_011_Verify_Previous_Button_When_On_First_Page()[pri:11, instance:testcases.course.CourseListTest@21c64522] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:44 GMT+07:00" name="beforeMethod" finished-at="2026-11-01T15:50:45 GMT+07:00" duration-ms="1367" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void testcases.course.CourseListTest.TC_CD_014_Verify_Course_Image_Card_Matches_Course_Image_Detail()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="TC_CD_014_Verify_Course_Image_Card_Matches_Course_Image_Detail()[pri:14, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:45 GMT+07:00" name="TC_CD_014_Verify_Course_Image_Card_Matches_Course_Image_Detail" description="TC_CD_007: Verify course image on the Course Detail page matches the selected course card." finished-at="2026-11-01T15:50:49 GMT+07:00" duration-ms="3357" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_CD_014_Verify_Course_Image_Card_Matches_Course_Image_Detail -->
+        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:47 GMT+07:00" name="afterMethod" finished-at="2026-11-01T15:50:47 GMT+07:00" duration-ms="191" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_CD_006_Verify_Course_Name_Card_Matches_Course_Name_Detail status=SUCCESS method=CourseListTest.TC_CD_006_Verify_Course_Name_Card_Matches_Course_Name_Detail(int)[pri:13, instance:testcases.course.CourseListTest@21c64522] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:47 GMT+07:00" name="beforeMethod" finished-at="2026-11-01T15:50:48 GMT+07:00" duration-ms="1010" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void testcases.course.CourseListTest.TC_CD_006_Verify_Course_Name_Card_Matches_Course_Name_Detail(int)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="TC_CD_006_Verify_Course_Name_Card_Matches_Course_Name_Detail(int)[pri:13, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:48 GMT+07:00" name="TC_CD_006_Verify_Course_Name_Card_Matches_Course_Name_Detail" description="TC_CL_013: Verify course name on the Course Detail page matches the selected course card." data-provider="validCardCourseMatchName" finished-at="2026-11-01T15:50:52 GMT+07:00" duration-ms="3610" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[11]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_CD_006_Verify_Course_Name_Card_Matches_Course_Name_Detail -->
+        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:49 GMT+07:00" name="afterMethod" finished-at="2026-11-01T15:50:49 GMT+07:00" duration-ms="215" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_CD_014_Verify_Course_Image_Card_Matches_Course_Image_Detail status=SUCCESS method=CourseListTest.TC_CD_014_Verify_Course_Image_Card_Matches_Course_Image_Detail()[pri:14, instance:testcases.course.CourseListTest@21c64522] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:52 GMT+07:00" name="afterMethod" finished-at="2026-11-01T15:50:52 GMT+07:00" duration-ms="153" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_CD_006_Verify_Course_Name_Card_Matches_Course_Name_Detail status=SUCCESS method=CourseListTest.TC_CD_006_Verify_Course_Name_Card_Matches_Course_Name_Detail(int)[pri:13, instance:testcases.course.CourseListTest@21c64522] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method is-config="true" signature="afterSuite()[pri:0, instance:testcases.course.CourseListTest@21c64522]" started-at="2026-11-01T15:50:52 GMT+07:00" name="afterSuite" finished-at="2026-11-01T15:50:52 GMT+07:00" duration-ms="450" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterSuite -->
-      </class> <!-- testcases.course.CourseDetailTest -->
+      </class> <!-- testcases.course.CourseListTest -->
     </test> <!-- Gradle test -->
   </suite> <!-- Gradle suite -->
 </testng-results>

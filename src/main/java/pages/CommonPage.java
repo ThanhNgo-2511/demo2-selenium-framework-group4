@@ -2,7 +2,7 @@ package pages;
 
 import base.BasePage;
 import org.openqa.selenium.WebDriver;
-import pages.component.TopNavigation;
+import pages.components.TopNavigation;
 
 public class CommonPage extends BasePage {
 
