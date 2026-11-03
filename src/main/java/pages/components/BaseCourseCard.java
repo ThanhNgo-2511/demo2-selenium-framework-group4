@@ -23,9 +23,6 @@ public class BaseCourseCard extends BasePage {
         scrollToElement(cardElement);
     }
 
-    /**
-     * Get href of course card by index
-     */
     public String getCourseCardHref() {
         return getAttribute(cardElement,"href");
     }

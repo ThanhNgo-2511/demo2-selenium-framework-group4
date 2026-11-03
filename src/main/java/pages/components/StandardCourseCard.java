@@ -79,6 +79,13 @@ public class StandardCourseCard extends BaseCourseCard {
     }
 
     /**
+     * Get src of the avatar image
+     */
+    public String getAvatarImageLink() {
+        return getImageSrc(byImgInstructorAvatar);
+    }
+
+    /**
      * Get Instructor Name on the card by index
      */
     public String getCardCourseInstructorName() {

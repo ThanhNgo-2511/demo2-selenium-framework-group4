@@ -10,10 +10,6 @@ import java.util.List;
 
 public class CourseDetailPage extends CommonPage {
 
-//    // --- Locators for Banner   ---
-//    private By byLblBannerTitle;
-//    private By byLblBannerSubTitle;
-
     // --- Locators for Hero Section ---
     private By byCourseName;
     private By byInstructorImg;
@@ -51,30 +47,10 @@ public class CourseDetailPage extends CommonPage {
     // --- Locators for Related Course Cards ---
     private By byRelatedCourseTitle;
     private By byRelatedCourseCards;
-//    private By byLikeTag;
-//    private By byRelatedCourseCardImage;
-//    private By byRelatedCourseCardName;
-//    private By byRelatedCourseCardShortDescription;
-//    private By byRelatedCourseCardInstructorAvatar;
-//    private By byRelatedCourseCardInstructorName;
-//    private By byRelatedCourseCardSpecifications;
-//    private By byRelatedCourseCardPriceSale;
-//    private By byRelatedCourseCardPriceOriginal;
-//
-//    private By byHoverCourseCard;
-//    private By byHoverCourseCardInstructorAvatar;
-//    private By byHoverCourseCardInstructorName;
-//    private By byHoverCourseCardName;
-//    private By byHoverCourseCardShortDescription;
-//    private By byHoverCourseCardSpecifications;
-//    private By byBtnViewDetail;
 
-    // --- Locators for Related Course Hover Cards ---
 
     public CourseDetailPage(WebDriver driver) {
         super(driver);
-//        this.byLblBannerTitle = By.xpath("//div[@class='titleCourse']/h3");
-//        this.byLblBannerSubTitle = By.xpath("//div[@class='titleCourse']/p");
 
         // --- Locators for Hero Section ---
         this.byCourseName = By.xpath("//h4[@class='titleDetailCourse']");
@@ -97,7 +73,6 @@ public class CourseDetailPage extends CommonPage {
         this.byLessonItems = By.xpath("//div[@class='lessonContent mt-1']");
         this.byLessonDuration = By.xpath("//i[@class='fas fa-clock']/parent::span");
 
-
         this.byCourseImage = By.xpath("//div[@class='sideBarCourseDetail']/img");
         this.byCoursePrice = By.xpath("//div[@class='coursePrice']//p");
         this.byBtnEnroll = By.xpath("//button[text()='Đăng ký']");
@@ -111,48 +86,7 @@ public class CourseDetailPage extends CommonPage {
 
         this.byRelatedCourseTitle = By.xpath("//h6[a[text()='Khóa học tham khảo']]");
         this.byRelatedCourseCards = By.xpath("//a[starts-with(@class,'cardGlobal')]");
-//        this.byLikeTag = By.xpath(".//span[text()='Yêu thích']");
-//        this.byRelatedCourseCardImage = By.xpath("./img");
-//        this.byRelatedCourseCardName = By.xpath("./span[@class='stikerCard']");
-//        this.byRelatedCourseCardShortDescription = By.xpath(".//div[@class='cardBodyGlobal']/h6");
-//        this.byRelatedCourseCardInstructorAvatar = By.xpath(".//div[@class='imgCardFooter']/img");
-//        this.byRelatedCourseCardInstructorName = By.xpath(".//div[@class='titleMaker']/span");
-//        this.byRelatedCourseCardSpecifications = By.xpath(".//div[@class='cardBodyGlobal']//div[@class='cardIcon']");
-//        this.byRelatedCourseCardPriceSale = By.xpath(".//div[@class='cardFooter']//p[2]");
-//        this.byRelatedCourseCardPriceOriginal = By.xpath(".//div[@class='cardFooter']//p[1]");
-//
-//
-//        this.byHoverCourseCard = By.xpath("./div[@class='subCard']");
-//        this.byHoverCourseCardInstructorAvatar = By.xpath(".//div[@class='subCardHead']/img");
-//        this.byHoverCourseCardInstructorName  = By.xpath(".//div[@class='subCardHead']/span");
-//        this.byHoverCourseCardName = By.xpath(".//h6");
-//        this.byHoverCourseCardShortDescription = By.xpath("./p[@class='colorCardTitle']");
-//        this.byHoverCourseCardSpecifications = By.xpath(".//div[@class='cardIcon']");
-//        this.byBtnViewDetail = By.xpath(".//a[text()='Xem chi tiết']");
-
-
     }
-
-//    // ====================== Banner Methods ======================
-//    public boolean bannerTitleDisplayed()
-//    {
-//        return isDisplay(byLblBannerTitle);
-//    }
-//
-//    public String getBannerTitle()
-//    {
-//        return getText(byLblBannerTitle);
-//    }
-//
-//    public boolean bannerSubTitleDisplayed()
-//    {
-//        return isDisplay(byLblBannerSubTitle);
-//    }
-//
-//    public String getBannerSubTitle()
-//    {
-//        return getText(byLblBannerSubTitle);
-//    }
 
     /**
      * Get Course Name
@@ -189,6 +123,13 @@ public class CourseDetailPage extends CommonPage {
     public boolean isInstructorTitleDisplay() {
         waitVisibilityOfElementLocated(byInstructorTitle);
         return isDisplay(byInstructorTitle);
+    }
+
+    /**
+     * Get src of the avatar image
+     */
+    public String getAvatarImageLink() {
+        return getAttribute(byInstructorImg, "src");
     }
 
     /**
