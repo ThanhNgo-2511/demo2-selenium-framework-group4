@@ -10,20 +10,20 @@ public class TopNavigation extends BasePage {
 
     private By byLnkLogin;
     private By byLnkRegister;
-
     private By byImgAvatar;
     private By byBtnLogout;
-
     private By byLnkCourseList;
+    private By byLnkProfile;
 
     public TopNavigation(WebDriver driver)
     {
         super(driver);
         this.byLnkLogin = By.xpath("//a[text()='Đăng nhập']");
         this.byLnkRegister = By.xpath("//a[h3[text()='Đăng Ký']]");
-        this.byImgAvatar = By.xpath("//img[@alt='Avatar']");
+        this.byImgAvatar = By.xpath("//img[@class='avatar']");
         this.byBtnLogout = By.xpath("//h3[text()='Đăng xuất']");
         this.byLnkCourseList = By.xpath("//ul[@class='menuHeader']/descendant::a[normalize-space()='Khóa học']");
+        this.byLnkProfile = By.xpath("//a[@class='infoHeader']//img");
     }
 
     public void navigateToLoginPage ()
@@ -40,6 +40,8 @@ public class TopNavigation extends BasePage {
     {
         click(byLnkCourseList);
     }
+
+    public void navigateToProfilePage() {click(byLnkProfile, TimeoutConstant.LONG_TIMEOUT);}
 
     public void waitAvatarAppear(long timeOutInSec)
     {
