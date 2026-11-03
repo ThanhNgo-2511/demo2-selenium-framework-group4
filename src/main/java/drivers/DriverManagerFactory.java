@@ -7,7 +7,7 @@ public class DriverManagerFactory {
             case "firefox" -> new FireFoxDriverManager();
             case "safari" -> new SafariDriverManager();
             case "edge" -> new EdgeDriverManager();
-            default -> null;
+            default -> throw new IllegalArgumentException("Unsupported browser: " + browser);
         };
     }
 }

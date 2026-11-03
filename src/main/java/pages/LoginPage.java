@@ -8,14 +8,15 @@ public class LoginPage extends CommonPage {
     private By byTxtAccountLogin;
     private By byTxtPasswordLogin;
     private By byBtnLogin;
+    private By byTxtNameForm;
 
-    //Ham khoi tao (contructor)
     public LoginPage(WebDriver driver)
     {
         super(driver);
-        this.byTxtAccountLogin = By.id("taiKhoan");
-        this.byTxtPasswordLogin = By.id("matKhau");
-        this.byBtnLogin = By.xpath("//button[span[text()='Đăng nhập']]");
+        this.byTxtAccountLogin = By.xpath("//form[@class='formLoginUser']/input[@name='taiKhoan']");
+        this.byTxtPasswordLogin = By.xpath("//form[@class='formLoginUser']/input[@name='matKhau']");
+        this.byBtnLogin = By.xpath("//form/button[text()='Đăng nhập']");
+        this.byTxtNameForm = By.xpath("//h1[text()=\"Đăng nhập\"]");
     }
 
     public void enterAccount (String account)
@@ -33,11 +34,15 @@ public class LoginPage extends CommonPage {
        click(byBtnLogin);
     }
 
-    //High level account (business action)
     public void login (String account, String password)
     {
         enterAccount(account);
         enterPassword(password);
         clickLogin();
+    }
+
+    public String getNameForm()
+    {
+        return getText(byTxtNameForm);
     }
 }
