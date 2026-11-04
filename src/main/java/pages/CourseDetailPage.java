@@ -64,19 +64,21 @@ public class CourseDetailPage extends CommonPage {
         this.byReviewsCount = By.xpath("//div[@class='reviewDetail']/p");
         this.byCourseDescription = By.xpath("//p[@class='textDiscripts']");
 
+        // --- Locators for Những gì bạn sẽ học Section ---
         this.byCourseLearnTitle = By.xpath("//h6[text()='Những gì bạn sẽ học']");
         this.byCourseLearnItems = By.xpath("//div[@class='boxCourseLearn']//a");
 
+        // --- Locators for Nội dung khóa học Section ---
         this.byCurriculumTitle = By.xpath("//h6[text()='Nội dung khóa học']");
         this.byChapterItems = By.xpath("//div[@class='sectionCourse']");
         this.byPreviewButtons = By.xpath("//button[text()='Xem trước']");
         this.byLessonItems = By.xpath("//div[@class='lessonContent mt-1']");
         this.byLessonDuration = By.xpath("//i[@class='fas fa-clock']/parent::span");
 
+        // --- Locators for Side Bar Detail Content Section ---
         this.byCourseImage = By.xpath("//div[@class='sideBarCourseDetail']/img");
         this.byCoursePrice = By.xpath("//div[@class='coursePrice']//p");
         this.byBtnEnroll = By.xpath("//button[text()='Đăng ký']");
-
         this.byNumberOfStudents = By.xpath("//p[text()='Ghi danh:']");
         this.byStudyDuration = By.xpath("//p[text()='Thời gian: ']");
         this.byNumberOfLessons = By.xpath("//p[text()='Bài học:']");
@@ -84,10 +86,13 @@ public class CourseDetailPage extends CommonPage {
         this.byCourseLevel = By.xpath("//p[text()='Trình độ:']");
         this.byCouponInput = By.xpath("//input[@placeholder='Nhập mã']");
 
+        // --- Locators for Related Course Cards ---
         this.byRelatedCourseTitle = By.xpath("//h6[a[text()='Khóa học tham khảo']]");
         this.byRelatedCourseCards = By.xpath("//a[starts-with(@class,'cardGlobal')]");
     }
 
+    // ====================== Hero Section Methods ======================
+    //------------------ Course Name --------------------
     /**
      * Get Course Name
      */
@@ -96,18 +101,22 @@ public class CourseDetailPage extends CommonPage {
         return getText(byCourseName);
     }
 
+    /**
+     * Check Course Name matches with expected name
+     */
     public boolean isCourseNameMatches(String expectedName)
     {
         return waitForTextDisplay(byCourseName, expectedName);
     }
-    public void scrollToCourseName()
-    {
-        scrollToElement(byCourseName);
-    }
-
-
 
     //------------------ Instructor Section --------------------
+    /**
+     * Check the Instructor Image is displayed
+     */
+    public boolean isInstructorImageDisplayed() {
+        waitVisibilityOfElementLocated(byInstructorImg);
+        return isDisplayed(byInstructorImg);
+    }
 
     /**
      * Check the Instructor Image is loaded
@@ -118,18 +127,18 @@ public class CourseDetailPage extends CommonPage {
     }
 
     /**
-     * Check the Instructor Title is displayed
-     */
-    public boolean isInstructorTitleDisplay() {
-        waitVisibilityOfElementLocated(byInstructorTitle);
-        return isDisplay(byInstructorTitle);
-    }
-
-    /**
      * Get src of the avatar image
      */
     public String getAvatarImageLink() {
         return getAttribute(byInstructorImg, "src");
+    }
+
+    /**
+     * Check the Instructor Title is displayed
+     */
+    public boolean isInstructorTitleDisplayed() {
+        waitVisibilityOfElementLocated(byInstructorTitle);
+        return isDisplayed(byInstructorTitle);
     }
 
     /**
@@ -147,7 +156,7 @@ public class CourseDetailPage extends CommonPage {
      */
     public boolean isCategoryIconDisplay() {
         waitVisibilityOfElementLocated(byCategoryIcon);
-        return isDisplay(byCategoryIcon);
+        return isDisplayed(byCategoryIcon);
     }
 
     /**
@@ -155,7 +164,7 @@ public class CourseDetailPage extends CommonPage {
      */
     public boolean isCategoryTitleDisplay() {
         waitVisibilityOfElementLocated(byCategoryTitle);
-        return isDisplay(byCategoryTitle);
+        return isDisplayed(byCategoryTitle);
     }
 
     /**
@@ -165,6 +174,8 @@ public class CourseDetailPage extends CommonPage {
         waitVisibilityOfElementLocated(byCourseCategory);
         return getText(byCourseCategory);
     }
+
+    //------------------ Rating & Review Section --------------------
 
     /**
      * Get Course Rating
@@ -177,10 +188,12 @@ public class CourseDetailPage extends CommonPage {
     /**
      * Get Review Count
      */
-    public String getReviewCount() {
+    public String getReviewCountText() {
         waitVisibilityOfElementLocated(byReviewsCount);
         return getText(byReviewsCount);
     }
+
+    //------------------ Description Section --------------------
 
     /**
      * Get Course Description
@@ -190,7 +203,7 @@ public class CourseDetailPage extends CommonPage {
         return getText(byCourseDescription);
     }
 
-    // ====================== Những gì bạn sẽ học Section ======================\
+    // ====================== Những gì bạn sẽ học Section ======================
 
     /**
      * Scroll to What You Will Learn Section
@@ -200,17 +213,17 @@ public class CourseDetailPage extends CommonPage {
     }
 
     /**
-     * Get What You Will Learn Title
+     * Check the What You Will Learn Title is displayed
      */
     public boolean isLearnTitleDisplayed() {
         waitVisibilityOfElementLocated(byCourseLearnTitle);
-        return isDisplay(byCourseLearnTitle);
+        return isDisplayed(byCourseLearnTitle);
     }
 
     /**
      * Get all learn items
      */
-    public List<WebElement> getLearnItems() {
+    public List<WebElement> getAllLearnItems() {
         waitVisibilityOfElementsLocated(byCourseLearnItems);
         return findElements(byCourseLearnItems);
     }
@@ -219,22 +232,15 @@ public class CourseDetailPage extends CommonPage {
      * Return the count of learn items
      */
     public int getLearnItemCount() {
-        return getLearnItems().size();
+        return getAllLearnItems().size();
     }
 
     /**
      * Get learn items by index (1-based)
      */
     public WebElement getLearnItem(int index) {
-        List<WebElement> learnItems = getLearnItems();
-        if (index < 1 || index > learnItems.size()) {
-            throw new IndexOutOfBoundsException(
-                    String.format(
-                            "Index: %d, Size: %d. The learning item you are trying to access does not exist on the current page."
-                            , index, learnItems.size())
-            );
-        }
-        return learnItems.get(index - 1);
+        List<WebElement> learnItems = getAllLearnItems();
+        return getItemByIndex(learnItems,index);
     }
 
     /**
@@ -242,8 +248,7 @@ public class CourseDetailPage extends CommonPage {
      */
     public String getTextLearnItem(int index) {
         WebElement learnItem = getLearnItem(index);
-        String itemText = getText(learnItem).trim();
-        return itemText != null ? itemText : "";
+        return getText(learnItem);
     }
 
     // ====================== Nội dung khóa học Section ======================
@@ -256,11 +261,11 @@ public class CourseDetailPage extends CommonPage {
     }
 
     /**
-     * Get Curriculum title
+     * Check the Curriculum title is displayed
      */
     public boolean isCurriculumTitleDisplayed() {
         waitVisibilityOfElementLocated(byCurriculumTitle);
-        return isDisplay(byCurriculumTitle);
+        return isDisplayed(byCurriculumTitle);
     }
 
     //------------------ Chapter --------------------
@@ -268,7 +273,7 @@ public class CourseDetailPage extends CommonPage {
     /**
      * Get all Chapter items
      */
-    public List<WebElement> getChapterItems() {
+    public List<WebElement> getAllChapterItems() {
         waitVisibilityOfElementsLocated(byChapterItems);
         return findElements(byChapterItems);
     }
@@ -277,31 +282,23 @@ public class CourseDetailPage extends CommonPage {
      * Return the count of chapter items
      */
     public int getChapterCount() {
-        return getChapterItems().size();
+        return getAllChapterItems().size();
     }
 
     /**
      * Get chapter items by index (1-based)
      */
     public WebElement getChapterItem(int index) {
-        List<WebElement> learnItems = getLearnItems();
-        if (index < 1 || index > learnItems.size()) {
-            throw new IndexOutOfBoundsException(
-                    String.format(
-                            "Index: %d, Size: %d. The Chapter you are trying to access does not exist on the current page."
-                            , index, learnItems.size())
-            );
-        }
-        return learnItems.get(index - 1);
+        List<WebElement> chapterItems = getAllChapterItems();
+        return getItemByIndex(chapterItems,index);
     }
 
     /**
      * Get text of chapter items by index (1-based)
      */
     public String getTextChapterItem(int index) {
-        WebElement learnItem = getLearnItem(index);
-        String itemText = getText(learnItem).trim();
-        return itemText != null ? itemText : "";
+        WebElement chapterItem = getChapterItem(index);
+        return getText(chapterItem);
     }
 
     //------------------ Preview buttons --------------------
@@ -309,7 +306,7 @@ public class CourseDetailPage extends CommonPage {
     /**
      * Get all Preview buttons
      */
-    public List<WebElement> getPreviewButtons() {
+    public List<WebElement> getAllPreviewButtons() {
         waitVisibilityOfElementsLocated(byPreviewButtons);
         return findElements(byPreviewButtons);
     }
@@ -318,22 +315,15 @@ public class CourseDetailPage extends CommonPage {
      * Return the count of preview button
      */
     public int getPreviewButtonCount() {
-        return getPreviewButtons().size();
+        return getAllPreviewButtons().size();
     }
 
     /**
      * Get preview button by index (1-based)
      */
     public WebElement getPreviewButton(int index) {
-        List<WebElement> previewButton = getLearnItems();
-        if (index < 1 || index > previewButton.size()) {
-            throw new IndexOutOfBoundsException(
-                    String.format(
-                            "Index: %d, Size: %d. The preview button you are trying to access does not exist on the current page."
-                            , index, previewButton.size())
-            );
-        }
-        return previewButton.get(index - 1);
+        List<WebElement> previewButton = getAllPreviewButtons();
+        return getItemByIndex(previewButton,index);
     }
 
     /**
@@ -344,54 +334,41 @@ public class CourseDetailPage extends CommonPage {
         click(previewButton);
     }
 
-    public boolean isPreviewButtonAvailable() {
-        return !getPreviewButtons().isEmpty();
-    }
-
     //------------------ Lesson items --------------------
 
     /**
      * Get all lesson items
      */
-    public List<WebElement> getLessonItems() {
-        waitVisibilityOfElementsLocated(byCourseLearnItems);
-        return findElements(byCourseLearnItems);
+    public List<WebElement> getAllLessonItems() {
+        waitVisibilityOfElementsLocated(byLessonItems);
+        return findElements(byLessonItems);
     }
 
     /**
      * Return the count of lesson items
      */
     public int getLessonItemCount() {
-        return getLearnItems().size();
+        return getAllLessonItems().size();
     }
 
     /**
      * Get lesson items by index (1-based)
      */
     public WebElement getLessonItem(int index) {
-        List<WebElement> learnItems = getLearnItems();
-        if (index < 1 || index > learnItems.size()) {
-            throw new IndexOutOfBoundsException(
-                    String.format(
-                            "Index: %d, Size: %d. The lesson you are trying to access does not exist on the current page."
-                            , index, learnItems.size())
-            );
-        }
-        return learnItems.get(index - 1);
+        List<WebElement> lessonItems = getAllLessonItems();
+        return getItemByIndex(lessonItems,index);
     }
 
     /**
      * Get text of lesson items by index (1-based)
      */
     public String getTextLessonItem(int index) {
-        WebElement learnItem = getLearnItem(index);
-        String itemText = getText(learnItem).trim();
-        return itemText != null ? itemText : "";
+        WebElement lessonItem = getLessonItem(index);
+        return getText(lessonItem);
     }
 
-
     /**
-     * Kiểm tra định dạng thời gian MM:SS
+     * Check the MM:SS time format
      */
     public boolean areLessonDurationsValid() {
         List<WebElement> durations = findElements(byLessonDuration);
@@ -408,11 +385,11 @@ public class CourseDetailPage extends CommonPage {
     //-------------- Course Image -------------
 
     /**
-     * Check the Course Image is loaded
+     * Check the Course Image is displayed
      */
     public boolean isCourseImageDisplayed() {
         waitVisibilityOfElementLocated(byCourseImage);
-        return isDisplay(byCourseImage);
+        return isDisplayed(byCourseImage);
     }
 
     /**
@@ -424,7 +401,7 @@ public class CourseDetailPage extends CommonPage {
     }
 
     /**
-     * Get url of course image
+     * Get src of course image
      */
     public String getCourseImageLink() {
         waitVisibilityOfElementLocated(byCourseImage);
@@ -432,24 +409,21 @@ public class CourseDetailPage extends CommonPage {
     }
 
     //-------------- Price -------------
+    /**
+     * Get text of course price
+     */
     public String getPriceText() {
         waitVisibilityOfElementLocated(byCoursePrice);
         return getText(byCoursePrice);
     }
 
     //-------------- Enroll Button -------------
-    /**
-     * Click on Enroll button
-     */
-    public void clickEnrollButton() {
-        click(byBtnEnroll);
-    }
 
     /**
-     * Check the Enroll button is display
+     * Check the Enroll button is displayed
      */
     public boolean isEnrollButtonDisplayed() {
-        return isDisplay(byBtnEnroll);
+        return isDisplayed(byBtnEnroll);
     }
 
     /**
@@ -459,27 +433,49 @@ public class CourseDetailPage extends CommonPage {
         return isEnabled(byBtnEnroll);
     }
 
+    /**
+     * Click on Enroll button
+     */
+    public void clickEnrollButton() {
+        click(byBtnEnroll);
+    }
+
     //-------------- Stats Panel -------------
+    /**
+     * Get Stat Students
+     */
     public String getStatStudents() {
         scrollToElement(byNumberOfStudents);
         return getText(byNumberOfStudents);
     }
 
+    /**
+     * Get Stat Duration
+     */
     public String getStatDuration() {
         scrollToElement(byStudyDuration);
         return getText(byStudyDuration);
     }
 
+    /**
+     * Get Stat Lessons
+     */
     public String getStatLessons() {
         scrollToElement(byNumberOfLessons);
         return getText(byNumberOfLessons);
     }
 
+    /**
+     * Get Stat Videos
+     */
     public String getStatVideos() {
         scrollToElement(byNumberOfVideos);
         return getText(byNumberOfVideos);
     }
 
+    /**
+     * Get Stat Level
+     */
     public String getStatLevel() {
         scrollToElement(byCourseLevel);
         return getText(byCourseLevel);
@@ -493,7 +489,7 @@ public class CourseDetailPage extends CommonPage {
     }
 
     public boolean isRelatedCourseTitleDisplayed() {
-        return isDisplay(byRelatedCourseTitle);
+        return isDisplayed(byRelatedCourseTitle);
     }
 
     //-------------- Related Course Card -------------
@@ -523,282 +519,6 @@ public class CourseDetailPage extends CommonPage {
      */
     public FeaturedCourseCard getRelatedCourseCard(int index) {
         List<FeaturedCourseCard> courseCards = getAllRelatedCCourseCards();
-        if (index < 1 || index > courseCards.size()) {
-            throw new IndexOutOfBoundsException(
-                    String.format(
-                            "Index: %d, Size: %d. The card position you are trying to access does not exist on the current page."
-                            , index, courseCards.size())
-            );
-        }
-        return courseCards.get(index - 1);
+        return getItemByIndex(courseCards,index);
     }
-
-//    /**
-//     * Get href of course card by index
-//     */
-//    public String getRelatedCourseCardHref(int index) {
-//        WebElement card = getRelatedCourseCard(index);
-//        String href = card.getAttribute("href");
-//        return href != null ? href : "";
-//    }
-//
-//    /**
-//     * Check the like tag display on card
-//     */
-//    public boolean isLikeTagDisplay(int index)
-//    {
-//        WebElement card = getRelatedCourseCard(index);
-//        WebElement likeTagEle = findChildElement(card, byLikeTag);
-//        return isDisplay(likeTagEle);
-//    }
-//
-//    /**
-//     * Check that the images in the card are displayed
-//     */
-//    public boolean isCardRelatedCourseImageDisplayed(int index) {
-//        WebElement card = getRelatedCourseCard(index);
-//        WebElement imageCourseElement = findChildElement(card, byRelatedCourseCardImage);
-//        return isDisplay(imageCourseElement);
-//    }
-//
-//    /**
-//     * Check that the images in the card are not broken
-//     */
-//    public boolean isCardRelatedCourseImageLoaded(int index) {
-//        WebElement card = getRelatedCourseCard(index);
-//        WebElement imageCourseElement = findChildElement(card, byRelatedCourseCardImage);
-//        return isImageLoaded(imageCourseElement);
-//    }
-//
-//    /**
-//     * Get name of course card by index
-//     */
-//    public String getCardRelatedCourseName(int index) {
-//        WebElement card = getRelatedCourseCard(index);
-//        WebElement nameElement = findChildElement(card, byRelatedCourseCardName);
-//        String name = getText(nameElement).trim();
-//        return name != null ? name : "";
-//    }
-//
-//    /**
-//     * Get short description of course card by index
-//     */
-//    public String getCardRelatedCourseShortDescription(int index)
-//    {
-//        WebElement card = getRelatedCourseCard(index);
-//        WebElement shortDescElement = findChildElement(card, byRelatedCourseCardShortDescription);
-//        String shortDesc = getText(shortDescElement).trim();
-//        return shortDesc != null ? shortDesc : "";
-//    }
-//
-//    /**
-//     * Check the Specifications display on card
-//     */
-//    public boolean isRelateCourseCardSpecificationsDisplay(int index)
-//    {
-//        WebElement card = getRelatedCourseCard(index);
-//        WebElement specificationsEle = findChildElement(card, byRelatedCourseCardSpecifications);
-//        return isDisplay(specificationsEle);
-//    }
-//
-//    /**
-//     * Check that the avatar in the related card are not broken.
-//     */
-//    public boolean isAvatarOfRelatedCourseDisplayed(int index) {
-//        WebElement card = getRelatedCourseCard(index);
-//        WebElement avatarElement = findChildElement(card,byRelatedCourseCardInstructorAvatar);
-//        return isImageLoaded(avatarElement);
-//    }
-//
-//    /**
-//     * Check that the avatar in the related card are not broken.
-//     */
-//    public boolean isAvatarOfRelatedCourseLoaded(int index) {
-//        WebElement card = getRelatedCourseCard(index);
-//        WebElement avatarElement = findChildElement(card,byRelatedCourseCardInstructorAvatar);
-//        return isImageLoaded(avatarElement);
-//    }
-//
-//    /**
-//     * Get Instructor Name on the card by index
-//     */
-//    public String getCardRelatedCourseInstructorName(int index) {
-//        WebElement card = getRelatedCourseCard(index);
-//        WebElement instructorNameElement = findChildElement(card, byRelatedCourseCardInstructorName);
-//        String name = getText(instructorNameElement).trim();
-//        return name != null ? name : "";
-//    }
-//
-//    /**
-//     * Get Price Sale on the card by index
-//     */
-//    public String getCardRelatedCoursePriceSale(int index) {
-//        WebElement card = getRelatedCourseCard(index);
-//        WebElement priceSaleElement = findChildElement(card, byRelatedCourseCardPriceSale);
-//        String priceSale = getText(priceSaleElement).trim();
-//        return priceSale != null ? priceSale : "";
-//    }
-//
-//    /**
-//     * Get Price Original on the card by index
-//     */
-//    public String getCardRelatedCoursePriceOriginal(int index) {
-//        WebElement card = getRelatedCourseCard(index);
-//        WebElement priceOrigElement = findChildElement(card, byRelatedCourseCardPriceOriginal);
-//        String priceOrig = getText(priceOrigElement).trim();
-//        return priceOrig != null ? priceOrig : "";
-//    }
-//
-//    /**
-//     * Get the image's src of the course card by index
-//     */
-//    public String getImageCourseLink(int index) {
-//        WebElement card = getRelatedCourseCard(index);
-//        WebElement image = findChildElement(card, byRelatedCourseCardImage);
-//        String src = image.getAttribute("src");
-//        return src != null ? src : "";
-//    }
-//
-//    /**
-//     * Click on the course card by index
-//     */
-//    public void clickRelatedCourseCard(int index)
-//    {
-//        WebElement card = getRelatedCourseCard(index);
-//        scrollToElement(card);
-//        click(card);
-//    }
-//
-//    /**
-//     * Hover on the Related Card
-//     */
-//    public void hoverOnRelatedCourseCard(int index)
-//    {
-//        WebElement card = getRelatedCourseCard(index);
-//        hover(card);
-//    }
-//
-//    //-------------- Related Course Card Hover-------------
-//    public boolean ishoverCardDisplay(int index)
-//    {
-//        WebElement relatedCourse = getRelatedCourseCard(index);
-//        WebElement hoverCard = findChildElement(relatedCourse,byHoverCourseCard);
-//        return isDisplay(hoverCard);
-//    }
-//
-//    /**
-//     * Get hover card of related course card
-//     */
-//    public WebElement getCourseHoverCard(int index) {
-//        WebElement relatedCourse = getRelatedCourseCard(index);
-//        WebElement hoverCard = findChildElement(relatedCourse,byHoverCourseCard);
-//        return findChildElement(hoverCard,byHoverCourseCard);
-//    }
-//
-//    /**
-//     * Check that the avatar in the hover card are not broken.
-//     */
-//    public boolean isHoverCardCourseAvatarImageDisplayed(int index) {
-//        WebElement relatedCourse = getRelatedCourseCard(index);
-//        WebElement hoverCard = findChildElement(relatedCourse,byHoverCourseCard);
-//        WebElement avatarElement = findChildElement(hoverCard,byHoverCourseCardInstructorAvatar);
-//        return isDisplay(avatarElement);
-//    }
-//
-//    /**
-//     * Check that the avatar in the hover card are not broken.
-//     */
-//    public boolean isHoverCardCourseAvatarImageLoaded(int index) {
-//        WebElement relatedCourse = getRelatedCourseCard(index);
-//        WebElement hoverCard = findChildElement(relatedCourse,byHoverCourseCard);
-//        WebElement avatarElement = findChildElement(hoverCard,byHoverCourseCardInstructorAvatar);
-//        return isImageLoaded(avatarElement);
-//    }
-//
-//    /**
-//     * Get Instructor Name on hover course card
-//     */
-//    public String getHoverCardCourseInstructorName(int index) {
-//        WebElement relatedCourse = getRelatedCourseCard(index);
-//        WebElement hoverCard = findChildElement(relatedCourse,byHoverCourseCard);
-//        WebElement instructorNameElement = findChildElement(hoverCard, byHoverCourseCardInstructorName);
-//        String name = getText(instructorNameElement).trim();
-//        return name != null ? name : "";
-//    }
-//
-//    /**
-//     * Get Course Name on hover course card
-//     */
-//    public String getHoverCardCourseCourseName(int index) {
-//        WebElement relatedCourse = getRelatedCourseCard(index);
-//        WebElement hoverCard = findChildElement(relatedCourse,byHoverCourseCard);
-//        WebElement courseNameElement = findChildElement(hoverCard, byHoverCourseCardName);
-//        String name = getText(courseNameElement).trim();
-//        return name != null ? name : "";
-//    }
-//
-//    /**
-//     * Get short description on hover course card
-//     */
-//    public String getCardHoverCourseShortDescription(int index)
-//    {
-//        WebElement relatedCourse = getRelatedCourseCard(index);
-//        WebElement hoverCard = findChildElement(relatedCourse,byHoverCourseCard);
-//        WebElement shortDescElement = findChildElement(hoverCard, byHoverCourseCardShortDescription);
-//        String shortDesc = getText(shortDescElement).trim();
-//        return shortDesc != null ? shortDesc : "";
-//    }
-//
-//    /**
-//     * Check the Specifications display on hover card
-//     */
-//    public boolean isHoverCourseCardSpecificationsDisplay(int index)
-//    {
-//        WebElement relatedCourse = getRelatedCourseCard(index);
-//        WebElement hoverCard = findChildElement(relatedCourse,byHoverCourseCard);
-//        WebElement specificationsEle = findChildElement(hoverCard, byHoverCourseCardSpecifications);
-//        return isDisplay(specificationsEle);
-//    }
-//
-//
-//    /**
-//     * Click on View Detail button on hover card
-//     */
-//    public void clickOnViewDetailButton(int index) {
-//        WebElement relatedCourse = getRelatedCourseCard(index);
-//        WebElement hoverCard = findChildElement(relatedCourse,byHoverCourseCard);
-//        WebElement viewDetailButton = findChildElement(hoverCard, byBtnViewDetail);
-//        click(viewDetailButton);
-//    }
-//
-//    /**
-//     * Click on View Detail button on hover card
-//     */
-//    public String getViewDetailButtonHref(int index) {
-//        WebElement relatedCourse = getRelatedCourseCard(index);
-//        WebElement hoverCard = findChildElement(relatedCourse,byHoverCourseCard);
-//        WebElement viewDetailButton = findChildElement(hoverCard, byBtnViewDetail);
-//        String href = viewDetailButton.getAttribute("href");
-//        return href != null ? href : "";
-//    }
-//
-//    /**
-//     * Check the View Detail button is display
-//     */
-//    public boolean isViewDetailButtonDisplayed(int index) {
-//        WebElement relatedCourse = getRelatedCourseCard(index);
-//        WebElement hoverCard = findChildElement(relatedCourse,byHoverCourseCard);
-//        WebElement viewDetailButton = findChildElement(hoverCard, byBtnViewDetail);
-//        return isDisplay(viewDetailButton);
-//    }
-//
-//    /**
-//     * Check the View Detail button is enable
-//     */
-//    public boolean isViewDetailButtonEnable(int index) {
-//        WebElement relatedCourse = getRelatedCourseCard(index);
-//        WebElement hoverCard = findChildElement(relatedCourse,byHoverCourseCard);
-//        WebElement viewDetailButton = findChildElement(hoverCard, byBtnViewDetail);
-//        return isEnabled(viewDetailButton);
-//    }
 }

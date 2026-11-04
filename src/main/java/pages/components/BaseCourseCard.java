@@ -28,7 +28,7 @@ public class BaseCourseCard extends BasePage {
     }
 
     public boolean isDisplayed(By locator) {
-        return isDisplay(cardElement, locator);
+        return isDisplayed(cardElement, locator);
     }
 
     public boolean isImageLoaded(By locator) {

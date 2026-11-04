@@ -13,7 +13,7 @@ public class CourseListPage extends CommonPage {
     private By byTbInsightInformation;
 
     // --- Locators for Course List & Cards ---
-    private By byLblTitleSection;
+    private By byLblCourseListTitle;
     private By byIcoLoading;
     private By byCourseCards;
 
@@ -23,28 +23,37 @@ public class CourseListPage extends CommonPage {
     private By byPaginationPages;
     private By byCurrentPage;
 
-
     public CourseListPage(WebDriver driver) {
         super(driver);
+
+        // --- Locators for Insight Information section  ---
         this.byTbInsightInformation = By.xpath("//div[contains(@class,'coursesBoxItem')]");
 
-        this.byLblTitleSection = By.xpath("//h6[text()='Danh sách khóa học']");
+        // --- Locators for Course List & Cards ---
+        this.byLblCourseListTitle = By.xpath("//h6[text()='Danh sách khóa học']");
         this.byIcoLoading = By.xpath("//div[@id='loader']");
         this.byCourseCards = By.xpath("//a[@class='cardGlobal']");
+
+        // --- Locators for Pagination ---
         this.byBtnPrevious = By.xpath("//a[@aria-label='Previous page']");
         this.byBtnNext = By.xpath("//a[@aria-label='Next page']");
         this.byPaginationPages = By.xpath("//a[starts-with(@aria-label, 'Page')]");
         this.byCurrentPage = By.xpath("//ul[@class='paginationPages']//a[@aria-current='page']");
-
     }
 
     // ====================== Insight Information section Methods ======================
+    /**
+     * Check the Insight Information box is displayed
+     */
     public boolean inSightInformationBoxDisplayed()
     {
-        return isDisplay(byTbInsightInformation);
+        return isDisplayed(byTbInsightInformation);
     }
 
-    public Map<String, String> getInsightInformation()
+    /**
+     * Get the text of the Insight Information
+     */
+    public Map<String, String> getTextInsightInformation()
     {
         List<WebElement> rawElements = findElements(byTbInsightInformation);
         Map<String, String> inforTable = new LinkedHashMap<>();
@@ -62,11 +71,47 @@ public class CourseListPage extends CommonPage {
         return inforTable;
     }
 
-    // ====================== Course Card Methods ======================
-    public boolean isCourseListTitleDisplayed() {
-        return isDisplay(byLblTitleSection);
+    /**
+     * The count of the Insight Information Items
+     */
+    public int insightInformationItemsCount()
+    {
+        Map<String, String> inforTable = getTextInsightInformation();
+        return mapSize(inforTable);
     }
 
+    /**
+     * The Insight Information Title by index
+     */
+    public String insightInformationTitle(int index)
+    {
+        Map<String, String> inforTable = getTextInsightInformation();
+        return getKeyMapByIndex(inforTable,index);
+    }
+
+    /**
+     * The Insight Information Count by index
+     */
+    public String insightInformationCount(int index)
+    {
+        Map<String, String> inforTable = getTextInsightInformation();
+        return getValueMapByIndex(inforTable,index);
+    }
+
+
+
+
+    // ====================== Course Card Methods ======================
+    /**
+     * Check the Course List Title is displayed
+     */
+    public boolean isCourseListTitleDisplayed() {
+        return isDisplayed(byLblCourseListTitle);
+    }
+
+    /**
+     * Wait Course List loads success
+     */
     public void waitCourseListLoadSuccess()
     {
         waitInVisibilityOfElementLocated(byIcoLoading);
@@ -98,14 +143,7 @@ public class CourseListPage extends CommonPage {
      */
     public StandardCourseCard getCourseCardByIndex(int index) {
         List<StandardCourseCard> courseCards = getAllCourseCards();
-        if (index < 1 || index > courseCards.size()) {
-            throw new IndexOutOfBoundsException(
-                String.format(
-                    "Index: %d, Size: %d. The card position you are trying to access does not exist on the current page."
-                    , index, courseCards.size())
-            );
-        }
-        return courseCards.get(index - 1);
+        return getItemByIndex(courseCards,index);
     }
 
     // ====================== Pagination Methods ======================
@@ -244,6 +282,5 @@ public class CourseListPage extends CommonPage {
                 "Cannot navigate to Page " + targetPage
         );
     }
-
 
 }

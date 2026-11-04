@@ -27,6 +27,7 @@ public class FeaturedCourseCard extends BaseCourseCard {
     public FeaturedCourseCard(WebDriver driver, WebElement cardElement) {
         super(driver, cardElement);
         this.byLblLikeTag = By.xpath(".//span[text()='Yêu thích']");
+        //this.byImgCourse = By.tagName("img");
         this.byImgCourse = By.xpath("./img");
         this.byLblCourseName = By.xpath("./span[@class='stikerCard']");
         this.byTxtShortDescription = By.xpath(".//div[@class='cardBodyGlobal']/h6");
@@ -43,16 +44,14 @@ public class FeaturedCourseCard extends BaseCourseCard {
         this.byTxtShortDescriptionOnHover = By.xpath("./p[@class='colorCardTitle']");
         this.bySpecificationsOnHover = By.xpath(".//div[@class='cardIcon']");
         this.byBtnViewDetailOnHover = By.xpath(".//a[text()='Xem chi tiết']");
-
     }
-
 
     /**
      * Check the like tag display on card
      */
     public boolean isLikeTagDisplay()
     {
-        return isDisplay(byLblLikeTag);
+        return isDisplayed(byLblLikeTag);
     }
 
     /**
@@ -60,7 +59,7 @@ public class FeaturedCourseCard extends BaseCourseCard {
      */
     public boolean isCardRelatedCourseImageDisplayed()
     {
-        return isDisplay(byImgCourse);
+        return isDisplayed(byImgCourse);
     }
 
     /**
@@ -97,7 +96,7 @@ public class FeaturedCourseCard extends BaseCourseCard {
      */
     public boolean isRelateCourseCardSpecificationsDisplay()
     {
-        return isDisplay(bySpecifications);
+        return isDisplayed(bySpecifications);
     }
 
     /**
@@ -152,7 +151,7 @@ public class FeaturedCourseCard extends BaseCourseCard {
     public boolean isHoverCardDisplay()
     {
         WebElement hoverCard = getHoverCardElement();
-        return isDisplay(hoverCard);
+        return isDisplayed(hoverCard);
     }
 
     /**
@@ -168,7 +167,7 @@ public class FeaturedCourseCard extends BaseCourseCard {
      */
     public boolean isHoverCardCourseAvatarImageDisplayed() {
         WebElement hoverCard = getHoverCardElement();
-        return isDisplay(hoverCard,byImgInstructorAvatarOnHover);
+        return isDisplayed(hoverCard,byImgInstructorAvatarOnHover);
     }
 
     /**
@@ -210,7 +209,7 @@ public class FeaturedCourseCard extends BaseCourseCard {
     public boolean isHoverCourseCardSpecificationsDisplay()
     {
         WebElement hoverCard = getHoverCardElement();
-        return isDisplay(hoverCard, bySpecificationsOnHover);
+        return isDisplayed(hoverCard, bySpecificationsOnHover);
     }
 
     /**
@@ -234,7 +233,7 @@ public class FeaturedCourseCard extends BaseCourseCard {
      */
     public boolean isViewDetailButtonDisplayed() {
         WebElement hoverCard = getHoverCardElement();
-        return isDisplay(hoverCard, byBtnViewDetailOnHover);
+        return isDisplayed(hoverCard, byBtnViewDetailOnHover);
     }
 
     /**

@@ -76,5 +76,4 @@ public class TestCaseHelper {
         HomePage homePage = new HomePage(driver);
         homePage.getTopNavigation().waitAvatarAppear();
     }
-
 }

@@ -1,4 +1,4 @@
-package testcases;
+package testcases.PersonalProfile;
 
 import base.BaseTest;
 import drivers.DriverManager;
@@ -8,8 +8,8 @@ import org.testng.annotations.Test;
 import pages.LoginPage;
 import pages.ProfilePage;
 
-import static helper.TestHelper.navigateToLoginPage;
-import static helper.TestHelper.logAndReport;
+import static helper.TestCaseHelper.logAndReport;
+import static helper.TestCaseHelper.navigateToLoginPage;
 
 public class EditPersonalProfileTest extends BaseTest {
     private ProfilePage profilePage;
