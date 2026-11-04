@@ -11,7 +11,7 @@ public class CommonModal extends BasePage {
     public CommonModal(WebDriver driver)
     {
         super(driver);
-        this.byLblMessage = By.id("swal2-title");
+        this.byLblMessage = By.xpath("//div[@class=\"swal-title\"]");
     }
     public String getMessageText()
     {
@@ -22,8 +22,19 @@ public class CommonModal extends BasePage {
     {
         waitInVisibilityOfElementLocated(byLblMessage,timeOutInSec);
     }
+
     public void waitModalDisappear()
     {
-        waitInVisibilityOfElementLocated(byLblMessage, TimeoutConstant.DEFAULT_TIMEOUT);
+        waitInVisibilityOfElementLocated(byLblMessage);
+    }
+
+    public void waitModalAppear(long timeOutInSec)
+    {
+        waitVisibilityOfElementLocated(byLblMessage,timeOutInSec);
+    }
+
+    public void waitModalAppear()
+    {
+        waitVisibilityOfElementLocated(byLblMessage);
     }
 }
