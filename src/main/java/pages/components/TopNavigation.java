@@ -1,4 +1,4 @@
-package pages.component;
+package pages.components;
 
 import base.BasePage;
 import constants.TimeoutConstant;
@@ -55,7 +55,7 @@ public class TopNavigation extends BasePage {
 
     public void assertAvatarAppear(long timeOutInSec)
     {
-        Assert.assertTrue(isDisplay(byImgAvatar));
+        Assert.assertTrue(isDisplayed(byImgAvatar,timeOutInSec));
     }
 
     public void assertAvatarAppear()
@@ -75,12 +75,12 @@ public class TopNavigation extends BasePage {
 
     public void assertLogoutButtonAppear(long timeOutInSec)
     {
-        Assert.assertTrue(isDisplay(byBtnLogout));
+        Assert.assertTrue(isDisplayed(byBtnLogout,timeOutInSec));
     }
 
     public void assertLogoutButtonAppear()
     {
-        assertAvatarAppear(TimeoutConstant.DEFAULT_TIMEOUT);
+        assertLogoutButtonAppear(TimeoutConstant.DEFAULT_TIMEOUT);
     }
 
 }

@@ -77,11 +77,11 @@ public class ProfilePage extends CommonPage {
     }
 
     public boolean isPersonalInformationVisible() {
-        return isDisplay(byPersonalInfoTab);
+        return isDisplayed(byPersonalInfoTab);
     }
 
     public boolean isCoursesSectionVisible() {
-        return isDisplay(byCoursesTab);
+        return isDisplayed(byCoursesTab);
     }
 
     public String getCoursesSectionTitle() {
@@ -89,9 +89,9 @@ public class ProfilePage extends CommonPage {
     }
 
     public boolean isProfileSummaryVisible() {
-        return isDisplay(By.xpath("//div[@class='infoLeft']//h6"))
-                && isDisplay(By.xpath("//div[@class='infoLeft']//p"))
-                && isDisplay(By.xpath("//div[@class='infoLeft']//img"));
+        return isDisplayed(By.xpath("//div[@class='infoLeft']//h6"))
+                && isDisplayed(By.xpath("//div[@class='infoLeft']//p"))
+                && isDisplayed(By.xpath("//div[@class='infoLeft']//img"));
     }
 
     public int getSkillBarCount() {
@@ -103,12 +103,12 @@ public class ProfilePage extends CommonPage {
     }
 
     public boolean arePersonalInformationFieldsVisible() {
-        return isDisplay(By.xpath("//div[@class='userInfoTop']"))
-                && isDisplay(By.xpath("//div[@class='userInfoTop']//p"));
+        return isDisplayed(By.xpath("//div[@class='userInfoTop']"))
+                && isDisplayed(By.xpath("//div[@class='userInfoTop']//p"));
     }
 
     public boolean isUpdateButtonVisible() {
-        return isDisplay(byUpdateButton);
+        return isDisplayed(byUpdateButton);
     }
 
     public void openEditPopup() {
@@ -117,7 +117,7 @@ public class ProfilePage extends CommonPage {
     }
 
     public boolean isEditPopupVisible() {
-        return isDisplay(byModal);
+        return isDisplayed(byModal);
     }
 
     public String getEditPopupTitle() {
@@ -125,8 +125,8 @@ public class ProfilePage extends CommonPage {
     }
 
     public boolean areEditFieldsVisible() {
-        return isDisplay(byFullName) && isDisplay(byPassword)
-                && isDisplay(byEmail) && isDisplay(byPhone);
+        return isDisplayed(byFullName) && isDisplayed(byPassword)
+                && isDisplayed(byEmail) && isDisplayed(byPhone);
     }
 
     public String getFieldValue(String fieldName) {
