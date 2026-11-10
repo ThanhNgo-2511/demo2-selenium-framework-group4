@@ -27,11 +27,21 @@ dependencies {
 }
 
 test {
+    // Forward profile credentials from Gradle (-Dprofile.username / -Dprofile.password) to the TestNG JVM.
+    systemProperty 'profile.username', System.getProperty('profile.username', '')
+    systemProperty 'profile.password', System.getProperty('profile.password', '')
+
     useTestNG()
         {
-            parallel = "methods"
-            threadCount = 3
+            parallel = "none"
+            threadCount = 1
             useDefaultListeners = true //dùng để tạo report testNG
-            outputDirectory = file("$projectDir/testoutput") // folder chứa testNG report
+            outputDirectory = file("$projectDir/testoutput")
         }
+
+    testLogging {
+        events "failed"
+        exceptionFormat "full"
+        showStandardStreams = true
+    }
 }
