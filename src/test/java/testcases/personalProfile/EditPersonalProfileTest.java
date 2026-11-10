@@ -1,4 +1,4 @@
-package testcases.PersonalProfile;
+package testcases.personalProfile;
 
 import base.BaseTest;
 import drivers.DriverManager;

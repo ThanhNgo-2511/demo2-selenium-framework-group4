@@ -5,9 +5,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WebDriver;
-import java.util.List;
+import pages.components.RegisteredCourseCard;
 
-import static config.urlConfig.BASE_URL_PATTERN;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProfilePage extends CommonPage {
 
@@ -30,6 +31,8 @@ public class ProfilePage extends CommonPage {
     private final By bySkillBars = By.xpath("//div[@class='progress-bar progress-bar-striped progress-bar-animated']");
     private final By byLearningStatistics = By.xpath("//div[@class='timeStudyItem']");
     private final By byCourseSectionTitle = By.xpath("//h6[text()='Khóa học của tôi']");
+    private final By byRegisteredCourseCards = By.xpath("//div[@class='myCourseItem']");
+    private final By byTxtSearch = By.xpath("//input[@placeholder='Tìm kiếm...']");
 
     public ProfilePage(WebDriver driver) {
         super(driver);
@@ -201,5 +204,72 @@ public class ProfilePage extends CommonPage {
             case "soDT": return byPhone;
             default: throw new IllegalArgumentException("Unsupported profile field: " + fieldName);
         }
+    }
+
+    //Search field methods
+    public void inputTextSearchField(String value)
+    {
+        sendKeys(byTxtSearch,value);
+    }
+
+    // Register cards methods
+
+    /**
+     * Get all course cards
+     */
+    public List<RegisteredCourseCard> getAllRegisteredCourseCards() {
+        List<RegisteredCourseCard> cards = new ArrayList<>();
+        List<WebElement> rawElements = findElements(byRegisteredCourseCards);
+
+        if (rawElements != null && !rawElements.isEmpty()) {
+            for (WebElement element : rawElements) {
+                cards.add(new RegisteredCourseCard(getDriver(), element));
+            }
+        }
+        return cards;
+    }
+
+    /**
+     * Return the count of course cards
+     */
+    public int getCourseCardCount() {
+        return getAllRegisteredCourseCards().size();
+    }
+
+    /**
+     * Get course card by index (1-based)
+     */
+    public RegisteredCourseCard getCourseCardByIndex(int index) {
+        List<RegisteredCourseCard> courseCards = getAllRegisteredCourseCards();
+        return getItemByIndex(courseCards,index);
+    }
+
+    /**
+     * Check Name Course is in the registered course card
+     */
+    public boolean isCourseNameInCourseList(String courseName) {
+        if (courseName == null /*|| !isRegistedCardDisplayed()*/) {
+            return false;
+        }
+        int totalCards = getCourseCardCount();
+        if (totalCards == 0) {
+            return false;
+        }
+
+        List<String> nameCards = new ArrayList<>();
+
+        for (int i = 1; i <= totalCards; i++) {
+            RegisteredCourseCard card = getCourseCardByIndex(i);
+            if (card != null) {
+                nameCards.add(card.getCourseName());
+            }
+        }
+
+        return nameCards.contains(courseName);
+    }
+
+    public void waitForCourseCardsCountToBe(int expectedCount)
+    {
+        numberOfElementsToBe(byRegisteredCourseCards, expectedCount);
     }
 }

@@ -5,6 +5,8 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class EdgeDriverManager extends DriverManager{
     @Override
@@ -14,6 +16,12 @@ public class EdgeDriverManager extends DriverManager{
 
         options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
         options.setExperimentalOption("useAutomationExtension", false);
+
+        // Tắt popup hỏi lưu mật khẩu (Save Password)
+        Map<String, Object> prefs = new HashMap<>();
+        prefs.put("credentials_enable_service", false);
+        prefs.put("profile.password_manager_enabled", false);
+        options.setExperimentalOption("prefs", prefs);
 
         setDriver(new EdgeDriver(options));
     }

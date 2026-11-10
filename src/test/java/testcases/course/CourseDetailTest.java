@@ -5,7 +5,6 @@ import base.BaseTest;
 import drivers.DriverManager;
 import models.UserModel;
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.CourseDetailPage;
 import pages.LoginPage;
@@ -16,10 +15,7 @@ import pages.modals.CommonModal;
 import static helper.TestCaseHelper.*;
 
 public class CourseDetailTest extends BaseTest {
-    private static final int COURSE_PAGE = 1;
-    private static final int COURSE_PAGESIZE = 12;
-    private static final String COURSE_GROUPID = "GP01";
-    private static final String VALID_COURSE_ID = ".100";
+    private static final String VALID_COURSE_ID = "111111111111";
 
     @Test(priority = 1,
             description = "TC_CD_001: Verify course detail page loads successfully")
@@ -44,6 +40,7 @@ public class CourseDetailTest extends BaseTest {
                 "[TC_CD_001][FAIL] Page title is empty"
         );
     }
+
     @Test(priority = 2,
             description = "TC_CD_002: Verify the banner of the Course Detail page")
     public void TC_CD_002_Verify_The_Banner_Course_Displayed() {
@@ -57,7 +54,7 @@ public class CourseDetailTest extends BaseTest {
         boolean bannerTitleDisplayed = banner.bannerTitleDisplayed();
         logAndReport("Banner Title displayed =" + bannerTitleDisplayed);
         Assert.assertTrue(bannerTitleDisplayed,
-                "[TC_CD_002][FAIL]  The banner title doesn't display"
+                "[TC_CD_002][FAIL] The banner title doesn't display"
         );
 
         String bannerTitleText = banner.getBannerTitle();
@@ -305,129 +302,8 @@ public class CourseDetailTest extends BaseTest {
     }
 
     @Test(priority = 8,
-            description = "TC_CD_008: Verify Enroll Course When Has Not Logged In")
-    public void TC_CD_008_Verify_Enroll_Course_When_Has_Not_Logged_In() {
-        logAndReport("Step 1: Navigate to Course Detail page with courseId= " + VALID_COURSE_ID);
-        CourseDetailPage courseDetailPage = navigateToCourseDetailPage(VALID_COURSE_ID);
-
-        logAndReport("Step 2: Click on \"Đăng Ký\" button");
-        courseDetailPage.clickEnrollButton();
-        LoginPage loginPage = new LoginPage(DriverManager.getDriver());
-
-        // Verify Point
-        logAndReport("VP1: Verify URL");
-        String currentUrl = loginPage.getCurrentUrl();
-        Assert.assertTrue(currentUrl.contains("/login"),
-                "[TC_CD_008][FAIL] URL must contains '/login'. Actual: " + currentUrl
-        );
-
-        //-------------------------------------------
-        logAndReport("VP2: The Name Form is Đăng nhập");
-        Assert.assertEquals(loginPage.getNameForm(),
-                "Đăng nhập",
-                "[TC_CD_008][FAIL] Does not redircted to Login page "
-        );
-    }
-
-    @DataProvider(name = "accountsForTC008")
-    public Object[][] getAccountsForTC008() {
-        return new Object[][]{
-                {"test.course.1", "Asd123!@#"},
-                {"test.course.2", "Asd123!@#"}
-        };
-    }
-    @Test(priority = 9, dataProvider = "accountsForTC008",
-            description = "TC_CD_009: Verify Enroll Course When Has Logged In")
-    public void TC_CD_009_Verify_Enroll_Course_When_Has_Logged_In(String username, String password) {
-        logAndReport("Pre-condition: User logged in account: " + username);
-        APIAction api = new APIAction();
-        UserModel user = api.loginViaAPI(username, password);
-        String courseId = api.getRandomCourseId(COURSE_PAGE, COURSE_PAGESIZE, COURSE_GROUPID);
-        loginViaAPIAndSyncUI(user);
-
-        logAndReport("Pre-condition: The course with id= " + courseId + " has not enrolled");
-        api.leaveCourse(user, courseId);
-
-        logAndReport("Step 1: Navigate to Course Detail page with courseId= " + courseId);
-        CourseDetailPage courseDetailPage = navigateToCourseDetailPage(courseId);
-
-        logAndReport("Step 2: Click on \"Đăng Ký\" button");
-        courseDetailPage.clickEnrollButton();
-
-        // Verify Point
-        logAndReport("VP1: Message \"Đăng ký thành công\" displays");
-        CommonModal commonModal = new CommonModal(DriverManager.getDriver());
-        String recordedText = commonModal.getMessageText();
-        Assert.assertEquals(recordedText,
-                "Đăng kí thành công",
-                "[TC_CD_009][FAIL]: Enroll Course message is incorrect"
-        );
-
-        //-------------------------------------------
-        logAndReport("VP2: Verify enrolled course is added the chiTietKhoaHocGhiDanh list by API");
-        Assert.assertTrue(api.isCourseEnrolled(user, courseId),
-                "[TC_CD_009][FAIL]: "+courseId + "not included in chiTietKhoaHocGhiDanh"
-        );
-
-        //-------------------------------------------
-        //logAndReport("VP3: Verify enrolled course is added to "Khóa học" (My Courses) list")
-
-        //-------------------------------------------
-        logAndReport("End Test: Remove courseId = \"" + courseId + "\" after test");
-        api.leaveCourse(user, courseId);
-    }
-
-    @DataProvider(name = "accountsForTC009")
-    public Object[][] getAccountsForTC009() {
-        return new Object[][]{
-                {"test.course.3", "Asd123!@#"},
-                {"test.course.4", "Asd123!@#"}
-        };
-    }
-    @Test(priority = 10, dataProvider = "accountsForTC009",
-            description = "TC_CD_010: Verify re-enrollment in the enrolled course")
-    public void TC_CD_010_Verify_Enroll_In_The_Enrolled_Course(String username, String password) {
-        logAndReport("Pre-condition: User logged in account: " + username);
-        APIAction api = new APIAction();
-        UserModel user = api.loginViaAPI(username, password);
-        String courseId = api.getRandomCourseId(COURSE_PAGE, COURSE_PAGESIZE, COURSE_GROUPID);
-        loginViaAPIAndSyncUI(user);
-
-        logAndReport("Pre-condition: The course with id= " + courseId + " has enrolled");
-        api.enrollCourse(user, courseId);
-
-        logAndReport("Step 1: Navigate to Course Detail page with courseId= " + courseId);
-        CourseDetailPage courseDetailPage = navigateToCourseDetailPage(courseId);
-
-        logAndReport("Step 2: Click on \"Đăng Ký\" button");
-        courseDetailPage.clickEnrollButton();
-
-        // Verify Point
-        logAndReport("VP1: Message \"Đã đăng ký khóa học này rồi!\" displays ");
-        CommonModal commonModal = new CommonModal(DriverManager.getDriver());
-        String recordedText = commonModal.getMessageText();
-        Assert.assertEquals( recordedText,
-                "Đã đăng ký khóa học này rồi!",
-                "[TC_CD_010][FAIL]: Enroll Course message is incorrect");
-
-        //-------------------------------------------
-        logAndReport("VP2: Verify the enrolled course is still in the chiTietKhoaHocGhiDanh list by API ");
-        Assert.assertTrue(
-                api.isCourseEnrolled(user, courseId),
-                "[TC_CD_010][FAIL]: "+ courseId + "not included in chiTietKhoaHocGhiDanh"
-        );
-
-        //-------------------------------------------
-        //logAndReport("VP3: Verify the enrolled course is still in the "Khóa học" (My Courses) list");
-
-        //-------------------------------------------
-        logAndReport("End Test: Leave courseId = \"" + courseId + "\" after test");
-        api.leaveCourse(user, courseId);
-    }
-
-    @Test(priority = 11,
-            description = "TC_CD_011: Verify the stats panel display")
-    public void TC_CD_011_Verify_The_Stats_Panel_Display() {
+            description = "TC_CD_008: Verify the stats panel display")
+    public void TC_CD_008_Verify_The_Stats_Panel_Display() {
         logAndReport("Step 1: Navigate to Course Detail page with courseId= " + VALID_COURSE_ID);
         CourseDetailPage courseDetailPage = navigateToCourseDetailPage(VALID_COURSE_ID);
 
@@ -436,44 +312,44 @@ public class CourseDetailTest extends BaseTest {
         String students = courseDetailPage.getStatStudents();
         logAndReport("The number of students: \"" + students +"\"");
         Assert.assertFalse(students.isEmpty(),
-                "[TC_CD_011][FAIL] The 'Ghi danh' information is empty");
+                "[TC_CD_008][FAIL] The 'Ghi danh' information is empty");
 
         //-------------------------------------------
         logAndReport("VP2: Verify the study duration is display");
         String duration = courseDetailPage.getStatDuration();
         logAndReport("The study duration: \"" + duration+"\"");
         Assert.assertFalse(duration.isEmpty(),
-                "[TC_CD_011][FAIL] The 'Thời gian' information is empty");
+                "[TC_CD_008][FAIL] The 'Thời gian' information is empty");
 
         //-------------------------------------------
         logAndReport("VP3: Verify the number of lessons is display");
         String lessons = courseDetailPage.getStatLessons();
         logAndReport("The number of lessons: \"" + lessons+"\"");
         Assert.assertFalse(lessons.isEmpty(),
-                "[TC_CD_011][FAIL] The 'Bài học' information is empty");
+                "[TC_CD_008][FAIL] The 'Bài học' information is empty");
 
         //-------------------------------------------
         logAndReport("VP4: Verify the number of videos is display");
         String videos = courseDetailPage.getStatVideos();
         logAndReport("The number of videos: \"" + videos+"\"");
         Assert.assertFalse(videos.isEmpty(),
-                "[TC_CD_011][FAIL] The 'Video' information is empty");
+                "[TC_CD_008][FAIL] The 'Video' information is empty");
 
         //-------------------------------------------
         logAndReport("VP5: Verify the course level is display");
         String level = courseDetailPage.getStatLevel();
         logAndReport("Course Level: \"" + level+"\"");
         Assert.assertFalse(level.isEmpty(),
-                "[TC_CD_011][FAIL] The 'Trình độ' information is empty");
+                "[TC_CD_008][FAIL] The 'Trình độ' information is empty");
 
         //-------------------------------------------
-        logAndReport("[TC_CD_011] PASS - Stats panel is valid");
+        logAndReport("[TC_CD_008] PASS - Stats panel is valid");
 
     }
 
-    @Test(priority = 12,
-            description = "TC_CD_012: Verify Related Course section is displayed")
-    public void TC_CD_012_Verify_Related_Course_Section_Is_Displayed() {
+    @Test(priority = 9,
+            description = "TC_CD_009: Verify Related Course section is displayed")
+    public void TC_CD_009_Verify_Related_Course_Section_Is_Displayed() {
         logAndReport("Step 1: Navigate to Course Detail page with courseId= " + VALID_COURSE_ID);
         CourseDetailPage courseDetailPage = navigateToCourseDetailPage(VALID_COURSE_ID);
 
@@ -485,7 +361,7 @@ public class CourseDetailTest extends BaseTest {
         boolean sectionTitleDisplayed = courseDetailPage.isRelatedCourseTitleDisplayed();
         logAndReport("Section Title displayed=: " + sectionTitleDisplayed);
         Assert.assertTrue(sectionTitleDisplayed,
-                "[TC_CD_012][FAIL] The 'Khóa học tham khảo' title doesn't display");
+                "[TC_CD_009][FAIL] The 'Khóa học tham khảo' title doesn't display");
 
         //-------------------------------------------
         logAndReport("VP2: Verify the page has course cards");
@@ -493,13 +369,13 @@ public class CourseDetailTest extends BaseTest {
         logAndReport("The card count: " + cardCount);
         Assert.assertTrue(
                 cardCount > 0,
-                "[TC_CD_012][FAIL] No course cards are displayed on the section"
+                "[TC_CD_009][FAIL] No course cards are displayed on the section"
         );
     }
 
-    @Test(priority = 13,
-            description = "TC_CD_013: Verify related course card contains complete information")
-    public void TC_CD_013_Verify_Related_Course_Card_Contains_Complete_Information() {
+    @Test(priority = 10,
+            description = "TC_CD_010: Verify related course card contains complete information")
+    public void TC_CD_010_Verify_Related_Course_Card_Contains_Complete_Information() {
         int indexCard = 1;
         logAndReport("Step 1: Navigate to Course Detail page with courseId= " + VALID_COURSE_ID);
         CourseDetailPage courseDetailPage = navigateToCourseDetailPage(VALID_COURSE_ID);
@@ -516,73 +392,73 @@ public class CourseDetailTest extends BaseTest {
         logAndReport("Like tag display=: " + liketagDisplay);
         Assert.assertTrue(
                 liketagDisplay,
-                "[TC_CD_013][FAIL]The like tag doesn't display"
+                "[TC_CD_010][FAIL]The like tag doesn't display"
         );
 
         //-------------------------------------------
         logAndReport("VP2: The Course Image displays and doesn't break");
-        boolean imgDisplay = card.isCardRelatedCourseImageDisplayed();
+        boolean imgDisplay = card.isCourseImageDisplayed();
         logAndReport(" Course Image displayed=" + imgDisplay);
         Assert.assertTrue(
                 imgDisplay,
-                "[TC_CD_013][FAIL] Instructor Avatar displayed"
+                "[TC_CD_010][FAIL] Instructor Avatar displayed"
         );
-        boolean imgLoaded = card.isCardRelatedCourseImageLoaded();
+        boolean imgLoaded = card.isCourseImageLoaded();
         logAndReport(" Course Image loaded=" + imgLoaded);
         Assert.assertTrue(
                 imgLoaded,
-                "[TC_CD_013][FAIL] Instructor Avatar has broken (naturalWidth = 0)"
+                "[TC_CD_010][FAIL] Instructor Avatar has broken (naturalWidth = 0)"
         );
 
         //-------------------------------------------
         logAndReport("VP3: The Course Name displays");
-        String courseName = card.getCardRelatedCourseName();
+        String courseName = card.getCourseName();
         logAndReport("Course Name: " + courseName);
         Assert.assertFalse(
                 courseName.isEmpty(),
-                "[TC_CD_013][FAIL] Course Name is empty"
+                "[TC_CD_010][FAIL] Course Name is empty"
         );
 
         //-------------------------------------------
         logAndReport("VP4: The Course Short Description displays");
-        String shortDesc = card.getCardRelatedCourseShortDescription();
+        String shortDesc = card.getCourseShortDescription();
         logAndReport("Short Description: " + shortDesc);
         Assert.assertFalse(
                 shortDesc.isEmpty(),
-                "[TC_CD_013][FAIL] Course Short Description is empty"
+                "[TC_CD_010][FAIL] Course Short Description is empty"
         );
 
         //-------------------------------------------
         logAndReport("VP5: The Specifications displays");
-        boolean specifications = card.isRelateCourseCardSpecificationsDisplay();
+        boolean specifications = card.isRelatedCourseCardSpecificationsDisplay();
         logAndReport("Specifications display = " + specifications);
         Assert.assertTrue(
                 specifications,
-                "[TC_CD_013][FAIL] Specifications doesn't display"
+                "[TC_CD_010][FAIL] Specifications doesn't display"
         );
 
         //-------------------------------------------
         logAndReport("VP6: The Instructor Avatar displays and doesn't break");
-        boolean avatarDisplay = card.isAvatarOfRelatedCourseDisplayed();
+        boolean avatarDisplay = card.isAvatarImageDisplayed();
         logAndReport(" Instructor Avatar displayed=" + avatarDisplay);
         Assert.assertTrue(
                 avatarDisplay,
-                "[TC_CD_013][FAIL] Instructor Avatar displayed"
+                "[TC_CD_010][FAIL] Instructor Avatar displayed"
         );
-        boolean avatarLoaded = card.isAvatarOfRelatedCourseLoaded();
+        boolean avatarLoaded = card.isAvatarImageLoaded();
         logAndReport(" Instructor Avatar loaded=" + avatarLoaded);
         Assert.assertTrue(
                 avatarLoaded,
-                "[TC_CD_013][FAIL] Instructor Avatar has broken (naturalWidth = 0)"
+                "[TC_CD_010][FAIL] Instructor Avatar has broken (naturalWidth = 0)"
         );
 
         //-------------------------------------------
         logAndReport("VP7: The Instructor Name displays");
-        String instructor = card.getCardRelatedCourseInstructorName();
+        String instructor = card.getCourseInstructorName();
         logAndReport("Instructor Name: " + instructor);
         Assert.assertFalse(
                 instructor.isEmpty(),
-                "[TC_CD_013][FAIL] Instructor Name is empty"
+                "[TC_CD_010][FAIL] Instructor Name is empty"
         );
 
         //-------------------------------------------
@@ -591,11 +467,11 @@ public class CourseDetailTest extends BaseTest {
         logAndReport("Price Sale: " + priceSale);
         Assert.assertFalse(
                 priceSale.isEmpty(),
-                "[TC_CD_013][FAIL] Price Sale is empty"
+                "[TC_CD_010][FAIL] Price Sale is empty"
         );
         Assert.assertTrue(
                 priceSale.matches(".*\\d.*"),
-                "[TC_CD_013][FAIL] Price Sale isn't correct format: " + priceSale
+                "[TC_CD_010][FAIL] Price Sale isn't correct format: " + priceSale
         );
 
         //-------------------------------------------
@@ -604,29 +480,29 @@ public class CourseDetailTest extends BaseTest {
         logAndReport("Price Original: " + priceOriginal);
         Assert.assertFalse(
                 priceOriginal.isEmpty(),
-                "[TC_CD_013][FAIL] Price Original is empty"
+                "[TC_CD_010][FAIL] Price Original is empty"
         );
         Assert.assertTrue(
                 priceOriginal.matches(".*\\d.*"),
-                "[TC_CD_013][FAIL] Price Original isn't correct format: " + priceOriginal
+                "[TC_CD_010][FAIL] Price Original isn't correct format: " + priceOriginal
         );
 
         //-------------------------------------------
         logAndReport("VP10: The Related Course Card Href Link is valid");
         String href = card.getCourseCardHref();
         logAndReport("Related Course Card Href Link: " + href);
-        Assert.assertNotNull(href, "[TC_CD_013][FAIL] The href of the card is null.");
-        Assert.assertFalse(href.trim().isEmpty(), "[TC_CD_013][FAIL] The href of the card is empty.");
-        Assert.assertFalse(href.equals("#"), "[TC_CD_013][FAIL] The card's href is '#' (not yet assigned).");
-        Assert.assertTrue(href.contains("/chitiet/"), "[TC_CD_013][FAIL] href doesn't match the pattern '/chitiet/{id}': " + href);
+        Assert.assertNotNull(href, "[TC_CD_010][FAIL] The href of the card is null.");
+        Assert.assertFalse(href.trim().isEmpty(), "[TC_CD_010][FAIL] The href of the card is empty.");
+        Assert.assertFalse(href.equals("#"), "[TC_CD_010][FAIL] The card's href is '#' (not yet assigned).");
+        Assert.assertTrue(href.contains("/chitiet/"), "[TC_CD_010][FAIL] href doesn't match the pattern '/chitiet/{id}': " + href);
 
         //-------------------------------------------
-        logAndReport("[TC_CD_013] PASS - All information on the card is valid");
+        logAndReport("[TC_CD_010] PASS - All information on the card is valid");
     }
 
-    @Test(priority = 14,
-            description = "TC_CD_014: Verify navigation to the details page when clicking on the related card")
-    public void TC_CD_014_Verify_Click_On_The_Related_Course_Card() {
+    @Test(priority = 11,
+            description = "TC_CD_011: Verify navigation to the details page when clicking on the related card")
+    public void TC_CD_011_Verify_Click_On_The_Related_Course_Card() {
         int indexCard = 1;
         logAndReport("Step 1: Navigate to Course Detail page with courseId= " + VALID_COURSE_ID);
         CourseDetailPage courseDetailPage = navigateToCourseDetailPage(VALID_COURSE_ID);
@@ -640,7 +516,7 @@ public class CourseDetailTest extends BaseTest {
         logAndReport("VP1: The current URL page is the Detail Page");
         String currentUrl = courseDetailPage.getCurrentUrl();
         Assert.assertTrue(currentUrl.contains("/chitiet/"),
-                "[TC_CD_014][FAIL] URL must contains '/chitiet/'. Actual: " + currentUrl
+                "[TC_CD_011][FAIL] URL must contains '/chitiet/'. Actual: " + currentUrl
         );
 
         //-------------------------------------------
@@ -648,7 +524,7 @@ public class CourseDetailTest extends BaseTest {
         Assert.assertEquals(
                 courseDetailPage.getCurrentUrl(),
                 urlCard,
-                "[TC_CD_014][FAIL] The URL Detail doesn't match"
+                "[TC_CD_011][FAIL] The URL Detail doesn't match"
         );
 
         //-------------------------------------------
@@ -658,13 +534,13 @@ public class CourseDetailTest extends BaseTest {
         Assert.assertEquals(
                 banner.getBannerTitle(),
                 expectedTitle,
-                "[TC_CD_014][FAIL] The title : \""+ expectedTitle + "\" doesn't display"
+                "[TC_CD_011][FAIL] The title : \""+ expectedTitle + "\" doesn't display"
         );
     }
 
-    @Test(priority = 15,
-            description = "TC_CD_015: Verify hover card is displayed when hovering over a related course card")
-    public void TC_CD_015_Verify_Hover_Card_Displays_When_Hover_Related_Course_Card() {
+    @Test(priority = 12,
+            description = "TC_CD_012: Verify hover card is displayed when hovering over a related course card")
+    public void TC_CD_012_Verify_Hover_Card_Displays_When_Hover_Related_Course_Card() {
         int indexCard = 1;
         logAndReport("Step 1: Navigate to Course Detail page with courseId= " + VALID_COURSE_ID);
         CourseDetailPage courseDetailPage = navigateToCourseDetailPage(VALID_COURSE_ID);
@@ -681,13 +557,12 @@ public class CourseDetailTest extends BaseTest {
         boolean hoverCardDisplayed = card.isHoverCardDisplay();
         Assert.assertTrue(
                 hoverCardDisplayed,
-                "[TC_CD_015][FAIL]The hover card doesn't displays");
+                "[TC_CD_012][FAIL]The hover card doesn't displays");
     }
 
-    @Test(priority = 16,
-            //dependsOnMethods = {"TC_CD_015_Verify_Hover_Card_Displays_When_Hover_Related_Course_Card()" },
-            description = "TC_CD_016: Verify hover course card contains complete information")
-    public void TC_CD_016_Verify_Hover_Course_Card_Contains_Complete_Information() {
+    @Test(priority = 13,
+            description = "TC_CD_013: Verify hover course card contains complete information")
+    public void TC_CD_013_Verify_Hover_Course_Card_Contains_Complete_Information() {
         int indexCard = 1;
         logAndReport("Step 1: Navigate to Course Detail page with courseId= " + VALID_COURSE_ID);
         CourseDetailPage courseDetailPage = navigateToCourseDetailPage(VALID_COURSE_ID);
@@ -705,13 +580,13 @@ public class CourseDetailTest extends BaseTest {
         logAndReport(" Instructor Avatar displayed=" + avatarDisplay);
         Assert.assertTrue(
                 avatarDisplay,
-                "[TC_CD_016][FAIL] Instructor Avatar displayed"
+                "[TC_CD_013][FAIL] Instructor Avatar displayed"
         );
         boolean avatarLoaded = card.isHoverCardCourseAvatarImageLoaded();
         logAndReport(" Instructor Avatar loaded=" + avatarLoaded);
         Assert.assertTrue(
                 avatarLoaded,
-                "[TC_CD_016][FAIL] Instructor Avatar has broken (naturalWidth = 0)"
+                "[TC_CD_013][FAIL] Instructor Avatar has broken (naturalWidth = 0)"
         );
 
         //-------------------------------------------
@@ -720,7 +595,7 @@ public class CourseDetailTest extends BaseTest {
         logAndReport("Course Name: " + courseName);
         Assert.assertFalse(
                 courseName.isEmpty(),
-                "[TC_CD_016][FAIL] Course Name is empty"
+                "[TC_CD_013][FAIL] Course Name is empty"
         );
 
         //-------------------------------------------
@@ -729,7 +604,7 @@ public class CourseDetailTest extends BaseTest {
         logAndReport("Short Description: " + shortDesc);
         Assert.assertFalse(
                 shortDesc.isEmpty(),
-                "[TC_CD_016][FAIL] Course Short Description is empty"
+                "[TC_CD_013][FAIL] Course Short Description is empty"
         );
 
         //-------------------------------------------
@@ -738,45 +613,46 @@ public class CourseDetailTest extends BaseTest {
         logAndReport("Specifications display = " + specifications);
         Assert.assertTrue(
                 specifications,
-                "[TC_CD_016][FAIL] Specifications doesn't display"
+                "[TC_CD_013][FAIL] Specifications doesn't display"
         );
 
         //-------------------------------------------
         logAndReport("VP5: The Instructor Name displays");
-        String instructor = card.getCardRelatedCourseInstructorName();
+        String instructor = card.getCourseInstructorName();
         logAndReport("Instructor Name: " + instructor);
         Assert.assertFalse(
                 instructor.isEmpty(),
-                "[TC_CD_016][FAIL] Instructor Name is empty"
+                "[TC_CD_013][FAIL] Instructor Name is empty"
         );
 
         //-------------------------------------------
-        logAndReport("VP5: The \"XEM CHI TIẾT\" button display and enable");
+        String nameButton = "XEM CHI TIẾT";
+        logAndReport("VP5: The \""+nameButton +"\" button display and enable");
         boolean btnDisplayed = card.isViewDetailButtonDisplayed();
         logAndReport("Enroll button displayed=" + btnDisplayed);
         Assert.assertTrue(btnDisplayed,
-                "[TC_CD_016][FAIL] The \"XEM CHI TIẾT\" button doesn't display");
+                "[TC_CD_013][FAIL] The \""+nameButton +"\" button doesn't display");
         boolean btnEnabled = card.isViewDetailButtonEnable();
         logAndReport("Enroll button enabled=" + btnEnabled);
         Assert.assertTrue(btnEnabled,
-                "[TC_CD_016][FAIL] The \"XEM CHI TIẾT\" button is disabled");
+                "[TC_CD_013][FAIL] The \""+nameButton +"\" button is disabled");
 
         //-------------------------------------------
-        logAndReport("VP6: Href Link in the \"XEM CHI TIẾT\" button is valid");
+        logAndReport("VP6: Href Link in the \""+nameButton +"\" button is valid");
         String href = card.getViewDetailButtonHref();
         logAndReport("View Detail Button Href Link: " + href);
-        Assert.assertNotNull(href, "[TC_CD_016][FAIL] The href of the button is null.");
-        Assert.assertFalse(href.trim().isEmpty(), "[TC_CD_016][FAIL] The href of the button is empty.");
-        Assert.assertFalse(href.equals("#"), "[TC_CD_016][FAIL] The button's href is '#' (not yet assigned).");
-        Assert.assertTrue(href.contains("/chitiet/"), "[TC_CD_016][FAIL] href doesn't match the pattern '/chitiet/{id}': " + href);
+        Assert.assertNotNull(href, "[TC_CD_013][FAIL] The href of the button is null.");
+        Assert.assertFalse(href.trim().isEmpty(), "[TC_CD_013][FAIL] The href of the button is empty.");
+        Assert.assertFalse(href.equals("#"), "[TC_CD_013][FAIL] The button's href is '#' (not yet assigned).");
+        Assert.assertTrue(href.contains("/chitiet/"), "[TC_CD_013][FAIL] href doesn't match the pattern '/chitiet/{id}': " + href);
 
         //-------------------------------------------
-        logAndReport("[TC_CD_016] PASS - All information on the hover card is valid");
+        logAndReport("[TC_CD_013] PASS - All information on the hover card is valid");
     }
 
-    @Test(priority = 17,
-            description = "TC_CD_017: Verify course listing page loads successfully")
-    public void TC_CD_017_Verify_Click_On_Detail_Button() {
+    @Test(priority = 14,
+            description = "TC_CD_014: Verify click on View Detail button on hover card")
+    public void TC_CD_014_Verify_Click_On_View_Detail_Button() {
         int indexCard = 1;
         logAndReport("Step 1: Navigate to Course Detail page with courseId= " + VALID_COURSE_ID);
         CourseDetailPage courseDetailPage = navigateToCourseDetailPage(VALID_COURSE_ID);
@@ -795,7 +671,7 @@ public class CourseDetailTest extends BaseTest {
         logAndReport("VP1: The current URL page is the Detail Page");
         String currentUrl = courseDetailPage.getCurrentUrl();
         Assert.assertTrue(currentUrl.contains("/chitiet/"),
-                "[TC_CD_017][FAIL] URL must contains '/chitiet/'. Actual: " + currentUrl
+                "[TC_CD_014][FAIL] URL must contains '/chitiet/'. Actual: " + currentUrl
         );
 
         //-------------------------------------------
@@ -804,7 +680,7 @@ public class CourseDetailTest extends BaseTest {
         Assert.assertEquals(
                 courseDetailPage.getCurrentUrl(),
                 urlCard,
-                "[TC_CD_017][FAIL] The URL Detail doesn't match"
+                "[TC_CD_014][FAIL] The URL Detail doesn't match"
         );
 
         //-------------------------------------------
@@ -813,6 +689,6 @@ public class CourseDetailTest extends BaseTest {
         Assert.assertEquals(
                 banner.getBannerTitle(),
                 "THÔNG TIN KHÓA HỌC",
-                "[TC_CD_017][FAIL] The title: \"THÔNG TIN KHÓA HỌC\" doesn't displays");
+                "[TC_CD_014][FAIL] The title: \"THÔNG TIN KHÓA HỌC\" doesn't displays");
     }
 }

@@ -92,7 +92,15 @@ public class CourseDetailPage extends CommonPage {
     }
 
     // ====================== Hero Section Methods ======================
+
     //------------------ Course Name --------------------
+    /**
+     * Get Course Name
+     */
+    public void waitCourseNameLoaded(String expectedName) {
+        waitForTextDisplay(byCourseName, expectedName);
+    }
+
     /**
      * Get Course Name
      */
@@ -497,7 +505,7 @@ public class CourseDetailPage extends CommonPage {
     /**
      * Get all related course cards
      */
-    public List<FeaturedCourseCard> getAllRelatedCCourseCards() {
+    public List<FeaturedCourseCard> getAllRelatedCourseCards() {
         List<WebElement> rawElements = findElements(byRelatedCourseCards);
         List<FeaturedCourseCard> cards = new ArrayList<>();
 
@@ -511,14 +519,14 @@ public class CourseDetailPage extends CommonPage {
      * Return the count of related course cards
      */
     public int getRelatedCourseCardCount() {
-        return getAllRelatedCCourseCards().size();
+        return getAllRelatedCourseCards().size();
     }
 
     /**
      * Get related course card by index (1-based)
      */
     public FeaturedCourseCard getRelatedCourseCard(int index) {
-        List<FeaturedCourseCard> courseCards = getAllRelatedCCourseCards();
+        List<FeaturedCourseCard> courseCards = getAllRelatedCourseCards();
         return getItemByIndex(courseCards,index);
     }
 }
