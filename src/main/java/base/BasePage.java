@@ -74,7 +74,7 @@ public class BasePage {
     public List<WebElement> waitVisibilityOfElementsLocated(By locator, long timeOutInSec)
     {
         WebDriverWait wait = getWebDriverWait(timeOutInSec);
-        return  wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
+        return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
     }
 
     public List<WebElement> waitVisibilityOfElementsLocated(By locator)
@@ -378,8 +378,11 @@ public class BasePage {
      * Find Elements
      */
     public List<WebElement> findElements(By locator,long timeoutInSeconds) {
-        waitVisibilityOfElementsLocated(locator,timeoutInSeconds);
-        return driver.findElements(locator);
+        try {
+            return waitVisibilityOfElementsLocated(locator, timeoutInSeconds);
+        } catch (TimeoutException e) {
+            return driver.findElements(locator);
+        }
     }
 
     public List<WebElement> findElements(By locator) {
@@ -680,5 +683,11 @@ public class BasePage {
     public <K, V> V getValueMapByIndex(Map<K, V> map, int index) {
         K key = getKeyMapByIndex(map, index);
         return map.get(key);
+    }
+
+
+    public void numberOfElementsToBe(By locator, int count) {
+        WebDriverWait wait = getWebDriverWait();
+        wait.until(ExpectedConditions.numberOfElementsToBe(locator,count));
     }
 }

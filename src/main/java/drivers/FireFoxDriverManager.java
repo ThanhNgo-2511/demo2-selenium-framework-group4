@@ -10,6 +10,8 @@ public class FireFoxDriverManager extends DriverManager {
         FirefoxOptions options = new FirefoxOptions();
         options.setPageLoadStrategy(PageLoadStrategy.EAGER);
 
+
+
         setDriver(new FirefoxDriver(options));
     }
 }

@@ -7,10 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import pages.CourseDetailPage;
-import pages.CourseListPage;
-import pages.HomePage;
-import pages.LoginPage;
+import pages.*;
 import reports.ExtentReportManager;
 
 import static config.urlConfig.*;
@@ -52,9 +49,13 @@ public class TestCaseHelper {
         return new LoginPage(DriverManager.getDriver());
     }
 
-    public static void loginViaAPIAndSyncUI(UserModel user) {
-        LOG.info("Performing fast login via API and syncing to UI for user: {}", user.getTaiKhoan());
+    public static ProfilePage navigateToProfilePage() {
+        HomePage homePage = openApplication();
+        homePage.getTopNavigation().navigateToProfilePage();
+        return new ProfilePage(DriverManager.getDriver());
+    }
 
+    public static void loginViaAPIAndSyncUI(UserModel user) {
         WebDriver driver = DriverManager.getDriver();
         driver.get(BASE_URL_PATTERN); // Dùng URL chuẩn từ config
 
@@ -69,7 +70,9 @@ public class TestCaseHelper {
                 + "}";
 
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.localStorage.setItem('credentials', arguments[0]);", userJson);
+        js.executeScript(
+                "window.localStorage.setItem('credentials', arguments[0]);"
+                , userJson);
 
         driver.navigate().refresh();
 
