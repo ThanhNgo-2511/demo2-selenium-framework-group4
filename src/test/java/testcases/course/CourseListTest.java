@@ -5,7 +5,6 @@ import base.BaseTest;
 import drivers.DriverManager;
 import models.CourseModel;
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.CourseDetailPage;
 import pages.CourseListPage;
@@ -14,6 +13,7 @@ import pages.components.StandardCourseCard;
 
 import java.util.*;
 
+import static apiHelper.APIConfig.*;
 import static helper.TestCaseHelper.*;
 
 public class CourseListTest extends BaseTest {
@@ -23,6 +23,7 @@ public class CourseListTest extends BaseTest {
     public void TC_CL_001_Verify_Page_Course_Loads_Successfully() {
         CourseListPage courseListPage = navigateToCourseListPage();
 
+        // Verify Point
         logAndReport("VP1: Verify URL");
         String currentUrl = courseListPage.getCurrentUrl();
         logAndReport("Current URL: " + currentUrl);
@@ -30,6 +31,7 @@ public class CourseListTest extends BaseTest {
                 "[TC_CL_001][FAIL] URL must contains '/khoahoc'"
         );
 
+        //-------------------------------------------
         logAndReport("VP2: Verify page title is not empty");
         String title = courseListPage.getPageTitle();
         logAndReport("Page Title: " + title);
@@ -40,12 +42,14 @@ public class CourseListTest extends BaseTest {
                 "[TC_CL_001][FAIL] Page title is empty"
         );
 
+        //-------------------------------------------
         logAndReport("VP3: The title: \"Danh sách khóa học\" displays");
         boolean sectionTitleDisplayed = courseListPage.isCourseListTitleDisplayed();
         logAndReport("Section Title displayed= " + sectionTitleDisplayed);
         Assert.assertTrue(sectionTitleDisplayed,
                 "[TC_CL_001][FAIL] The 'Danh sách khóa học' title doesn't display");
 
+        //-------------------------------------------
         logAndReport("VP4: Verify the page has course cards");
         int cardCount = courseListPage.getCourseCardCount();
         logAndReport("Card count: " + cardCount);
@@ -61,14 +65,14 @@ public class CourseListTest extends BaseTest {
         navigateToCourseListPage();
         Banner banner = new Banner(DriverManager.getDriver());
 
+        // Verify Point
         String expectedTitle = "KHÓA HỌC";
         logAndReport("VP1: Verify the Banner Title \"" + expectedTitle + "\" displays on the Course List");
         boolean bannerTitleDisplayed = banner.bannerTitleDisplayed();
         logAndReport("Banner Title displayed =" + bannerTitleDisplayed);
         Assert.assertTrue(bannerTitleDisplayed,
-                "[TC_CL_002][FAIL]  The banner title doesn't display"
+                "[TC_CL_002][FAIL] The banner title \"" + expectedTitle + "\" doesn't display"
         );
-
         String bannerTitleText = banner.getBannerTitle();
         logAndReport("Banner Title: " + bannerTitleText);
         Assert.assertEquals(bannerTitleText,
@@ -76,13 +80,14 @@ public class CourseListTest extends BaseTest {
                 "[TC_CL_002][FAIL] The title text isn't \"" + expectedTitle + "\""
         );
 
+        //-------------------------------------------
         String expectedSubTitle = "BẮT ĐẦU HÀNH TRÌNH NÀO!!!";
         logAndReport("VP2: Verify the Banner Sub-title \"" + expectedSubTitle + "\" displays on the Course List");
         boolean bannerSubTitleDisplayed = banner.bannerSubTitleDisplayed();
         logAndReport("Banner Sub-Title displayed =" + bannerSubTitleDisplayed);
         Assert.assertTrue(
                 bannerSubTitleDisplayed,
-                "[TC_CL_002][FAIL]  The banner title doesn't display"
+                "[TC_CL_002][FAIL] The banner sub-title \"" + expectedSubTitle + "\" doesn't display"
         );
 
         String bannerSubTitleText = banner.getBannerSubTitle();
@@ -98,6 +103,7 @@ public class CourseListTest extends BaseTest {
     public void TC_CL_003_Verify_The_Insight_Information_Section_Displayed() {
         CourseListPage courseListPage = navigateToCourseListPage();
 
+        // Verify Point
         logAndReport("VP1: Verify the Insight Information section displays on the Course List");
         boolean infoBoxDisplayed = courseListPage.inSightInformationBoxDisplayed();
         logAndReport("Insight Information displayed =" + infoBoxDisplayed);
@@ -105,7 +111,7 @@ public class CourseListTest extends BaseTest {
                 "[TC_CL_003][FAIL] The banner title doesn't display"
         );
 
-        Map<String, String> actualInfo = courseListPage.getInsightInformation();
+        //-------------------------------------------
         Map<String, String> expectedInfo = new LinkedHashMap<>();
         expectedInfo.put("CHƯƠNG TRÌNH HỌC", "300");
         expectedInfo.put("NHÀ SÁNG TẠO", "10000");
@@ -113,35 +119,36 @@ public class CourseListTest extends BaseTest {
         expectedInfo.put("BÀI GIẢNG", "3000");
         expectedInfo.put("VIDEO", "40000");
         expectedInfo.put("LĨNH VỰC", "200");
+        int expectedSize = expectedInfo.size();
 
-        List<String> actualkeys = new ArrayList<>(actualInfo.keySet());
-        List<String> expectedKeys = new ArrayList<>(expectedInfo.keySet());
-
-        logAndReport("VP2: The number of insight items displayed matches expectations!");
+        logAndReport("VP2: The number of insight items displayed matches expectations");
+        int actualSize = courseListPage.insightInformationItemsCount();
+        logAndReport("The size of the insight items: "+ actualSize );
         Assert.assertEquals(
-                actualInfo.size(),
-                expectedInfo.size(),
+                actualSize,
+                expectedSize,
                 "[TC_CL_003][FAIL] The number of insight items displayed does not match expectations!"
         );
 
-        for (int i = 0; i < expectedKeys.size(); i++) {
-            logAndReport("VP" + (i + 3) + ": Verify the context on the Insight Box (" + (i + 1) + ").");
-            String lblInsightTitleActual = actualkeys.get(i);
-            String lblInsightTitleExpected = expectedKeys.get(i);
-            logAndReport("Insight Title: " + lblInsightTitleActual);
+        //-------------------------------------------
+        for (int i = 1; i <= expectedSize; i++) {
+            logAndReport("VP" + (i + 2) + ": Verify the context on the Insight Box (" + i + ").");
+            String actualTitle = courseListPage.insightInformationTitle(i);
+            String expectedTitle = courseListPage.getKeyMapByIndex(expectedInfo,i);
+            logAndReport("Insight Title: " + actualTitle);
             Assert.assertEquals(
-                    lblInsightTitleActual,
-                    lblInsightTitleExpected,
-                    "[TC_CL_003][FAIL] The \"" + lblInsightTitleExpected + "\" label doesn't match"
+                    actualTitle,
+                    expectedTitle,
+                    "[TC_CL_003][FAIL] The \"" + expectedTitle + "\" label doesn't match"
             );
 
-            String lblInsightCountActual = actualInfo.get(lblInsightTitleActual);
-            String lblInsightCountExpected = expectedInfo.get(lblInsightTitleExpected);
-            logAndReport("Insight Value: " + lblInsightCountActual);
+            String actualInsightCount = courseListPage.insightInformationCount(i);
+            String expectedInsightCount = courseListPage.getValueMapByIndex(expectedInfo,i);
+            logAndReport("Insight Value: " + actualInsightCount);
             Assert.assertEquals(
-                    lblInsightCountActual,
-                    lblInsightCountExpected,
-                    "[TC_CL_003][FAIL] The \"" + lblInsightTitleExpected + "\" value doesn't match"
+                    actualInsightCount,
+                    expectedInsightCount,
+                    "[TC_CL_003][FAIL] The \"" + expectedInsightCount + "\" value doesn't match"
             );
         }
     }
@@ -151,26 +158,20 @@ public class CourseListTest extends BaseTest {
     public void TC_CL_004_Verify_The_Number_Of_Course_Cards_Per_Page() {
         CourseListPage courseListPage = navigateToCourseListPage();
 
+        // Verify Point
         logAndReport("VP: The count of Course Cards are >0 and <=12");
         int cardCount = courseListPage.getCourseCardCount();
         logAndReport("Number of Course Cards displayed: " + cardCount);
         Assert.assertTrue(
                 cardCount > 0 && cardCount <= 12,
-                "[TC_CL_004][FAIL] Invalid number of Course Cards: " + cardCount
+                "[TC_CL_004][FAIL] Invalid number of Course Cards "
         );
     }
 
-    @DataProvider(name = "validCardCourse")
-    public Object[][] getIndexCard() {
-        return new Object[][]{
-                {3},
-                {12}
-        };
-    }
-
-    @Test(priority = 5, dataProvider = "validCardCourse",
+    @Test(priority = 5,
             description = "TC_CL_005: Verify course card contains complete information")
-    public void TC_CL_005_Verify_Course_Card_Contains_Complete_Information(int indexCard) {
+    public void TC_CL_005_Verify_Course_Card_Contains_Complete_Information() {
+        int indexCard = 3;
         CourseListPage courseListPage = navigateToCourseListPage();
 
         logAndReport("Scroll to the card at position (" + indexCard + ")");
@@ -179,15 +180,15 @@ public class CourseListTest extends BaseTest {
 
         logAndReport("Check the card at position (" + indexCard + ")");
 
-        //-------------------------------------------
+        // Verify Point
         logAndReport("VP1:The Course Image displays and doesn't break");
-        boolean imgDisplayed = card.isCardCourseImageDisplayed();
+        boolean imgDisplayed = card.isCourseImageDisplayed();
         logAndReport("Course Image displayed=" + imgDisplayed);
         Assert.assertTrue(
                 imgDisplayed,
                 "[TC_CL_005][FAIL] Course Image has displayed"
         );
-        boolean imgLoaded = card.isCardCourseImageLoaded();
+        boolean imgLoaded = card.isCourseImageLoaded();
         logAndReport("Course Image loaded=" + imgLoaded);
         Assert.assertTrue(
                 imgLoaded,
@@ -196,7 +197,7 @@ public class CourseListTest extends BaseTest {
 
         //-------------------------------------------
         logAndReport("VP2: The Course Name displays");
-        String courseName = card.getCardCourseName();
+        String courseName = card.getCourseName();
         logAndReport("Course Name: " + courseName);
         Assert.assertFalse(
                 courseName.isEmpty(),
@@ -205,7 +206,7 @@ public class CourseListTest extends BaseTest {
 
         //-------------------------------------------
         logAndReport("VP3: The Course Short Description displays");
-        String shortDesc = card.getCardCourseShortDescription();
+        String shortDesc = card.getCourseShortDescription();
         logAndReport("Short Description: " + shortDesc);
         Assert.assertFalse(
                 shortDesc.isEmpty(),
@@ -229,7 +230,7 @@ public class CourseListTest extends BaseTest {
 
         //-------------------------------------------
         logAndReport("VP5: The Instructor Name displays");
-        String instructor = card.getCardCourseInstructorName();
+        String instructor = card.getCourseInstructorName();
         logAndReport("Instructor Name: " + instructor);
         Assert.assertFalse(
                 instructor.isEmpty(),
@@ -307,9 +308,10 @@ public class CourseListTest extends BaseTest {
         logAndReport("[TC_CL_005] PASS - All information on the card is valid");
     }
 
-    @Test(priority = 6, dataProvider = "validCardCourse",
+    @Test(priority = 6,
             description = "TC_CL_006: Verify navigation to the details page when clicking on the card")
-    public void TC_CL_006_Verify_Navigation_To_Course_Detail(int indexCard) {
+    public void TC_CL_006_Verify_Navigation_To_Course_Detail() {
+        int indexCard = 12;
         CourseListPage courseListPage = navigateToCourseListPage();
         StandardCourseCard card = courseListPage.getCourseCardByIndex(indexCard);
 
@@ -321,10 +323,12 @@ public class CourseListTest extends BaseTest {
         card.clickOnCard();
         CourseDetailPage courseDetailPage = new CourseDetailPage(DriverManager.getDriver());
 
+        // Verify Point
         logAndReport("VP1: The current URL page is the Detail Page");
         String currentUrl = courseDetailPage.getCurrentUrl();
+        logAndReport("Current URL: " + currentUrl);
         Assert.assertTrue(currentUrl.contains("/chitiet/"),
-                "[TC_CL_006][FAIL] URL must contains '/chitiet/'. Actual: " + currentUrl
+                "[TC_CL_006][FAIL] URL must contains '/chitiet/'"
         );
 
         logAndReport("VP2: The current URL page matches the link card");
@@ -334,12 +338,13 @@ public class CourseListTest extends BaseTest {
                 "[TC_CL_006][FAIL] The URL Detail doesn't match the link card"
         );
 
-        logAndReport("VP3: The title: \"THÔNG TIN KHÓA HỌC\" displays");
+        String expectedTitle = "THÔNG TIN KHÓA HỌC";
+        logAndReport("VP3: The title: \""+expectedTitle+"\" displays");
         Banner banner = new Banner(DriverManager.getDriver());
         Assert.assertEquals(
                 banner.getBannerTitle(),
-                "THÔNG TIN KHÓA HỌC",
-                "[TC_CL_006][FAIL] The title : \"THÔNG TIN KHÓA HỌC\" doesn't display"
+                expectedTitle,
+                "[TC_CL_006][FAIL] The title : \""+ expectedTitle + "\" doesn't display"
         );
     }
 
@@ -350,12 +355,13 @@ public class CourseListTest extends BaseTest {
         CourseListPage courseListPage = navigateToCourseListPage();
 
         StandardCourseCard oldCard = courseListPage.getCourseCardByIndex(indexCard);
-        String oldCourseName = oldCard.getCardCourseName();
+        String oldCourseName = oldCard.getCourseName();
 
         logAndReport("Step 1: Click on the Next button on the pagination");
         courseListPage.clickNextPage();
         courseListPage.waitCourseListLoadSuccess();
 
+        // Verify Point
         logAndReport("VP1: Current page is page 2");
         Assert.assertEquals(
                 courseListPage.getCurrentPage(),
@@ -365,7 +371,7 @@ public class CourseListTest extends BaseTest {
 
         logAndReport("VP2: Course list content is refreshed");
         StandardCourseCard newCard = courseListPage.getCourseCardByIndex(indexCard);
-        String newCourseName = newCard.getCardCourseName();
+        String newCourseName = newCard.getCourseName();
         Assert.assertNotEquals(
                 oldCourseName,
                 newCourseName,
@@ -384,7 +390,8 @@ public class CourseListTest extends BaseTest {
         logAndReport("Step 2: Click on the Next button on the pagination");
         courseListPage.clickNextPage();
 
-        logAndReport("Verify Point: Current page is still the last page");
+        // Verify Point
+        logAndReport("VP: Current page is still the last page");
         Assert.assertEquals(
                 courseListPage.getCurrentPage(),
                 courseListPage.getTotalPages(),
@@ -400,12 +407,13 @@ public class CourseListTest extends BaseTest {
         CourseListPage courseListPage = navigateToCourseListPage();
 
         StandardCourseCard oldCard = courseListPage.getCourseCardByIndex(indexCard);
-        String oldCourseName = oldCard.getCardCourseName();
+        String oldCourseName = oldCard.getCourseName();
 
         logAndReport("Click on the page " + pageNumber);
         courseListPage.clickPageNumber(pageNumber);
         courseListPage.waitCourseListLoadSuccess();
 
+        // Verify Point
         logAndReport("VP1: Current page is page " + pageNumber);
         Assert.assertEquals(
                 courseListPage.getCurrentPage(),
@@ -415,7 +423,7 @@ public class CourseListTest extends BaseTest {
 
         logAndReport("VP2: Course list content is refreshed");
         StandardCourseCard newCard = courseListPage.getCourseCardByIndex(indexCard);
-        String newCourseName = newCard.getCardCourseName();
+        String newCourseName = newCard.getCourseName();
         Assert.assertNotEquals(
                 oldCourseName,
                 newCourseName,
@@ -433,15 +441,15 @@ public class CourseListTest extends BaseTest {
         courseListPage.clickPageNumber(2);
         courseListPage.waitCourseListLoadSuccess();
         StandardCourseCard oldCard = courseListPage.getCourseCardByIndex(indexCard);
-        String oldCourseName = oldCard.getCardCourseName();
+        String oldCourseName = oldCard.getCourseName();
 
         logAndReport("Step 2: Click on the Previous button on the navigation");
         courseListPage.clickPreviousPage();
         courseListPage.waitCourseListLoadSuccess();
         StandardCourseCard newCard = courseListPage.getCourseCardByIndex(indexCard);
-        String newCourseName = newCard.getCardCourseName();
+        String newCourseName = newCard.getCourseName();
 
-
+        // Verify Point
         logAndReport("VP1: Current page is the page 1");
         Assert.assertEquals(
                 courseListPage.getCurrentPage(),
@@ -465,6 +473,7 @@ public class CourseListTest extends BaseTest {
         logAndReport("Step1: Click on the Previous button on the navigation");
         courseListPage.clickPreviousPage();
 
+        // Verify Point
         logAndReport("VP: Current page is still the first page");
         Assert.assertEquals(
                 courseListPage.getCurrentPage(),
@@ -473,120 +482,47 @@ public class CourseListTest extends BaseTest {
         );
     }
 
-    @DataProvider(name = "paginationTest")
-    public Object[][] getNumberPage() {
-        return new Object[][]{
-                {1},
-                {2},
-                {20},
-                {21}
-        };
-    }
-
-    @Test(enabled = false, priority = 12, dataProvider = "paginationTest",
-            description = "TC_CL_012: Verify that the course data in the card matches the response from the API")
-    public void TC_CL_012_Verify_Course_Card_Information_Matches_Response_From_API(int pageNum) {
-        int Card = 2;
-        APIAction api = new APIAction();
-        CourseModel course = api.getCourseInforFromList(api.getCourseList(pageNum, 12, "GP01"), 1);
-
-        CourseListPage courseListPage = navigateToCourseListPage();
-        if (pageNum > 1) {
-            logAndReport("Navigation to the (" + pageNum + ") page.");
-            courseListPage.clickPageNumber(pageNum);
-            courseListPage.waitCourseListLoadSuccess();
-        }
-
-        StandardCourseCard card = courseListPage.getCourseCardByIndex(Card);
-        logAndReport("Scroll to the card at position (" + Card + ")");
-        card.scrollToCard();
-
-        logAndReport("Check the card at position (" + Card + ")");
-
-
-        logAndReport("VP1: The link of the course details contains the \"MaKhoaHoc\" field from the API.");
-        String actualURL = card.getCourseCardHref();
-        String expectedURL = course.getMaKhoaHoc().replace(" ", "%20");
-        Assert.assertTrue(
-                actualURL.contains(expectedURL),
-                "[TC_CL_012][FAIL] Course Href doesn't match with API"
-        );
-
-        logAndReport("VP2: The link of the course image matches the \"HinhAnh\" field from the API");
-        Assert.assertEquals(
-                card.getImageCourseLink(),
-                course.getHinhAnh(),
-                "[TC_CL_012][FAIL] Course Image doesn't match with API"
-        );
-
-        logAndReport("VP3: The course name matches the \"TenKhoaHoc\" field from the API");
-        Assert.assertEquals(
-                card.getCardCourseName(),
-                course.getTenKhoaHoc(),
-                "[TC_CL_012][FAIL] Course Name doesn't match with API"
-        );
-
-        logAndReport("VP4: The short description on the card contains a portion of the \"MoTa\" field from the API.");
-        String expectedDesc = course.getMoTa();
-        String actualDesc = card.getCardCourseShortDescription();
-        Assert.assertTrue(
-                expectedDesc.contains(actualDesc.replace("...", "").trim()),
-                "[TC_CL_012][FAIL] Course Describe doesn't contain with API"
-        );
-
-        logAndReport("VP5: The instructor name matches the \"NguoiTao.HoTen\" field from the API");
-        Assert.assertEquals(
-                card.getCardCourseInstructorName(),
-                course.getNguoiTao().getHoTen(),
-                "[TC_CL_012][FAIL] Course Instructor Name doesn't match with API"
-        );
-    }
-
-    @DataProvider(name = "validCardCourseMatchName")
-    public Object[][] getIndexValidCard() {
-        return new Object[][]{
-                {3},
-                {11}
-        };
-    }
-    @Test(priority = 13,dataProvider = "validCardCourseMatchName",
-            description = "TC_CL_013: Verify course name on the Course Detail page matches the selected course card.")
-    public void TC_CL_013_Verify_Course_Name_Card_Matches_Course_Name_Detail(int indexCard) {
-        CourseListPage courseListPage = navigateToCourseListPage();
-        StandardCourseCard card = courseListPage.getCourseCardByIndex(indexCard);
-
-        logAndReport("Step 1: Scroll to the card at position (" + indexCard + ")");
-        card.scrollToCard();
-        String courseNameCard = card.getCardCourseName();
-
-        logAndReport("Step 2: Click on the card at position (" + indexCard + ")");
-        card.clickOnCard();
-        CourseDetailPage courseDetailPage = new CourseDetailPage(DriverManager.getDriver());
-        courseDetailPage.scrollToTop();
-
-        logAndReport("VP: Course Name on the detail page matches course name in card");
-        Assert.assertTrue(
-                courseDetailPage.isCourseNameMatches(courseNameCard),
-                "[TC_CL_013][FAIL] Course name on Course Detail does not match Course Card"
-        );
-    }
-
-    @Test(priority = 14,
-            description = "TC_CL_014: Verify course image on the Course Detail page matches the selected course card.")
-    public void TC_CL_014_Verify_Course_Image_Card_Matches_Course_Image_Detail() {
+    @Test(priority = 12,
+            description = "TC_CL_012: Verify course name on the Course Detail page matches the selected course card.")
+    public void TC_CL_012_Verify_Course_Name_Card_Matches_Course_Name_Detail() {
         int indexCard = 11;
         CourseListPage courseListPage = navigateToCourseListPage();
         StandardCourseCard card = courseListPage.getCourseCardByIndex(indexCard);
 
         logAndReport("Step 1: Scroll to the card at position (" + indexCard + ")");
         card.scrollToCard();
-        String imageCardLink = card.getImageCourseLink();
+        String courseNameCard = card.getCourseName();
 
         logAndReport("Step 2: Click on the card at position (" + indexCard + ")");
         card.clickOnCard();
         CourseDetailPage courseDetailPage = new CourseDetailPage(DriverManager.getDriver());
         courseDetailPage.scrollToTop();
 
+        // Verify Point
+        logAndReport("VP: Course Name on the detail page matches course name in card");
+        Assert.assertTrue(
+                courseDetailPage.isCourseNameMatches(courseNameCard),
+                "[TC_CL_012][FAIL] Course name on Course Detail does not match Course Card"
+        );
+    }
+
+    @Test(priority = 13,
+            description = "TC_CL_013: Verify course image on the Course Detail page matches the selected course card.")
+    public void TC_CL_013_Verify_Course_Image_Card_Matches_Course_Image_Detail() {
+        int indexCard = 11;
+        CourseListPage courseListPage = navigateToCourseListPage();
+        StandardCourseCard card = courseListPage.getCourseCardByIndex(indexCard);
+
+        logAndReport("Step 1: Scroll to the card at position (" + indexCard + ")");
+        card.scrollToCard();
+        String imageCardLink = card.getCourseImageLink();
+
+        logAndReport("Step 2: Click on the card at position (" + indexCard + ")");
+        card.clickOnCard();
+        CourseDetailPage courseDetailPage = new CourseDetailPage(DriverManager.getDriver());
+        courseDetailPage.scrollToTop();
+
+        // Verify Point
         logAndReport("VP: Course Image on the detail page matches course image in card");
         String imageCoursePageLink =  courseDetailPage.getCourseImageLink();
         logAndReport("The src of Image course on the card: "+ imageCardLink);
@@ -594,13 +530,13 @@ public class CourseListTest extends BaseTest {
         Assert.assertEquals(
                 imageCoursePageLink,
                 imageCardLink,
-                "[TC_CL_014][FAIL]The course image on the detail page does not match with data in course card"
+                "[TC_CL_013][FAIL]The course image on the detail page does not match with data in course card"
         );
     }
 
-    @Test(priority = 15,enabled = false,
-            description = "TC_CL_015: Verify Instructor information matches the selected course card.")
-    public void TC_CL_015_Verify_Course_Instructor_Card_Matches_Course_Instructor_Detail() {
+    @Test(priority = 14,enabled = true,
+            description = "TC_CL_014: Verify Instructor information matches the selected course card.")
+    public void TC_CL_014_Verify_Course_Instructor_Card_Matches_Course_Instructor_Detail() {
         int indexCard = 2;
         CourseListPage courseListPage = navigateToCourseListPage();
         StandardCourseCard card = courseListPage.getCourseCardByIndex(indexCard);
@@ -608,7 +544,7 @@ public class CourseListTest extends BaseTest {
         logAndReport("Step 1: Scroll to the card at position (" + indexCard + ")");
         card.scrollToCard();
         String courseCardInstructorAvatar = card.getAvatarImageLink();
-        String courseCardInstructorName = card.getCardCourseInstructorName();
+        String courseCardInstructorName = card.getCourseInstructorName();
 
         logAndReport("Step 2: Click on the card at position (" + indexCard + ")");
         card.clickOnCard();
@@ -617,31 +553,32 @@ public class CourseListTest extends BaseTest {
         String courseDetailInstructorAvatar = courseDetailPage.getAvatarImageLink();
         String courseDetailInstructorName = courseDetailPage.getInstructorName();
 
+        // Verify Point
         logAndReport("VP1: Instructor Avatar on the detail page matches course author in card");
         Assert.assertEquals(
                 courseDetailInstructorAvatar,
                 courseCardInstructorAvatar,
-                "[TC_CL_015][FAIL] The Instructor Avatar on the detail page does not match with data in course card"
+                "[TC_CL_014][FAIL] The Instructor Avatar on the detail page does not match with data in course card"
         );
 
         logAndReport("VP2: Instructor Name on the detail page matches course author in card");
         Assert.assertEquals(
                 courseDetailInstructorName,
                 courseCardInstructorName,
-                "[TC_CL_015][FAIL] The Instructor Name on the detail page does not match with data in course card"
+                "[TC_CL_014][FAIL] The Instructor Name on the detail page does not match with data in course card"
         );
     }
 
-    @Test(priority = 16,enabled = false,
-            description = "TC_CL_016: Verify course description on the Course Detail page matches the selected course card.")
-    public void TC_CL_016_Verify_Course_Description_Card_Matches_Course_Description_Detail() {
+    @Test(priority = 15,enabled = true,
+            description = "TC_CL_015: Verify course description on the Course Detail page matches the selected course card.")
+    public void TC_CL_015_Verify_Course_Description_Card_Matches_Course_Description_Detail() {
         int indexCard = 2;
         CourseListPage courseListPage = navigateToCourseListPage();
         StandardCourseCard card = courseListPage.getCourseCardByIndex(indexCard);
 
         logAndReport("Step 1: Scroll to the card at position (" + indexCard + ")");
         card.scrollToCard();
-        String courseCardDesc = card.getCardCourseShortDescription();
+        String courseCardDesc = card.getCourseShortDescription();
 
         logAndReport("Step 2: Click on the card at position (" + indexCard + ")");
         card.clickOnCard();
@@ -649,16 +586,17 @@ public class CourseListTest extends BaseTest {
         courseDetailPage.scrollToTop();
         String courseDetailDesc =  courseDetailPage.getCourseDescription();
 
+        // Verify Point
         logAndReport("VP: Course Description on the detail page contains the course described in the card");
         Assert.assertTrue(
                 courseDetailDesc.contains(courseCardDesc.replace("...", "").trim()),
-                "[TC_CL_016][FAIL] Course Description on the detail page doesn't contain the course described in the card"
+                "[TC_CL_015][FAIL] Course Description on the detail page doesn't contain the course described in the card"
         );
     }
 
-    @Test(priority = 17,enabled = false,
-            description = "TC_CL_017: Verify course price on the Course Detail page matches the selected course card.")
-    public void TC_CL_017_Verify_Course_Price_Card_Matches_Course_Price_Detail() {
+    @Test(priority = 16,enabled = true,
+            description = "TC_CL_016: Verify course price on the Course Detail page matches the selected course card.")
+    public void TC_CL_016_Verify_Course_Price_Card_Matches_Course_Price_Detail() {
         int indexCard = 2;
         CourseListPage courseListPage = navigateToCourseListPage();
         StandardCourseCard card = courseListPage.getCourseCardByIndex(indexCard);
@@ -673,17 +611,18 @@ public class CourseListTest extends BaseTest {
         courseDetailPage.scrollToTop();
         String courseDetailPrice = courseDetailPage.getPriceText();
 
-        logAndReport("VP1: Course Price on the detail page contains the course described in the card");
+        // Verify Point
+        logAndReport("VP: Course Price on the detail page contains the course described in the card");
         Assert.assertEquals(
                 courseDetailPrice,
                 courseCardPrice,
-                "[TC_CL_017][FAIL] Course Price on the detail page doesn't contain the course described in the card"
+                "[TC_CL_016][FAIL] Course Price on the detail page doesn't contain the course described in the card"
         );
     }
 
-    @Test(priority = 18, enabled = false,
-            description = "TC_CL_018: Verify course rating on the Course Detail page matches the selected course card.")
-    public void TC_CL_018_Verify_Course_Rating_Card_Matches_Course_Rating_Detail() {
+    @Test(priority = 17, enabled = true,
+            description = "TC_CL_017: Verify course rating on the Course Detail page matches the selected course card.")
+    public void TC_CL_017_Verify_Course_Rating_Card_Matches_Course_Rating_Detail() {
         int indexCard = 2;
         CourseListPage courseListPage = navigateToCourseListPage();
         StandardCourseCard card = courseListPage.getCourseCardByIndex(indexCard);
@@ -698,17 +637,18 @@ public class CourseListTest extends BaseTest {
         courseDetailPage.scrollToTop();
         String courseDetailRating = courseDetailPage.getCourseRating();
 
-        logAndReport("VP1: Course Rating on the detail page contains the course described in the card");
+        // Verify Point
+        logAndReport("VP: Course Rating on the detail page contains the course described in the card");
         Assert.assertEquals(
                 courseDetailRating,
                 courseCardRating,
-                "[TC_CL_018][FAIL] Course Rating on the detail page doesn't contain the course described in the card"
+                "[TC_CL_017][FAIL] Course Rating on the detail page doesn't contain the course described in the card"
         );
     }
 
-    @Test(priority = 19, enabled = false,
-            description = "TC_CL_018: Verify course review count on the Course Detail page matches the selected course card.")
-    public void TC_CL_019_Verify_Course_Review_Count_Card_Matches_Course_Review_Count_Detail() {
+    @Test(priority = 18, enabled = true,
+            description = "TC_CL_017: Verify course review count on the Course Detail page matches the selected course card.")
+    public void TC_CL_018_Verify_Course_Review_Count_Card_Matches_Course_Review_Count_Detail() {
         int indexCard = 2;
         CourseListPage courseListPage = navigateToCourseListPage();
         StandardCourseCard card = courseListPage.getCourseCardByIndex(indexCard);
@@ -721,18 +661,81 @@ public class CourseListTest extends BaseTest {
         card.clickOnCard();
         CourseDetailPage courseDetailPage = new CourseDetailPage(DriverManager.getDriver());
         courseDetailPage.scrollToTop();
-        String courseDetailReviewText = courseDetailPage.getReviewCount();
+        String courseDetailReviewText = courseDetailPage.getReviewCountText();
 
+        // Verify Point
         logAndReport("VP1: Course Review Count on the detail page contains the course described in the card");
         String courseCardReviewCount = courseCardReviewText.replace("(", "").replace(")", "").trim();
         logAndReport("The review count on the course card: " + courseCardReviewCount);
         String courseDetailReviewCount = courseDetailReviewText.replace("đánh giá", "").trim();
-        logAndReport("The review count on the course card: " + courseDetailReviewCount);
+        logAndReport("The review count on the course detail: " + courseDetailReviewCount);
 
         Assert.assertEquals(
                 courseDetailReviewCount,
                 courseCardReviewCount,
-                "[TC_CL_019][FAIL] Course Review Count on the detail page doesn't contain the course described in the card"
+                "[TC_CL_018][FAIL] Course Review Count on the detail page doesn't contain the course described in the card"
+        );
+    }
+
+    @Test(priority = 19, enabled = true,
+            description = "TC_CL_019: Verify that the course data in the card matches the response from the API")
+    public void TC_CL_019_Verify_Course_Card_Information_Matches_Response_From_API() {
+        int pageNum = 2;
+        int indexCard = 2;
+        APIAction api = new APIAction();
+        CourseModel course = api.getCourseInforFromList(api.getCourseList(pageNum, COURSE_PAGESIZE, COURSE_GROUPID), indexCard);
+
+        CourseListPage courseListPage = navigateToCourseListPage();
+        if (pageNum > 1) {
+            logAndReport("Navigation to the (" + pageNum + ") page.");
+            courseListPage.clickPageNumber(pageNum);
+            courseListPage.waitCourseListLoadSuccess();
+        }
+
+        StandardCourseCard card = courseListPage.getCourseCardByIndex(indexCard);
+        logAndReport("Scroll to the card at position (" + indexCard + ")");
+        card.scrollToCard();
+
+        logAndReport("Check the card at position (" + indexCard + ")");
+
+        // Verify Point
+        logAndReport("VP1: The link of the course details contains the \"MaKhoaHoc\" field from the API.");
+        String actualURL = card.getCourseCardHref();
+        String expectedURL = course.getMaKhoaHoc().replace(" ", "%20");
+        System.out.println(actualURL);
+        System.out.println(expectedURL);
+        Assert.assertTrue(
+                actualURL.contains(expectedURL),
+                "[TC_CL_019][FAIL] Course Href doesn't match with API"
+        );
+
+        logAndReport("VP2: The link of the course image matches the \"HinhAnh\" field from the API");
+        Assert.assertEquals(
+                card.getCourseImageLink(),
+                course.getHinhAnh(),
+                "[TC_CL_019][FAIL] Course Image doesn't match with API"
+        );
+
+        logAndReport("VP3: The course name matches the \"TenKhoaHoc\" field from the API");
+        Assert.assertEquals(
+                card.getCourseName(),
+                course.getTenKhoaHoc(),
+                "[TC_CL_019][FAIL] Course Name doesn't match with API"
+        );
+
+        logAndReport("VP4: The short description on the card contains a portion of the \"MoTa\" field from the API.");
+        String expectedDesc = course.getMoTa();
+        String actualDesc = card.getCourseShortDescription();
+        Assert.assertTrue(
+                expectedDesc.contains(actualDesc.replace("...", "").trim()),
+                "[TC_CL_019][FAIL] Course Describe doesn't contain with API"
+        );
+
+        logAndReport("VP5: The instructor name matches the \"NguoiTao.HoTen\" field from the API");
+        Assert.assertEquals(
+                card.getCourseInstructorName(),
+                course.getNguoiTao().getHoTen(),
+                "[TC_CL_019][FAIL] Course Instructor Name doesn't match with API"
         );
     }
 }

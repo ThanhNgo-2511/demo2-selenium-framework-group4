@@ -44,11 +44,33 @@ public class BaseTest {
         LOG.info("afterMethod ended...");
         WebDriver currentDriver = DriverManager.getDriverOrNull();
         try {
-            if(result.getStatus() == ITestResult.FAILURE) {
+            if (result.getStatus() == ITestResult.FAILURE) {
+                Throwable throwable = result.getThrowable();
+
+                // Ghi exception va stack trace vao console va automation.log
+                LOG.error(
+                        "TEST FAILED: " + result.getMethod().getMethodName(),
+                        throwable
+                );
+
                 if (currentDriver != null) {
-                    ExtentReportManager.captureScreenshot(currentDriver, result.getMethod().getMethodName());
+                    try {
+                        ExtentReportManager.captureScreenshot(
+                                currentDriver,
+                                result.getMethod().getMethodName()
+                        );
+                    } catch (Exception screenshotException) {
+                        LOG.error("Failed to capture screenshot", screenshotException);
+                    }
                 }
-                ExtentReportManager.fail(result.getThrowable().toString());
+
+                if (throwable != null) {
+                    ExtentReportManager.fail(
+                            throwable.toString()
+                    );
+                } else {
+                    ExtentReportManager.fail("Test failed without exception details");
+                }
             }
         } finally {
             try {

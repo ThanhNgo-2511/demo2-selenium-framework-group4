@@ -151,7 +151,7 @@ public class APIAction {
         return user;
     }
 
-    public boolean isCourseEnrolled(UserModel user, String courseId) {
+    public boolean isCourseEnrolledById(UserModel user, String courseId) {
         if (user == null || getEnrolledCourseList(user) == null) {
             return false;
         }
@@ -159,8 +159,16 @@ public class APIAction {
                 .anyMatch(course -> course.getMaKhoaHoc().trim().equalsIgnoreCase(courseId.trim()));
     }
 
+    public boolean isCourseEnrolledByName(UserModel user, String courseName) {
+        if (user == null || getEnrolledCourseList(user) == null) {
+            return false;
+        }
+        return user.getChiTietKhoaHocGhiDanh().stream()
+                .anyMatch(course -> course.getTenKhoaHoc().trim().equalsIgnoreCase(courseName.trim()));
+    }
+
     public void enrollCourse(UserModel user, String courseId) {
-        if (!isCourseEnrolled(user, courseId))
+        if (!isCourseEnrolledById(user, courseId))
         {
             String jsonBody = String.format("""
                 {
@@ -180,7 +188,7 @@ public class APIAction {
     }
 
     public void leaveCourse(UserModel user, String courseId) {
-        if (isCourseEnrolled(user, courseId))
+        if (isCourseEnrolledById(user, courseId))
         {
             String jsonBody = String.format("""
                     {
@@ -198,6 +206,7 @@ public class APIAction {
             response.then().statusCode(200);
         }
     }
+
 
 }
 

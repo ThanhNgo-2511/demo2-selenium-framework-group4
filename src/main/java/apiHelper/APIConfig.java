@@ -1,7 +1,7 @@
 package apiHelper;
 
 public class APIConfig {
-    public  static final String TOKEN_CYBERSOFT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJUcmFpbmluZyBnaeG6o25nIHZpw6puIGN5YmVyc29mdCAyMDIyIiwiSGV0SGFuU3RyaW5nIjoiMzAvMTEvMjAyOCIsIkhldEhhblRpbWUiOiIxODU5MTU1MjAwMDAwIiwibmJmIjoxNTg0MjkxNjAwLCJleHAiOjE4NTkzMDI4MDB9.9nOWAOoO7NtipuO-A-4_8kwzVp7j5HSdXjEegqTgcXI";
+    public static final String TOKEN_CYBERSOFT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJUcmFpbmluZyBnaeG6o25nIHZpw6puIGN5YmVyc29mdCAyMDIyIiwiSGV0SGFuU3RyaW5nIjoiMzAvMTEvMjAyOCIsIkhldEhhblRpbWUiOiIxODU5MTU1MjAwMDAwIiwibmJmIjoxNTg0MjkxNjAwLCJleHAiOjE4NTkzMDI4MDB9.9nOWAOoO7NtipuO-A-4_8kwzVp7j5HSdXjEegqTgcXI";
     public static final String BASE_URI = "https://elearningnew.cybersoft.edu.vn";
 
     // Endpoint cho quan ly khoa hoc
@@ -16,5 +16,10 @@ public class APIConfig {
     public static final String LOGIN_ENDPOINT = CATEGORY_USER_MANAGER + "/DangNhap";
     public static final String SIGNIN_ENDPOINT = CATEGORY_USER_MANAGER + "/DangKy";
     public static final String USER_INFOR_ENDPOINT = CATEGORY_USER_MANAGER + "/ThongTinTaiKhoan";
+
+    // Value default parameter for course list endpoint
+    public static final int COURSE_PAGE = 1;
+    public static final int COURSE_PAGESIZE = 12;
+    public static final String COURSE_GROUPID = "GP01";
 
 }

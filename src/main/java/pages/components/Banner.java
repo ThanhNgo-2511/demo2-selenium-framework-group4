@@ -16,7 +16,7 @@ public class Banner extends CommonPage {
 
     public boolean bannerTitleDisplayed()
     {
-        return isDisplay(byLblBannerTitle);
+        return isDisplayed(byLblBannerTitle);
     }
 
     public String getBannerTitle()
@@ -26,7 +26,7 @@ public class Banner extends CommonPage {
 
     public boolean bannerSubTitleDisplayed()
     {
-        return isDisplay(byLblBannerSubTitle);
+        return isDisplayed(byLblBannerSubTitle);
     }
 
     public String getBannerSubTitle()

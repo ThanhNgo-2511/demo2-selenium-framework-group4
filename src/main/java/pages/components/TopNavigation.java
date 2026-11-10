@@ -10,11 +10,10 @@ public class TopNavigation extends BasePage {
 
     private By byLnkLogin;
     private By byLnkRegister;
-
     private By byImgAvatar;
     private By byBtnLogout;
-
     private By byLnkCourseList;
+    private By byLnkProfile;
 
     public TopNavigation(WebDriver driver)
     {
@@ -24,6 +23,7 @@ public class TopNavigation extends BasePage {
         this.byImgAvatar = By.xpath("//img[@class='avatar']");
         this.byBtnLogout = By.xpath("//h3[text()='Đăng xuất']");
         this.byLnkCourseList = By.xpath("//ul[@class='menuHeader']/descendant::a[normalize-space()='Khóa học']");
+        this.byLnkProfile = By.xpath("//a[@class='infoHeader']//img");
     }
 
     public void navigateToLoginPage ()
@@ -41,6 +41,8 @@ public class TopNavigation extends BasePage {
         click(byLnkCourseList);
     }
 
+    public void navigateToProfilePage() {click(byLnkProfile, TimeoutConstant.LONG_TIMEOUT);}
+
     public void waitAvatarAppear(long timeOutInSec)
     {
         waitVisibilityOfElementLocated(byImgAvatar,timeOutInSec);
@@ -53,7 +55,7 @@ public class TopNavigation extends BasePage {
 
     public void assertAvatarAppear(long timeOutInSec)
     {
-        Assert.assertTrue(isDisplay(byImgAvatar));
+        Assert.assertTrue(isDisplayed(byImgAvatar,timeOutInSec));
     }
 
     public void assertAvatarAppear()
@@ -73,12 +75,12 @@ public class TopNavigation extends BasePage {
 
     public void assertLogoutButtonAppear(long timeOutInSec)
     {
-        Assert.assertTrue(isDisplay(byBtnLogout));
+        Assert.assertTrue(isDisplayed(byBtnLogout,timeOutInSec));
     }
 
     public void assertLogoutButtonAppear()
     {
-        assertAvatarAppear(TimeoutConstant.DEFAULT_TIMEOUT);
+        assertLogoutButtonAppear(TimeoutConstant.DEFAULT_TIMEOUT);
     }
 
 }

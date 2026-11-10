@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Course Management Suite" thread-count="4">
+
+    <!-- Nhóm 1: Chạy TUẦN TỰ (Sequential) cho các test nhạy cảm dữ liệu -->
+    <test name="Profile Tests (Sequential)" parallel="none">
+        <classes>
+            <class name="testcases.personalProfile.EditPersonalProfileTest"/>
+            <class name="testcases.personalProfile.ViewPersonalProfileTest"/>
+        </classes>
+    </test>
+
+    <!-- Nhóm 2: Chạy SONG SONG (Parallel) cho các test độc lập -->
+    <test name="Course Tests (Parallel)" parallel="methods" thread-count="3">
+        <classes>
+            <class name="testcases.course.CourseListTest"/>
+            <class name="testcases.course.CourseDetailTest"/>
+            <class name="testcases.course.EnrollCourseTest"/>
+            <class name="testcases.course.CancelCourseTest"/>
+        </classes>
+    </test>
+</suite>

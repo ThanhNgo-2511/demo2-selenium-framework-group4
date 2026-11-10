@@ -5,7 +5,10 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import static constants.TimeoutConstant.*;
 
 public class BasePage {
@@ -71,7 +74,7 @@ public class BasePage {
     public List<WebElement> waitVisibilityOfElementsLocated(By locator, long timeOutInSec)
     {
         WebDriverWait wait = getWebDriverWait(timeOutInSec);
-        return  wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
+        return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
     }
 
     public List<WebElement> waitVisibilityOfElementsLocated(By locator)
@@ -171,7 +174,7 @@ public class BasePage {
 
     public void click (WebElement element, long timeOutInSec)
     {
-        waitElementToBeClickable(element);
+        waitElementToBeClickable(element,timeOutInSec);
         element.click();
     }
 
@@ -211,7 +214,7 @@ public class BasePage {
 
     public void hover (WebElement element, long timeOutInSec)
     {
-        waitVisibilityOf(element);
+        waitVisibilityOf(element,timeOutInSec);
         Actions actions = new Actions(driver);
         actions.moveToElement(element).perform();
     }
@@ -297,40 +300,40 @@ public class BasePage {
 
     //---------------------------------------------------------------------------
     /**
-     * Check element is display
+     * Check element is displayed
      */
 
-    public boolean isDisplay (By locator, long timeOutInSec)
+    public boolean isDisplayed (By locator, long timeOutInSec)
     {
         WebElement element = waitVisibilityOfElementLocated(locator,timeOutInSec);
         return element.isDisplayed();
     }
 
-    public boolean isDisplay (By locator)
+    public boolean isDisplayed (By locator)
     {
-        return isDisplay(locator,DEFAULT_TIMEOUT );
+        return isDisplayed(locator,DEFAULT_TIMEOUT );
     }
 
-    public boolean isDisplay (WebElement element, long timeOutInSec)
+    public boolean isDisplayed (WebElement element, long timeOutInSec)
     {
         waitVisibilityOf(element,timeOutInSec);
         return element.isDisplayed();
     }
 
-    public boolean isDisplay (WebElement element)
+    public boolean isDisplayed (WebElement element)
     {
-        return isDisplay(element,DEFAULT_TIMEOUT );
+        return isDisplayed(element,DEFAULT_TIMEOUT );
     }
 
-    public boolean isDisplay (WebElement element, By locator, long timeOutInSec)
+    public boolean isDisplayed (WebElement element, By locator, long timeOutInSec)
     {
         WebElement child = findChildElement(element,locator,timeOutInSec);
         return child.isDisplayed();
     }
 
-    public boolean isDisplay (WebElement element, By locator)
+    public boolean isDisplayed (WebElement element, By locator)
     {
-        return isDisplay(element,locator,DEFAULT_TIMEOUT );
+        return isDisplayed(element,locator,DEFAULT_TIMEOUT );
     }
 
     //---------------------------------------------------------------------------
@@ -375,8 +378,11 @@ public class BasePage {
      * Find Elements
      */
     public List<WebElement> findElements(By locator,long timeoutInSeconds) {
-        waitVisibilityOfElementsLocated(locator,timeoutInSeconds);
-        return driver.findElements(locator);
+        try {
+            return waitVisibilityOfElementsLocated(locator, timeoutInSeconds);
+        } catch (TimeoutException e) {
+            return driver.findElements(locator);
+        }
     }
 
     public List<WebElement> findElements(By locator) {
@@ -387,13 +393,14 @@ public class BasePage {
      * Find Element
      */
     public WebElement findElement(By locator,long timeoutInSeconds) {
-        waitVisibilityOfElementsLocated(locator,timeoutInSeconds);
-        return driver.findElement(locator);
+        return waitVisibilityOfElementLocated(locator,timeoutInSeconds);
     }
 
     public WebElement findElement(By locator) {
         return findElement(locator,SHORT_TIMEOUT);
     }
+
+
 
     /**
      * Find Child Element of the element
@@ -635,5 +642,52 @@ public class BasePage {
     public void scrollToTop() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollTo(0, 0);");
+    }
+
+    /**
+     * Get item of list by index (1-based index)
+     */
+    public <T> T getItemByIndex(List<T> list, int index) {
+        if (index < 1 || index > list.size()) {
+            throw new IndexOutOfBoundsException(
+                    String.format(
+                            "Index: %d, Size: %d. The item you are trying to access does not exist."
+                            , index, list.size())
+            );
+        }
+        return list.get(index-1);
+    }
+
+    /**
+     - Get size of the map list
+     */
+    public <K, V> int mapSize(Map<K, V> map) {
+        if (map == null) return 0;
+        return map.size();
+    }
+
+    /**
+     - Get the key of the map list by index (1-based index)
+     */
+    public <K, V> K getKeyMapByIndex(Map<K, V> map, int index) {
+        if (map == null || map.isEmpty()) {
+            throw new IllegalArgumentException("Map is null or empty!");
+        }
+        List<K> keys = new ArrayList<>(map.keySet());
+        return getItemByIndex(keys, index);
+    }
+
+    /**
+     - Get the value of the map list by index (1-based index)
+     */
+    public <K, V> V getValueMapByIndex(Map<K, V> map, int index) {
+        K key = getKeyMapByIndex(map, index);
+        return map.get(key);
+    }
+
+
+    public void numberOfElementsToBe(By locator, int count) {
+        WebDriverWait wait = getWebDriverWait();
+        wait.until(ExpectedConditions.numberOfElementsToBe(locator,count));
     }
 }

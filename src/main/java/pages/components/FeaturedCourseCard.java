@@ -7,11 +7,6 @@ import org.openqa.selenium.WebElement;
 public class FeaturedCourseCard extends BaseCourseCard {
 
     private By byLblLikeTag;
-    private By byImgCourse;
-    private By byLblCourseName;
-    private By byTxtShortDescription;
-    private By byImgInstructorAvatar;
-    private By byLblInstructorName;
     private By bySpecifications;
     private By byLblPriceSale;
     private By byLblPriceOriginal;
@@ -27,11 +22,11 @@ public class FeaturedCourseCard extends BaseCourseCard {
     public FeaturedCourseCard(WebDriver driver, WebElement cardElement) {
         super(driver, cardElement);
         this.byLblLikeTag = By.xpath(".//span[text()='Yêu thích']");
-        this.byImgCourse = By.xpath("./img");
-        this.byLblCourseName = By.xpath("./span[@class='stikerCard']");
-        this.byTxtShortDescription = By.xpath(".//div[@class='cardBodyGlobal']/h6");
-        this.byImgInstructorAvatar = By.xpath(".//div[@class='imgCardFooter']/img");
-        this.byLblInstructorName = By.xpath(".//div[@class='titleMaker']/span");
+        setByImgCourse(By.xpath("./img"));
+        setByLblCourseName(By.xpath("./span[@class='stikerCard']"));
+        setByTxtShortDescription(By.xpath(".//div[@class='cardBodyGlobal']/h6"));
+        setByImgInstructorAvatar(By.xpath(".//div[@class='imgCardFooter']/img"));
+        setByLblInstructorName(By.xpath(".//div[@class='titleMaker']/span"));
         this.bySpecifications = By.xpath(".//div[@class='cardBodyGlobal']//div[@class='cardIcon']");
         this.byLblPriceSale = By.xpath(".//div[@class='cardFooter']//p[2]");
         this.byLblPriceOriginal = By.xpath(".//div[@class='cardFooter']//p[1]");
@@ -43,82 +38,22 @@ public class FeaturedCourseCard extends BaseCourseCard {
         this.byTxtShortDescriptionOnHover = By.xpath("./p[@class='colorCardTitle']");
         this.bySpecificationsOnHover = By.xpath(".//div[@class='cardIcon']");
         this.byBtnViewDetailOnHover = By.xpath(".//a[text()='Xem chi tiết']");
-
     }
-
 
     /**
      * Check the like tag display on card
      */
     public boolean isLikeTagDisplay()
     {
-        return isDisplay(byLblLikeTag);
-    }
-
-    /**
-     * Check that the images in the card are displayed
-     */
-    public boolean isCardRelatedCourseImageDisplayed()
-    {
-        return isDisplay(byImgCourse);
-    }
-
-    /**
-     * Check that the images in the card are not broken
-     */
-    public boolean isCardRelatedCourseImageLoaded() {
-        return isImageLoaded(byImgCourse);
-    }
-
-    /**
-     * Get the image's src of the course card by index
-     */
-    public String getImageCourseLink() {
-        return getImageSrc(byImgCourse);
-    }
-
-    /**
-     * Get name of course card by index
-     */
-    public String getCardRelatedCourseName() {
-        return getText(byLblCourseName);
-    }
-
-    /**
-     * Get short description of course card by index
-     */
-    public String getCardRelatedCourseShortDescription()
-    {
-        return getText(byTxtShortDescription);
+        return isDisplayed(byLblLikeTag);
     }
 
     /**
      * Check the Specifications display on card
      */
-    public boolean isRelateCourseCardSpecificationsDisplay()
+    public boolean isRelatedCourseCardSpecificationsDisplay()
     {
-        return isDisplay(bySpecifications);
-    }
-
-    /**
-     * Check that the avatar in the related card are not broken.
-     */
-    public boolean isAvatarOfRelatedCourseDisplayed() {
-        return isImageLoaded(byImgInstructorAvatar);
-    }
-
-    /**
-     * Check that the avatar in the related card are not broken.
-     */
-    public boolean isAvatarOfRelatedCourseLoaded() {
-        return isImageLoaded(byImgInstructorAvatar);
-    }
-
-    /**
-     * Get Instructor Name on the card by index
-     */
-    public String getCardRelatedCourseInstructorName() {
-        return getText(byLblInstructorName);
+        return isDisplayed(bySpecifications);
     }
 
     /**
@@ -134,7 +69,6 @@ public class FeaturedCourseCard extends BaseCourseCard {
     public String getCardRelatedCoursePriceOriginal() {
         return getText(byLblPriceOriginal);
     }
-
 
     /**
      * Hover on the Related Card
@@ -152,7 +86,7 @@ public class FeaturedCourseCard extends BaseCourseCard {
     public boolean isHoverCardDisplay()
     {
         WebElement hoverCard = getHoverCardElement();
-        return isDisplay(hoverCard);
+        return isDisplayed(hoverCard);
     }
 
     /**
@@ -168,7 +102,7 @@ public class FeaturedCourseCard extends BaseCourseCard {
      */
     public boolean isHoverCardCourseAvatarImageDisplayed() {
         WebElement hoverCard = getHoverCardElement();
-        return isDisplay(hoverCard,byImgInstructorAvatarOnHover);
+        return isDisplayed(hoverCard,byImgInstructorAvatarOnHover);
     }
 
     /**
@@ -210,7 +144,7 @@ public class FeaturedCourseCard extends BaseCourseCard {
     public boolean isHoverCourseCardSpecificationsDisplay()
     {
         WebElement hoverCard = getHoverCardElement();
-        return isDisplay(hoverCard, bySpecificationsOnHover);
+        return isDisplayed(hoverCard, bySpecificationsOnHover);
     }
 
     /**
@@ -222,7 +156,7 @@ public class FeaturedCourseCard extends BaseCourseCard {
     }
 
     /**
-     * Click on View Detail button on hover card
+     * Get Href of the View Detail button on hover card
      */
     public String getViewDetailButtonHref() {
         WebElement hoverCard = getHoverCardElement();
@@ -234,7 +168,7 @@ public class FeaturedCourseCard extends BaseCourseCard {
      */
     public boolean isViewDetailButtonDisplayed() {
         WebElement hoverCard = getHoverCardElement();
-        return isDisplay(hoverCard, byBtnViewDetailOnHover);
+        return isDisplayed(hoverCard, byBtnViewDetailOnHover);
     }
 
     /**
