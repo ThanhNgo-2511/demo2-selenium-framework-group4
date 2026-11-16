@@ -2,6 +2,7 @@ package testcases.course;
 
 import apiHelper.APIAction;
 import base.BaseTest;
+import helper.PropertyHelper;
 import models.UserModel;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -15,16 +16,15 @@ import static apiHelper.APIConfig.*;
 import static helper.TestCaseHelper.*;
 
 public class CancelCourseTest extends BaseTest {
-    private static final String VALID_COURSE_ID = "111111111111";
+    String courseId = PropertyHelper.get("course.vaild.id");
 
     @Test(priority = 1,
             description = "TC_CAN_001: Verify registered course card contains complete information")
     public void TC_CAN_001_Verify_Registered_Course_Card_Contains_Complete_Information() {
-        String username ="test.course.1";
-        String password = "Asd123!@#";
+        String username = PropertyHelper.get("cancelCourse.username.1");
+        String password = PropertyHelper.get("cancelCourse.password.1");
         APIAction api = new APIAction();
         UserModel user = api.loginViaAPI(username, password);
-        String courseId = VALID_COURSE_ID;
 
         logAndReport("Pre-condition: User logged in account: "+username);
         loginViaAPIAndSyncUI(user);
@@ -134,11 +134,10 @@ public class CancelCourseTest extends BaseTest {
     @Test(priority = 2,
             description = "TC_CAN_002: Verify cancel the only registered course")
     public void TC_CAN_002_Verify_Cancel_The_Only_Register_Course() {
-        String username = "test.course.2";
-        String password = "Asd123!@#";
+        String username = PropertyHelper.get("cancelCourse.username.2");
+        String password = PropertyHelper.get("cancelCourse.password.2");
         APIAction api = new APIAction();
         UserModel user = api.loginViaAPI(username, password);
-        String courseId = VALID_COURSE_ID;
         int indexCard = 1;
 
         logAndReport("Pre-condition: User logged in account: "+username);
@@ -190,8 +189,8 @@ public class CancelCourseTest extends BaseTest {
     @Test(priority = 3,
             description = "TC_CAN_003: Verify cancel of the first course card in the list")
     public void TC_CAN_003_Verify_Cancel_The_First_Register_Course() {
-        String username = "test.course.3";
-        String password = "Asd123!@#";
+        String username = PropertyHelper.get("cancelCourse.username.3");
+        String password = PropertyHelper.get("cancelCourse.password.3");
         APIAction api = new APIAction();
         UserModel user = api.loginViaAPI(username, password);
         List<String> courseIDs = new ArrayList<>();
@@ -255,8 +254,8 @@ public class CancelCourseTest extends BaseTest {
     @Test(priority = 4,
             description = "TC_CAN_004: Verify search results are updated after course cancellation")
     public void TC_CAN_004_Verify_Search_Results_Updated_After_Cancel_Course() {
-        String username = "test.course.4";
-        String password = "Asd123!@#";
+        String username = PropertyHelper.get("cancelCourse.username.4");
+        String password = PropertyHelper.get("cancelCourse.password.4");
         APIAction api = new APIAction();
         UserModel user = api.loginViaAPI(username, password);
         List<String> courseIDs = new ArrayList<>();

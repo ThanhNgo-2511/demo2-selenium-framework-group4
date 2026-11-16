@@ -46,8 +46,8 @@ public class BasePage {
      */
     public WebElement waitVisibilityOfElementLocated(By locator, long timeOutInSec)
     {
-        WebDriverWait wait = getWebDriverWait(timeOutInSec);
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        return getWebDriverWait(timeOutInSec)
+                .until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
     public WebElement waitVisibilityOfElementLocated(By locator)
@@ -56,9 +56,9 @@ public class BasePage {
     }
 
     public WebElement waitVisibilityOf(WebElement element, long timeOutInSec)
-    {
-        WebDriverWait wait = getWebDriverWait(timeOutInSec);
-        return wait.until(ExpectedConditions.visibilityOf(element));
+    {        
+        return getWebDriverWait(timeOutInSec)
+                .until(ExpectedConditions.visibilityOf(element));
     }
 
     public WebElement waitVisibilityOf(WebElement element)
@@ -72,9 +72,9 @@ public class BasePage {
      */
 
     public List<WebElement> waitVisibilityOfElementsLocated(By locator, long timeOutInSec)
-    {
-        WebDriverWait wait = getWebDriverWait(timeOutInSec);
-        return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
+    {        
+        return getWebDriverWait(timeOutInSec)
+                .until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
     }
 
     public List<WebElement> waitVisibilityOfElementsLocated(By locator)
@@ -88,9 +88,9 @@ public class BasePage {
      */
 
     public WebElement waitElementToBeClickable(By locator, long timeOutInSec)
-    {
-        WebDriverWait wait = getWebDriverWait(timeOutInSec);
-        return wait.until(ExpectedConditions.elementToBeClickable(locator));
+    {        
+        return getWebDriverWait(timeOutInSec)
+                .until(ExpectedConditions.elementToBeClickable(locator));
     }
 
     public WebElement waitElementToBeClickable(By locator)
@@ -100,8 +100,9 @@ public class BasePage {
 
     public WebElement waitElementToBeClickable(WebElement element, long timeOutInSec)
     {
-        WebDriverWait wait = getWebDriverWait(timeOutInSec);
-        return wait.until(ExpectedConditions.elementToBeClickable(element));
+        
+        return getWebDriverWait(timeOutInSec)
+                .until(ExpectedConditions.elementToBeClickable(element));
     }
 
     public WebElement waitElementToBeClickable(WebElement element)
@@ -117,8 +118,9 @@ public class BasePage {
 
     public boolean waitInVisibilityOfElementLocated(By locator, long timeOutInSec)
     {
-        WebDriverWait wait = getWebDriverWait(timeOutInSec);
-        return wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+        
+        return getWebDriverWait(timeOutInSec)
+                .until(ExpectedConditions.invisibilityOfElementLocated(locator));
     }
 
     public boolean waitInVisibilityOfElementLocated(By locator)
@@ -377,9 +379,9 @@ public class BasePage {
     /**
      * Find Elements
      */
-    public List<WebElement> findElements(By locator,long timeoutInSeconds) {
+    public List<WebElement> findElements(By locator,long timeOutInSec) {
         try {
-            return waitVisibilityOfElementsLocated(locator, timeoutInSeconds);
+            return waitVisibilityOfElementsLocated(locator, timeOutInSec);
         } catch (TimeoutException e) {
             return driver.findElements(locator);
         }
@@ -392,23 +394,20 @@ public class BasePage {
     /**
      * Find Element
      */
-    public WebElement findElement(By locator,long timeoutInSeconds) {
-        return waitVisibilityOfElementLocated(locator,timeoutInSeconds);
+    public WebElement findElement(By locator,long timeOutInSec) {
+        return waitVisibilityOfElementLocated(locator,timeOutInSec);
     }
 
     public WebElement findElement(By locator) {
         return findElement(locator,SHORT_TIMEOUT);
     }
 
-
-
     /**
      * Find Child Element of the element
      */
-    public WebElement findChildElement(WebElement parent, By childLocator, long timeoutInSeconds)
+    public WebElement findChildElement(WebElement parent, By childLocator, long timeOutInSec)
     {
-        WebDriverWait wait = getWebDriverWait(timeoutInSeconds);
-        return wait.until(driverInstance -> {
+        return getWebDriverWait(timeOutInSec).until(driverInstance -> {
             try {
                 WebElement element = parent.findElement(childLocator);
                 return element.isDisplayed() ? element : null;
@@ -525,6 +524,15 @@ public class BasePage {
         scrollToElement(element,SHORT_TIMEOUT);
     }
 
+    /**
+     * Scroll to top page
+     */
+
+    public void scrollToTop() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollTo(0, 0);");
+    }
+
     //---------------------------------------------------------------------------
     /**
      * Check that images are not broken
@@ -630,19 +638,15 @@ public class BasePage {
     }
 
     public boolean waitForTextDisplay(By locator, String expectedName, long timeOutInSec) {
-        WebDriverWait wait = getWebDriverWait(timeOutInSec);
-        return  wait.until(ExpectedConditions.textToBe(locator, expectedName));
+        return  getWebDriverWait(timeOutInSec)
+                .until(ExpectedConditions.textToBe(locator, expectedName));
     }
 
     public boolean waitForTextDisplay(By locator, String expectedName) {
-        WebDriverWait wait = getWebDriverWait(SHORT_TIMEOUT);
-        return  wait.until(ExpectedConditions.textToBe(locator, expectedName));
+        return  waitForTextDisplay(locator, expectedName, DEFAULT_TIMEOUT);
     }
 
-    public void scrollToTop() {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollTo(0, 0);");
-    }
+
 
     /**
      * Get item of list by index (1-based index)
@@ -685,9 +689,15 @@ public class BasePage {
         return map.get(key);
     }
 
+    /**
+     - Wait until the number of elements present in the DOM reaches the specified count.
+     */
+    public void numberOfElementsToBe(By locator, int count, long timeOutInSec) {
+        getWebDriverWait(timeOutInSec)
+                .until(ExpectedConditions.numberOfElementsToBe(locator,count));
+    }
 
     public void numberOfElementsToBe(By locator, int count) {
-        WebDriverWait wait = getWebDriverWait();
-        wait.until(ExpectedConditions.numberOfElementsToBe(locator,count));
+        numberOfElementsToBe(locator,count,DEFAULT_TIMEOUT);
     }
 }

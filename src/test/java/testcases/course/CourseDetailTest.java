@@ -3,6 +3,7 @@ package testcases.course;
 import apiHelper.APIAction;
 import base.BaseTest;
 import drivers.DriverManager;
+import helper.PropertyHelper;
 import models.UserModel;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -15,13 +16,13 @@ import pages.modals.CommonModal;
 import static helper.TestCaseHelper.*;
 
 public class CourseDetailTest extends BaseTest {
-    private static final String VALID_COURSE_ID = "111111111111";
+    String courseId = PropertyHelper.get("course.vaild.id");
 
     @Test(priority = 1,
             description = "TC_CD_001: Verify course detail page loads successfully")
     public void TC_CD_001_Verify_Page_Course_Loads_Successfully() {
-        logAndReport("Step 1: Navigate to Course Detail page with courseId= " + VALID_COURSE_ID);
-        CourseDetailPage courseDetailPage = navigateToCourseDetailPage(VALID_COURSE_ID);
+        logAndReport("Step 1: Navigate to Course Detail page with courseId= " + courseId);
+        CourseDetailPage courseDetailPage = navigateToCourseDetailPage(courseId);
 
         // Verify Point
         logAndReport("VP1: Verify URL");
@@ -44,8 +45,8 @@ public class CourseDetailTest extends BaseTest {
     @Test(priority = 2,
             description = "TC_CD_002: Verify the banner of the Course Detail page")
     public void TC_CD_002_Verify_The_Banner_Course_Displayed() {
-        logAndReport("Step 1: Navigate to Course Detail page with courseId= " + VALID_COURSE_ID);
-        navigateToCourseDetailPage(VALID_COURSE_ID);
+        logAndReport("Step 1: Navigate to Course Detail page with courseId= " + courseId);
+        navigateToCourseDetailPage(courseId);
         Banner banner = new Banner(DriverManager.getDriver());
 
         // Verify Point
@@ -85,8 +86,8 @@ public class CourseDetailTest extends BaseTest {
     @Test(priority = 3,
             description = "TC_CD_003: Verify the hero information section displays")
     public void TC_CD_003_Verify_Hero_Information_Section_Displays() {
-        logAndReport("Step 1: Navigate to Course Detail page with courseId= " + VALID_COURSE_ID);
-        CourseDetailPage courseDetailPage = navigateToCourseDetailPage(VALID_COURSE_ID);
+        logAndReport("Step 1: Navigate to Course Detail page with courseId= " + courseId);
+        CourseDetailPage courseDetailPage = navigateToCourseDetailPage(courseId);
 
         // Verify Point
         logAndReport("VP1: The Course Name displays");
@@ -175,8 +176,8 @@ public class CourseDetailTest extends BaseTest {
     @Test(priority = 4,
             description = "TC_CD_004: Verify \"Những gì bạn sẽ học\" section is displayed")
     public void TC_CD_004_Verify_What_You_Will_Learn_Section_Displays() {
-        logAndReport("Step 1: Navigate to Course Detail page with courseId= " + VALID_COURSE_ID);
-        CourseDetailPage courseDetailPage = navigateToCourseDetailPage(VALID_COURSE_ID);
+        logAndReport("Step 1: Navigate to Course Detail page with courseId= " + courseId);
+        CourseDetailPage courseDetailPage = navigateToCourseDetailPage(courseId);
 
         logAndReport("Step 2: Scroll to \"Những gì bạn sẽ học\" section");
         courseDetailPage.scrollToWhatYouWillLearnSection();
@@ -208,8 +209,8 @@ public class CourseDetailTest extends BaseTest {
     @Test(priority = 5,
             description = "TC_CD_005: Verify \"Nội dung khóa học\" section is displayed")
     public void TC_CD_005_Verify_Curriculum_Section_Displays() {
-        logAndReport("Step 1: Navigate to Course Detail page with courseId= " + VALID_COURSE_ID);
-        CourseDetailPage courseDetailPage = navigateToCourseDetailPage(VALID_COURSE_ID);
+        logAndReport("Step 1: Navigate to Course Detail page with courseId= " + courseId);
+        CourseDetailPage courseDetailPage = navigateToCourseDetailPage(courseId);
         logAndReport("Step 2: Scroll to \"Nội dung khóa học\" section");
         courseDetailPage.scrollToCurriculumSection();
 
@@ -248,8 +249,8 @@ public class CourseDetailTest extends BaseTest {
     @Test(priority = 6,
             description = "TC_CD_006: Verify Course Image is displayed and loaded")
     public void TC_CD_006_Verify_Course_Image_Display() {
-        logAndReport("Step 1: Navigate to Course Detail page with courseId= " + VALID_COURSE_ID);
-        CourseDetailPage courseDetailPage = navigateToCourseDetailPage(VALID_COURSE_ID);
+        logAndReport("Step 1: Navigate to Course Detail page with courseId= " + courseId);
+        CourseDetailPage courseDetailPage = navigateToCourseDetailPage(courseId);
 
         // Verify Point
         logAndReport("VP1: Verify the course image is display");
@@ -270,8 +271,8 @@ public class CourseDetailTest extends BaseTest {
     @Test(priority = 7,
             description = "TC_CD_007: Verify Price and Enroll Button vaild")
     public void TC_CD_007_Verify_Price_And_Enroll_Button_Valid() {
-        logAndReport("Step 1: Navigate to Course Detail page with courseId= " + VALID_COURSE_ID);
-        CourseDetailPage courseDetailPage = navigateToCourseDetailPage(VALID_COURSE_ID);
+        logAndReport("Step 1: Navigate to Course Detail page with courseId= " + courseId);
+        CourseDetailPage courseDetailPage = navigateToCourseDetailPage(courseId);
 
         // Verify Point
         logAndReport("VP1: The price is displayed");
@@ -304,8 +305,8 @@ public class CourseDetailTest extends BaseTest {
     @Test(priority = 8,
             description = "TC_CD_008: Verify the stats panel display")
     public void TC_CD_008_Verify_The_Stats_Panel_Display() {
-        logAndReport("Step 1: Navigate to Course Detail page with courseId= " + VALID_COURSE_ID);
-        CourseDetailPage courseDetailPage = navigateToCourseDetailPage(VALID_COURSE_ID);
+        logAndReport("Step 1: Navigate to Course Detail page with courseId= " + courseId);
+        CourseDetailPage courseDetailPage = navigateToCourseDetailPage(courseId);
 
         // Verify Point
         logAndReport("VP1: Verify the number of enrolled students is display");
@@ -350,8 +351,8 @@ public class CourseDetailTest extends BaseTest {
     @Test(priority = 9,
             description = "TC_CD_009: Verify Related Course section is displayed")
     public void TC_CD_009_Verify_Related_Course_Section_Is_Displayed() {
-        logAndReport("Step 1: Navigate to Course Detail page with courseId= " + VALID_COURSE_ID);
-        CourseDetailPage courseDetailPage = navigateToCourseDetailPage(VALID_COURSE_ID);
+        logAndReport("Step 1: Navigate to Course Detail page with courseId= " + courseId);
+        CourseDetailPage courseDetailPage = navigateToCourseDetailPage(courseId);
 
         logAndReport("Step 2: Scroll to \"Khóa học tham khảo\" section");
         courseDetailPage.scrollToRelatedCourseSection();
@@ -377,8 +378,8 @@ public class CourseDetailTest extends BaseTest {
             description = "TC_CD_010: Verify related course card contains complete information")
     public void TC_CD_010_Verify_Related_Course_Card_Contains_Complete_Information() {
         int indexCard = 1;
-        logAndReport("Step 1: Navigate to Course Detail page with courseId= " + VALID_COURSE_ID);
-        CourseDetailPage courseDetailPage = navigateToCourseDetailPage(VALID_COURSE_ID);
+        logAndReport("Step 1: Navigate to Course Detail page with courseId= " + courseId);
+        CourseDetailPage courseDetailPage = navigateToCourseDetailPage(courseId);
         FeaturedCourseCard card = courseDetailPage.getRelatedCourseCard(indexCard);
 
         logAndReport("Step 2: Scroll to the card at position (" + indexCard + ")");
@@ -504,8 +505,8 @@ public class CourseDetailTest extends BaseTest {
             description = "TC_CD_011: Verify navigation to the details page when clicking on the related card")
     public void TC_CD_011_Verify_Click_On_The_Related_Course_Card() {
         int indexCard = 1;
-        logAndReport("Step 1: Navigate to Course Detail page with courseId= " + VALID_COURSE_ID);
-        CourseDetailPage courseDetailPage = navigateToCourseDetailPage(VALID_COURSE_ID);
+        logAndReport("Step 1: Navigate to Course Detail page with courseId= " + courseId);
+        CourseDetailPage courseDetailPage = navigateToCourseDetailPage(courseId);
         FeaturedCourseCard card = courseDetailPage.getRelatedCourseCard(indexCard);
 
         logAndReport("Step 2: Click on the related card at position (" + indexCard + ")");
@@ -542,8 +543,8 @@ public class CourseDetailTest extends BaseTest {
             description = "TC_CD_012: Verify hover card is displayed when hovering over a related course card")
     public void TC_CD_012_Verify_Hover_Card_Displays_When_Hover_Related_Course_Card() {
         int indexCard = 1;
-        logAndReport("Step 1: Navigate to Course Detail page with courseId= " + VALID_COURSE_ID);
-        CourseDetailPage courseDetailPage = navigateToCourseDetailPage(VALID_COURSE_ID);
+        logAndReport("Step 1: Navigate to Course Detail page with courseId= " + courseId);
+        CourseDetailPage courseDetailPage = navigateToCourseDetailPage(courseId);
         FeaturedCourseCard card = courseDetailPage.getRelatedCourseCard(indexCard);
 
         logAndReport("Step 2: Scroll to the card at position (" + indexCard + ")");
@@ -564,8 +565,8 @@ public class CourseDetailTest extends BaseTest {
             description = "TC_CD_013: Verify hover course card contains complete information")
     public void TC_CD_013_Verify_Hover_Course_Card_Contains_Complete_Information() {
         int indexCard = 1;
-        logAndReport("Step 1: Navigate to Course Detail page with courseId= " + VALID_COURSE_ID);
-        CourseDetailPage courseDetailPage = navigateToCourseDetailPage(VALID_COURSE_ID);
+        logAndReport("Step 1: Navigate to Course Detail page with courseId= " + courseId);
+        CourseDetailPage courseDetailPage = navigateToCourseDetailPage(courseId);
         FeaturedCourseCard card = courseDetailPage.getRelatedCourseCard(indexCard);
 
         logAndReport("Step 2: Scroll to the card at position (" + indexCard + ")");
@@ -654,8 +655,8 @@ public class CourseDetailTest extends BaseTest {
             description = "TC_CD_014: Verify click on View Detail button on hover card")
     public void TC_CD_014_Verify_Click_On_View_Detail_Button() {
         int indexCard = 1;
-        logAndReport("Step 1: Navigate to Course Detail page with courseId= " + VALID_COURSE_ID);
-        CourseDetailPage courseDetailPage = navigateToCourseDetailPage(VALID_COURSE_ID);
+        logAndReport("Step 1: Navigate to Course Detail page with courseId= " + courseId);
+        CourseDetailPage courseDetailPage = navigateToCourseDetailPage(courseId);
         FeaturedCourseCard card = courseDetailPage.getRelatedCourseCard(indexCard);
 
         logAndReport("Step 2: Scroll to the card at position (" + indexCard + ")");

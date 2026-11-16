@@ -702,8 +702,6 @@ public class CourseListTest extends BaseTest {
         logAndReport("VP1: The link of the course details contains the \"MaKhoaHoc\" field from the API.");
         String actualURL = card.getCourseCardHref();
         String expectedURL = course.getMaKhoaHoc().replace(" ", "%20");
-        System.out.println(actualURL);
-        System.out.println(expectedURL);
         Assert.assertTrue(
                 actualURL.contains(expectedURL),
                 "[TC_CL_019][FAIL] Course Href doesn't match with API"

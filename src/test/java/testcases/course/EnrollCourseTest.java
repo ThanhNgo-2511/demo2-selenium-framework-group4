@@ -3,32 +3,28 @@ package testcases.course;
 import apiHelper.APIAction;
 import base.BaseTest;
 import drivers.DriverManager;
-import models.CourseModel;
+import helper.PropertyHelper;
 import models.UserModel;
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.CourseDetailPage;
-import pages.CourseListPage;
 import pages.LoginPage;
 import pages.ProfilePage;
-import pages.components.StandardCourseCard;
 import pages.modals.CommonModal;
 
 import static apiHelper.APIConfig.*;
 import static helper.TestCaseHelper.*;
 
 public class EnrollCourseTest extends BaseTest {
-    private static final String VALID_COURSE_ID = "111111111111";
-
-    String username = "thanh.ngo";
-    String password = "Asd123!@#";
+    String courseId = PropertyHelper.get("course.vaild.id");
+    String username = PropertyHelper.get("enrollCourse.username");
+    String password = PropertyHelper.get("enrollCourse.password");
 
     @Test(priority = 1,
             description = "TC_ENR_001: Verify Enroll Course When Has Not Logged In")
     public void TC_ENR_001_Verify_Enroll_Course_When_Has_Not_Logged_In() {
-        logAndReport("Step 1: Navigate to Course Detail page with courseId= " + VALID_COURSE_ID);
-        CourseDetailPage courseDetailPage = navigateToCourseDetailPage(VALID_COURSE_ID);
+        logAndReport("Step 1: Navigate to Course Detail page with courseId= " + courseId);
+        CourseDetailPage courseDetailPage = navigateToCourseDetailPage(courseId);
 
         logAndReport("Step 2: Click on \"Đăng Ký\" button");
         courseDetailPage.clickEnrollButton();
@@ -135,7 +131,6 @@ public class EnrollCourseTest extends BaseTest {
     public void TC_ENR_004_Verify_Enroll_Course_Is_Add_My_Course() {
         APIAction api = new APIAction();
         UserModel user = api.loginViaAPI(username, password);
-        String courseId = VALID_COURSE_ID;
 
         logAndReport("Pre-condition: User logged in account: " + username);
         loginViaAPIAndSyncUI(user);

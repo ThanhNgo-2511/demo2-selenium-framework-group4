@@ -2,6 +2,7 @@ package testcases.personalProfile;
 
 import base.BaseTest;
 import drivers.DriverManager;
+import helper.PropertyHelper;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -17,7 +18,9 @@ public class EditPersonalProfileTest extends BaseTest {
     @BeforeMethod
     public void loginAndOpenEditProfile() {
         LoginPage loginPage = navigateToLoginPage();
-        loginPage.login("thua358", "@123456Aa");
+        String username = PropertyHelper.get("profile.username");
+        String password = PropertyHelper.get("profile.password");
+        loginPage.login(username, password);
         loginPage.getTopNavigation().waitAvatarAppear();
         loginPage.getTopNavigation().navigateToProfilePage();
         profilePage = new ProfilePage(DriverManager.getDriver());
