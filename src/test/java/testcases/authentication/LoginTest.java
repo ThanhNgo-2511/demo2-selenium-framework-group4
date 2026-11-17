@@ -2,15 +2,11 @@
 package testcases.authentication;
 
 import base.BaseTest;
-import drivers.DriverManager;
 import helper.PropertyHelper;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.LoginPage;
-
-import javax.sound.midi.Soundbank;
 
 import static helper.TestCaseHelper.logAndReport;
 import static helper.TestCaseHelper.navigateToLoginPage;

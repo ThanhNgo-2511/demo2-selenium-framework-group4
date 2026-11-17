@@ -1,17 +1,13 @@
 package testcases.course;
 
-import apiHelper.APIAction;
 import base.BaseTest;
 import drivers.DriverManager;
 import helper.PropertyHelper;
-import models.UserModel;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.CourseDetailPage;
-import pages.LoginPage;
 import pages.components.Banner;
 import pages.components.FeaturedCourseCard;
-import pages.modals.CommonModal;
 
 import static helper.TestCaseHelper.*;
 
