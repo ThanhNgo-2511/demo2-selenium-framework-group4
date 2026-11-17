@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Profile Suite">
-    <test name="Profile Tests">
+<suite name="Profile Suite" thread-count="3">
+    <test name="Profile Tests" parallel="methods">
         <classes>
             <class name="testcases.personalProfile.EditPersonalProfileTest"/>
             <class name="testcases.personalProfile.ViewPersonalProfileTest"/>

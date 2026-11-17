@@ -47,6 +47,14 @@ def configureTestTask = { Test task, List<String> suiteFiles ->
         suites(*suiteFiles)
     }
 
+    task.outputs.upToDateWhen { false } // Đảm bảo Gradle luôn chạy lại test thay vì lấy cache cũ
+
+    // Nếu TestNG hỗ trợ outputDirectory trực tiếp trong closure useTestNG,
+    // hoặc bạn có thể cấu hình report trực tiếp cho task Test:
+    task.reports.html.required.set(true)
+    task.reports.html.outputLocation.set(file("$projectDir/testoutput/html"))
+    task.reports.junitXml.outputLocation.set(file("$projectDir/testoutput/xml"))
+
     task.testLogging {
         events "passed", "failed", "skipped"
         exceptionFormat = "full"
@@ -54,11 +62,12 @@ def configureTestTask = { Test task, List<String> suiteFiles ->
     }
 }
 
-// 1. Chạy tất cả Profile + Course
+// 1. Chạy tất cả test
 tasks.named('test', Test) {
     configureTestTask(delegate, [
             'src/test/resources/testng-profile.xml',
-            'src/test/resources/testng-course.xml'
+            'src/test/resources/testng-course.xml',
+            'src/test/resources/testng-authentication.xml'
     ])
 }
 
@@ -73,5 +82,12 @@ tasks.register('testProfile', Test) {
 tasks.register('testCourse', Test) {
     configureTestTask(delegate, [
             'src/test/resources/testng-course.xml'
+    ])
+}
+
+// 4. Chỉ chạy Authentication
+tasks.register('testAuthen', Test) {
+    configureTestTask(delegate, [
+            'src/test/resources/testng-authentication.xml'
     ])
 }

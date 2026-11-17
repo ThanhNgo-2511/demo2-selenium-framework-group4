@@ -1,33 +1,45 @@
 
-package testcases.course;
+package testcases.authentication;
 
 import base.BaseTest;
 import drivers.DriverManager;
+import helper.PropertyHelper;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 
+import javax.sound.midi.Soundbank;
+
+import static helper.TestCaseHelper.logAndReport;
 import static helper.TestCaseHelper.navigateToLoginPage;
 
-@Test(singleThreaded = true)
-public class LoginTest extends BaseTest {
 
-    private LoginPage loginPage;
+public class LoginTest extends BaseTest {
+    
+    String username = PropertyHelper.get("authen.username");
+    String password = PropertyHelper.get("authen.password");
+
+    // Dùng ThreadLocal để cô lập LoginPage cho từng luồng riêng biệt
+    private final ThreadLocal<LoginPage> loginPage = new ThreadLocal<>();
 
     @BeforeMethod
     public void setupLoginPage() {
-        WebDriver driver = DriverManager.getDriverOrNull();
-        loginPage = new LoginPage(driver);
+        LoginPage page = navigateToLoginPage();
+        loginPage.set(page); // Lưu instance vào luồng hiện tại
+    }
+
+    // Hàm lấy LoginPage của đúng luồng đang chạy
+    public LoginPage getLoginPage() {
+        return loginPage.get();
     }
 
     @Test
     public void TC_LOGIN_001_VerifyLoginPageDisplayed() {
-        navigateToLoginPage();
-
+        logAndReport("Verify Login Page Displays");
         Assert.assertEquals(
-                loginPage.getNameForm(),
+                getLoginPage().getNameForm(),
                 "Đăng nhập",
                 "Login page is not displayed"
         );
@@ -35,28 +47,20 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void TC_LOGIN_002_LoginSuccessfully() {
-
-        // Mở trang Login và nhận đối tượng LoginPage
-        loginPage = navigateToLoginPage();
-
-        // Đăng nhập bằng thông tin giống hệt LogoutTest
-        loginPage.login("thua358", "@123456Aa");
-
-        // Kiểm tra đăng nhập thành công
+        getLoginPage().login(username, password);
+        logAndReport("Verify Avatar display after login successfully");
         Assert.assertTrue(
-                loginPage.isLoginSuccessful(),
+                getLoginPage().isLoginSuccessful(),
                 "Login was unsuccessful"
         );
     }
 
     @Test
     public void TC_LOGIN_003_VerifyLoginWithInvalidAccount() {
-        navigateToLoginPage();
-
-        loginPage.login("account_not_exist_123", "Auto@123456");
-
+        getLoginPage().login("Test" + username , password);
+        logAndReport("Verify the message: 'Tài khoản hoặc mật khẩu không đúng!' displays");
         Assert.assertEquals(
-                loginPage.getLoginErrorMessage(),
+                getLoginPage().getLoginErrorMessage(),
                 "Tài khoản hoặc mật khẩu không đúng!",
                 "Login error message is incorrect"
         );
@@ -64,12 +68,10 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void TC_LOGIN_004_VerifyLoginWithWrongPassword() {
-        navigateToLoginPage();
-
-        loginPage.login("TAI_KHOAN_CUA_BAN", "WrongPassword123");
-
+        getLoginPage().login(username, "Test"+ password);
+        logAndReport("Verify the message: 'Tài khoản hoặc mật khẩu không đúng!' displays");
         Assert.assertEquals(
-                loginPage.getLoginErrorMessage(),
+                getLoginPage().getLoginErrorMessage(),
                 "Tài khoản hoặc mật khẩu không đúng!",
                 "Login error message is incorrect"
         );
@@ -77,12 +79,10 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void TC_LOGIN_005_VerifyLoginWithEmptyAccount() {
-        navigateToLoginPage();
-
-        loginPage.login("", "Auto@123456");
-
+        getLoginPage().login("", password);
+        logAndReport("Verify the message: 'Tài khoản hoặc mật khẩu không đúng!' displays");
         Assert.assertEquals(
-                loginPage.getLoginErrorMessage(),
+                getLoginPage().getLoginErrorMessage(),
                 "Tài khoản hoặc mật khẩu không đúng!",
                 "Login error message is incorrect"
         );
@@ -90,16 +90,12 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void TC_LOGIN_006_VerifyLoginWithEmptyPassword() {
-        navigateToLoginPage();
-
-        loginPage.login("TAI_KHOAN_CUA_BAN", "");
-
+        getLoginPage().login(username, "");
+        logAndReport("Verify the message: 'Tài khoản hoặc mật khẩu không đúng!' displays");
         Assert.assertEquals(
-                loginPage.getLoginErrorMessage(),
+                getLoginPage().getLoginErrorMessage(),
                 "Tài khoản hoặc mật khẩu không đúng!",
                 "Login error message is incorrect"
         );
     }
-
-
 }

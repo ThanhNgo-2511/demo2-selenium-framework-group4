@@ -10,11 +10,11 @@ public class PropertyHelper {
     static {
         try (InputStream input = PropertyHelper.class
                 .getClassLoader()
-                .getResourceAsStream("accounts.properties")) {
+                .getResourceAsStream("data.properties")) {
 
             if (input == null) {
                 throw new RuntimeException(
-                        "Cannot find accounts.properties in resources!"
+                        "Cannot find data.properties in resources!"
                 );
             }
 
@@ -22,7 +22,7 @@ public class PropertyHelper {
 
         } catch (Exception e) {
             throw new RuntimeException(
-                    "Failed to load accounts.properties", e
+                    "Failed to load data.properties", e
             );
         }
     }
@@ -45,5 +45,24 @@ public class PropertyHelper {
         }
 
         return value.trim();
+    }
+
+    public static int getIntProperty(String key) {
+        String value = properties.getProperty(key);
+
+        if (value == null || value.trim().isEmpty()) {
+            throw new RuntimeException(
+                    "Property '" + key + "' was not found or its value is empty."
+            );
+        }
+
+        try {
+            return Integer.parseInt(value.trim());
+        } catch (NumberFormatException e) {
+            throw new RuntimeException(
+                    "Property '" + key + "' must be a valid integer. Actual value: " + value,
+                    e
+            );
+        }
     }
 }
