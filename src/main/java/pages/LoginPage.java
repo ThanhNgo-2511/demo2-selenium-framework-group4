@@ -93,7 +93,7 @@ public class LoginPage extends CommonPage {
     }
 
     public boolean isLoginSuccessful() {
-        return isDisplayed(
+        return isDisplay(
                 byImgAvatar,
                 TimeoutConstant.LONG_TIMEOUT
         );
@@ -130,13 +130,13 @@ public class LoginPage extends CommonPage {
     }
 
     public boolean isLoginLinkDisplayed() {
-        return isDisplayed(
+        return isDisplay(
                 byLinkLogin,
                 TimeoutConstant.LONG_TIMEOUT
         );
     }
     public boolean isLogoutButtonDisplayed() {
-        return isDisplayed(
+        return isDisplay(
                 byBtnLogout,
                 TimeoutConstant.LONG_TIMEOUT
         );

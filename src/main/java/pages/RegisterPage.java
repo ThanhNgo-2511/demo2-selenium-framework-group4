@@ -151,7 +151,7 @@ public class RegisterPage extends CommonPage {
     }
 
     public boolean isRegisterFormDisplayed() {
-        return isDisplayed(
+        return isDisplay(
                 byTxtRegisterTitle,
                 TimeoutConstant.LONG_TIMEOUT
         );
