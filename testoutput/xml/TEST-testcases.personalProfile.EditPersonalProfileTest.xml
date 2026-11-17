@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="testcases.personalProfile.EditPersonalProfileTest" tests="10" skipped="0" failures="1" errors="0" timestamp="2026-11-17T15:55:53.643Z" hostname="THANH-NGO" time="42.879">
+  <properties/>
+  <testcase name="TC_EP_001_OpenEditProfilePopupSuccessfully" classname="testcases.personalProfile.EditPersonalProfileTest" time="0.232"/>
+  <testcase name="TC_EP_004_ValidateRequiredFields" classname="testcases.personalProfile.EditPersonalProfileTest" time="0.967"/>
+  <testcase name="TC_EP_002_VerifyCurrentInformationDisplayed" classname="testcases.personalProfile.EditPersonalProfileTest" time="0.465"/>
+  <testcase name="TC_EP_008_ValidateEmptyEmailFormat" classname="testcases.personalProfile.EditPersonalProfileTest" time="0.341"/>
+  <testcase name="TC_EP_006_ValidateEmptyNameFormat" classname="testcases.personalProfile.EditPersonalProfileTest" time="0.349"/>
+  <testcase name="TC_EP_007_ValidateEmptyPasswordFormat" classname="testcases.personalProfile.EditPersonalProfileTest" time="2.893">
+    <failure message="java.lang.AssertionError: Empty password validation message should match the manual test case expected [true] but found [false]" type="java.lang.AssertionError">java.lang.AssertionError: Empty password validation message should match the manual test case expected [true] but found [false]
+	at org.testng.Assert.fail(Assert.java:111)
+	at org.testng.Assert.failNotEquals(Assert.java:1590)
+	at org.testng.Assert.assertTrue(Assert.java:57)
+	at testcases.personalProfile.EditPersonalProfileTest.TC_EP_007_ValidateEmptyPasswordFormat(EditPersonalProfileTest.java:101)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:697)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:1005)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at org.testng.internal.thread.graph.TestNGFutureTask.run(TestNGFutureTask.java:22)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+</failure>
+  </testcase>
+  <testcase name="TC_EP_010_ValidateInvalidNameFormat" classname="testcases.personalProfile.EditPersonalProfileTest" time="0.419"/>
+  <testcase name="TC_EP_009_ValidateEmptyPhoneNumberFormat" classname="testcases.personalProfile.EditPersonalProfileTest" time="0.382"/>
+  <testcase name="TC_EP_012_ValidateInvalidEmailFormat" classname="testcases.personalProfile.EditPersonalProfileTest" time="0.51"/>
+  <testcase name="TC_EP_014_ClosePopupSuccessfully" classname="testcases.personalProfile.EditPersonalProfileTest" time="0.992"/>
+  <system-out><![CDATA[[22:55:53] [INFO ] EditPersonalProfileTest - beforeMethod executing...
+[22:55:53] [INFO ] EditPersonalProfileTest - beforeMethod executing...
+[22:55:53] [INFO ] EditPersonalProfileTest - beforeMethod executing...
+[22:55:58] [INFO ] TestCaseHelper - Open the Login Page
+[22:55:58] [INFO ] TestCaseHelper - Open the Login Page
+[22:55:58] [INFO ] TestCaseHelper - Open the Login Page
+[22:56:04] [INFO ] TestCaseHelper - Opened Edit Personal Profile popup
+[22:56:04] [INFO ] TestCaseHelper - Verify Edit Profile popup is displayed
+[22:56:04] [INFO ] TestCaseHelper - Opened Edit Personal Profile popup
+[22:56:04] [INFO ] TestCaseHelper - Clear all fields and submit the edit form
+[22:56:04] [INFO ] TestCaseHelper - Opened Edit Personal Profile popup
+[22:56:04] [INFO ] TestCaseHelper - Verify all profile fields are displayed in the popup
+[22:56:04] [INFO ] EditPersonalProfileTest - afterMethod ended...
+[22:56:05] [INFO ] EditPersonalProfileTest - afterMethod ended...
+[22:56:05] [INFO ] EditPersonalProfileTest - afterMethod ended...
+[22:56:06] [INFO ] EditPersonalProfileTest - beforeMethod executing...
+[22:56:06] [INFO ] EditPersonalProfileTest - beforeMethod executing...
+[22:56:06] [INFO ] EditPersonalProfileTest - beforeMethod executing...
+[22:56:11] [INFO ] TestCaseHelper - Open the Login Page
+[22:56:11] [INFO ] TestCaseHelper - Open the Login Page
+[22:56:12] [INFO ] TestCaseHelper - Open the Login Page
+[22:56:16] [INFO ] TestCaseHelper - Opened Edit Personal Profile popup
+[22:56:16] [INFO ] TestCaseHelper - Opened Edit Personal Profile popup
+[22:56:16] [INFO ] TestCaseHelper - Clear Full Name and trigger field validation
+[22:56:16] [INFO ] TestCaseHelper - Clear Email and trigger field validation
+[22:56:16] [INFO ] EditPersonalProfileTest - afterMethod ended...
+[22:56:16] [INFO ] EditPersonalProfileTest - afterMethod ended...
+[22:56:16] [INFO ] EditPersonalProfileTest - beforeMethod executing...
+[22:56:16] [INFO ] EditPersonalProfileTest - beforeMethod executing...
+[22:56:17] [INFO ] TestCaseHelper - Opened Edit Personal Profile popup
+[22:56:17] [INFO ] TestCaseHelper - Clear Password and trigger field validation
+[22:56:20] [INFO ] EditPersonalProfileTest - afterMethod ended...
+[22:56:20] [ERROR] EditPersonalProfileTest - TEST FAILED: TC_EP_007_ValidateEmptyPasswordFormat
+java.lang.AssertionError: Empty password validation message should match the manual test case expected [true] but found [false]
+	at org.testng.Assert.fail(Assert.java:111)
+	at org.testng.Assert.failNotEquals(Assert.java:1590)
+	at org.testng.Assert.assertTrue(Assert.java:57)
+	at testcases.personalProfile.EditPersonalProfileTest.TC_EP_007_ValidateEmptyPasswordFormat(EditPersonalProfileTest.java:101)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:697)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:1005)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at org.testng.internal.thread.graph.TestNGFutureTask.run(TestNGFutureTask.java:22)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+[22:56:21] [INFO ] TestCaseHelper - Open the Login Page
+[22:56:21] [INFO ] TestCaseHelper - Open the Login Page
+[22:56:22] [INFO ] EditPersonalProfileTest - beforeMethod executing...
+[22:56:25] [INFO ] TestCaseHelper - Open the Login Page
+[22:56:26] [INFO ] TestCaseHelper - Opened Edit Personal Profile popup
+[22:56:26] [INFO ] TestCaseHelper - Enter an invalid name containing digits and trigger validation
+[22:56:26] [INFO ] TestCaseHelper - Opened Edit Personal Profile popup
+[22:56:26] [INFO ] TestCaseHelper - Clear Phone Number and trigger field validation
+[22:56:27] [INFO ] EditPersonalProfileTest - afterMethod ended...
+[22:56:27] [INFO ] EditPersonalProfileTest - afterMethod ended...
+[22:56:27] [INFO ] EditPersonalProfileTest - beforeMethod executing...
+[22:56:30] [INFO ] TestCaseHelper - Enter an invalid email and trigger validation
+[22:56:31] [INFO ] EditPersonalProfileTest - afterMethod ended...
+[22:56:31] [INFO ] ViewPersonalProfileTest - beforeMethod executing...
+[22:56:34] [INFO ] TestCaseHelper - Open the Login Page
+[22:56:34] [INFO ] TestCaseHelper - Opened View Personal Profile page
+[22:56:35] [INFO ] TestCaseHelper - Close Edit Profile popup
+[22:56:36] [INFO ] EditPersonalProfileTest - afterMethod ended...
+]]></system-out>
+  <system-err><![CDATA[Nov 17, 2026 10:55:56 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find CDP implementation matching 157
+Nov 17, 2026 10:55:56 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find CDP implementation matching 157
+Nov 17, 2026 10:55:56 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find CDP implementation matching 157
+Nov 17, 2026 10:55:56 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$3
+WARNING: Unable to find version of CDP to use for 157.0.8103.79. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.45.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+Nov 17, 2026 10:55:56 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$3
+WARNING: Unable to find version of CDP to use for 157.0.8103.79. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.45.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+Nov 17, 2026 10:55:56 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$3
+WARNING: Unable to find version of CDP to use for 157.0.8103.79. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.45.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+Nov 17, 2026 10:56:09 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find CDP implementation matching 157
+Nov 17, 2026 10:56:09 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$3
+WARNING: Unable to find version of CDP to use for 157.0.8103.79. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.45.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+Nov 17, 2026 10:56:09 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find CDP implementation matching 157
+Nov 17, 2026 10:56:09 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$3
+WARNING: Unable to find version of CDP to use for 157.0.8103.79. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.45.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+Nov 17, 2026 10:56:10 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find CDP implementation matching 157
+Nov 17, 2026 10:56:10 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$3
+WARNING: Unable to find version of CDP to use for 157.0.8103.79. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.45.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+Nov 17, 2026 10:56:19 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find CDP implementation matching 157
+Nov 17, 2026 10:56:19 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$3
+WARNING: Unable to find version of CDP to use for 157.0.8103.79. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.45.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+Nov 17, 2026 10:56:19 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find CDP implementation matching 157
+Nov 17, 2026 10:56:19 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$3
+WARNING: Unable to find version of CDP to use for 157.0.8103.79. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.45.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+Nov 17, 2026 10:56:24 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find CDP implementation matching 157
+Nov 17, 2026 10:56:24 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$3
+WARNING: Unable to find version of CDP to use for 157.0.8103.79. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.45.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+Nov 17, 2026 10:56:32 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find CDP implementation matching 157
+Nov 17, 2026 10:56:32 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$3
+WARNING: Unable to find version of CDP to use for 157.0.8103.79. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.45.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+Nov 17, 2026 10:56:36 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find CDP implementation matching 157
+Nov 17, 2026 10:56:36 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$3
+WARNING: Unable to find version of CDP to use for 157.0.8103.79. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.45.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+]]></system-err>
+</testsuite>

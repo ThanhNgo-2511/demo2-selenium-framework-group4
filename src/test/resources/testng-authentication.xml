@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Authentication Suite" thread-count="3">
+    <test name="Authentication Tests" parallel="methods">
+        <classes>
+            <class name="testcases.authentication.LoginTest"/>
+            <class name="testcases.authentication.LogoutTest"/>
+            <class name="testcases.authentication.RegisterTest"/>
+        </classes>
+    </test>
+</suite>
