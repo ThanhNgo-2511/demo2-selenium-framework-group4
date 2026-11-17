@@ -11,22 +11,6 @@ import pages.ProfilePage;
 import static helper.TestCaseHelper.*;
 
 public class EditPersonalProfileTest extends BaseTest {
-//    private ProfilePage profilePage;
-//
-//    @BeforeMethod
-//    public void loginAndOpenEditProfile() {
-//        LoginPage loginPage = navigateToLoginPage();
-//        String username = PropertyHelper.get("profile.username");
-//        String password = PropertyHelper.get("profile.password");
-//        loginPage.login(username, password);
-//        loginPage.getTopNavigation().waitAvatarAppear();
-//        loginPage.getTopNavigation().navigateToProfilePage();
-//        profilePage = new ProfilePage(DriverManager.getDriver());
-//        getProfilePage().waitForProfileLoaded();
-//        getProfilePage().openEditPopup();
-//        logAndReport("Opened Edit Personal Profile popup");
-//    }
-
     String username = PropertyHelper.get("profile.username");
     String password = PropertyHelper.get("profile.password");
 

@@ -53,7 +53,6 @@ def configureTestTask = { Test task, List<String> suiteFiles ->
     // hoặc bạn có thể cấu hình report trực tiếp cho task Test:
     task.reports.html.required.set(true)
     task.reports.html.outputLocation.set(file("$projectDir/testoutput/html"))
-    task.reports.junitXml.outputLocation.set(file("$projectDir/testoutput/xml"))
 
     task.testLogging {
         events "passed", "failed", "skipped"
