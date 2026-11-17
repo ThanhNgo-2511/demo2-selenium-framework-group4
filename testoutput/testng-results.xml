@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="6" passed="6" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2026-11-17T15:43:24 GMT+07:00" name="Course Management Suite" finished-at="2026-11-17T15:43:43 GMT+07:00" duration-ms="18611">
+    <groups>
+    </groups>
+    <test started-at="2026-11-17T15:43:24 GMT+07:00" name="Profile Tests (Sequential)" finished-at="2026-11-17T15:43:43 GMT+07:00" duration-ms="18574">
+      <class name="testcases.authentication.LoginTest">
+        <test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:testcases.authentication.LoginTest@6691490c]" started-at="2026-11-17T15:43:24 GMT+07:00" name="beforeMethod" finished-at="2026-11-17T15:43:26 GMT+07:00" duration-ms="1539" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void testcases.authentication.LoginTest.TC_LOGIN_001_VerifyLoginPageDisplayed()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method is-config="true" signature="setupLoginPage()[pri:0, instance:testcases.authentication.LoginTest@6691490c]" started-at="2026-11-17T15:43:26 GMT+07:00" name="setupLoginPage" finished-at="2026-11-17T15:43:27 GMT+07:00" duration-ms="1003" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupLoginPage -->
+        <test-method signature="TC_LOGIN_001_VerifyLoginPageDisplayed()[pri:0, instance:testcases.authentication.LoginTest@6691490c]" started-at="2026-11-17T15:43:27 GMT+07:00" name="TC_LOGIN_001_VerifyLoginPageDisplayed" finished-at="2026-11-17T15:43:27 GMT+07:00" duration-ms="73" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_LOGIN_001_VerifyLoginPageDisplayed -->
+        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:testcases.authentication.LoginTest@6691490c]" started-at="2026-11-17T15:43:27 GMT+07:00" name="afterMethod" finished-at="2026-11-17T15:43:27 GMT+07:00" duration-ms="189" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_LOGIN_001_VerifyLoginPageDisplayed status=SUCCESS method=LoginTest.TC_LOGIN_001_VerifyLoginPageDisplayed()[pri:0, instance:testcases.authentication.LoginTest@6691490c] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:testcases.authentication.LoginTest@6691490c]" started-at="2026-11-17T15:43:27 GMT+07:00" name="beforeMethod" finished-at="2026-11-17T15:43:28 GMT+07:00" duration-ms="932" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void testcases.authentication.LoginTest.TC_LOGIN_002_LoginSuccessfully()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method is-config="true" signature="setupLoginPage()[pri:0, instance:testcases.authentication.LoginTest@6691490c]" started-at="2026-11-17T15:43:28 GMT+07:00" name="setupLoginPage" finished-at="2026-11-17T15:43:29 GMT+07:00" duration-ms="1092" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupLoginPage -->
+        <test-method signature="TC_LOGIN_002_LoginSuccessfully()[pri:0, instance:testcases.authentication.LoginTest@6691490c]" started-at="2026-11-17T15:43:29 GMT+07:00" name="TC_LOGIN_002_LoginSuccessfully" finished-at="2026-11-17T15:43:32 GMT+07:00" duration-ms="2579" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_LOGIN_002_LoginSuccessfully -->
+        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:testcases.authentication.LoginTest@6691490c]" started-at="2026-11-17T15:43:32 GMT+07:00" name="afterMethod" finished-at="2026-11-17T15:43:32 GMT+07:00" duration-ms="92" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_LOGIN_002_LoginSuccessfully status=SUCCESS method=LoginTest.TC_LOGIN_002_LoginSuccessfully()[pri:0, instance:testcases.authentication.LoginTest@6691490c] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:testcases.authentication.LoginTest@6691490c]" started-at="2026-11-17T15:43:32 GMT+07:00" name="beforeMethod" finished-at="2026-11-17T15:43:32 GMT+07:00" duration-ms="576" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void testcases.authentication.LoginTest.TC_LOGIN_003_VerifyLoginWithInvalidAccount()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method is-config="true" signature="setupLoginPage()[pri:0, instance:testcases.authentication.LoginTest@6691490c]" started-at="2026-11-17T15:43:32 GMT+07:00" name="setupLoginPage" finished-at="2026-11-17T15:43:33 GMT+07:00" duration-ms="836" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupLoginPage -->
+        <test-method signature="TC_LOGIN_003_VerifyLoginWithInvalidAccount()[pri:0, instance:testcases.authentication.LoginTest@6691490c]" started-at="2026-11-17T15:43:33 GMT+07:00" name="TC_LOGIN_003_VerifyLoginWithInvalidAccount" finished-at="2026-11-17T15:43:34 GMT+07:00" duration-ms="1086" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_LOGIN_003_VerifyLoginWithInvalidAccount -->
+        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:testcases.authentication.LoginTest@6691490c]" started-at="2026-11-17T15:43:34 GMT+07:00" name="afterMethod" finished-at="2026-11-17T15:43:35 GMT+07:00" duration-ms="190" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_LOGIN_003_VerifyLoginWithInvalidAccount status=SUCCESS method=LoginTest.TC_LOGIN_003_VerifyLoginWithInvalidAccount()[pri:0, instance:testcases.authentication.LoginTest@6691490c] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:testcases.authentication.LoginTest@6691490c]" started-at="2026-11-17T15:43:35 GMT+07:00" name="beforeMethod" finished-at="2026-11-17T15:43:35 GMT+07:00" duration-ms="873" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void testcases.authentication.LoginTest.TC_LOGIN_004_VerifyLoginWithWrongPassword()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method is-config="true" signature="setupLoginPage()[pri:0, instance:testcases.authentication.LoginTest@6691490c]" started-at="2026-11-17T15:43:35 GMT+07:00" name="setupLoginPage" finished-at="2026-11-17T15:43:36 GMT+07:00" duration-ms="957" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupLoginPage -->
+        <test-method signature="TC_LOGIN_004_VerifyLoginWithWrongPassword()[pri:0, instance:testcases.authentication.LoginTest@6691490c]" started-at="2026-11-17T15:43:36 GMT+07:00" name="TC_LOGIN_004_VerifyLoginWithWrongPassword" finished-at="2026-11-17T15:43:37 GMT+07:00" duration-ms="1089" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_LOGIN_004_VerifyLoginWithWrongPassword -->
+        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:testcases.authentication.LoginTest@6691490c]" started-at="2026-11-17T15:43:37 GMT+07:00" name="afterMethod" finished-at="2026-11-17T15:43:38 GMT+07:00" duration-ms="151" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_LOGIN_004_VerifyLoginWithWrongPassword status=SUCCESS method=LoginTest.TC_LOGIN_004_VerifyLoginWithWrongPassword()[pri:0, instance:testcases.authentication.LoginTest@6691490c] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:testcases.authentication.LoginTest@6691490c]" started-at="2026-11-17T15:43:38 GMT+07:00" name="beforeMethod" finished-at="2026-11-17T15:43:38 GMT+07:00" duration-ms="752" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void testcases.authentication.LoginTest.TC_LOGIN_005_VerifyLoginWithEmptyAccount()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method is-config="true" signature="setupLoginPage()[pri:0, instance:testcases.authentication.LoginTest@6691490c]" started-at="2026-11-17T15:43:38 GMT+07:00" name="setupLoginPage" finished-at="2026-11-17T15:43:39 GMT+07:00" duration-ms="846" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupLoginPage -->
+        <test-method signature="TC_LOGIN_005_VerifyLoginWithEmptyAccount()[pri:0, instance:testcases.authentication.LoginTest@6691490c]" started-at="2026-11-17T15:43:39 GMT+07:00" name="TC_LOGIN_005_VerifyLoginWithEmptyAccount" finished-at="2026-11-17T15:43:40 GMT+07:00" duration-ms="949" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_LOGIN_005_VerifyLoginWithEmptyAccount -->
+        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:testcases.authentication.LoginTest@6691490c]" started-at="2026-11-17T15:43:40 GMT+07:00" name="afterMethod" finished-at="2026-11-17T15:43:40 GMT+07:00" duration-ms="156" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_LOGIN_005_VerifyLoginWithEmptyAccount status=SUCCESS method=LoginTest.TC_LOGIN_005_VerifyLoginWithEmptyAccount()[pri:0, instance:testcases.authentication.LoginTest@6691490c] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:testcases.authentication.LoginTest@6691490c]" started-at="2026-11-17T15:43:40 GMT+07:00" name="beforeMethod" finished-at="2026-11-17T15:43:41 GMT+07:00" duration-ms="715" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void testcases.authentication.LoginTest.TC_LOGIN_006_VerifyLoginWithEmptyPassword()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method is-config="true" signature="setupLoginPage()[pri:0, instance:testcases.authentication.LoginTest@6691490c]" started-at="2026-11-17T15:43:41 GMT+07:00" name="setupLoginPage" finished-at="2026-11-17T15:43:42 GMT+07:00" duration-ms="747" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupLoginPage -->
+        <test-method signature="TC_LOGIN_006_VerifyLoginWithEmptyPassword()[pri:0, instance:testcases.authentication.LoginTest@6691490c]" started-at="2026-11-17T15:43:42 GMT+07:00" name="TC_LOGIN_006_VerifyLoginWithEmptyPassword" finished-at="2026-11-17T15:43:43 GMT+07:00" duration-ms="960" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_LOGIN_006_VerifyLoginWithEmptyPassword -->
+        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:testcases.authentication.LoginTest@6691490c]" started-at="2026-11-17T15:43:43 GMT+07:00" name="afterMethod" finished-at="2026-11-17T15:43:43 GMT+07:00" duration-ms="122" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_LOGIN_006_VerifyLoginWithEmptyPassword status=SUCCESS method=LoginTest.TC_LOGIN_006_VerifyLoginWithEmptyPassword()[pri:0, instance:testcases.authentication.LoginTest@6691490c] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+      </class> <!-- testcases.authentication.LoginTest -->
+    </test> <!-- Profile Tests (Sequential) -->
+    <test started-at="2026-11-17T15:43:43 GMT+07:00" name="Course Tests (Parallel)" finished-at="2026-11-17T15:43:43 GMT+07:00" duration-ms="1">
+      <class name="testcases.course.CourseListTest">
+        <test-method is-config="true" signature="beforeSuite()[pri:0, instance:testcases.course.CourseListTest@579d011c]" started-at="2026-11-17T15:43:24 GMT+07:00" name="beforeSuite" finished-at="2026-11-17T15:43:24 GMT+07:00" duration-ms="273" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeSuite -->
+        <test-method is-config="true" signature="afterSuite()[pri:0, instance:testcases.course.CourseListTest@579d011c]" started-at="2026-11-17T15:43:43 GMT+07:00" name="afterSuite" finished-at="2026-11-17T15:43:43 GMT+07:00" duration-ms="313" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterSuite -->
+      </class> <!-- testcases.course.CourseListTest -->
+    </test> <!-- Course Tests (Parallel) -->
+  </suite> <!-- Course Management Suite -->
+</testng-results>

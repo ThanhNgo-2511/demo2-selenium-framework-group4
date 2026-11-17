@@ -117,7 +117,7 @@ public class EnrollCourseTest extends BaseTest {
             logAndReport("VP2: Verify the enrolled course is still in the chiTietKhoaHocGhiDanh list by API ");
             Assert.assertTrue(
                     api.isCourseEnrolledById(user, courseId),
-                    "[TC_ENR_003][FAIL]: " + courseId + "not included in chiTietKhoaHocGhiDanh"
+                    "[TC_ENR_003][FAIL]: " + courseId + " not included in chiTietKhoaHocGhiDanh"
             );
         } finally {
 
@@ -140,6 +140,7 @@ public class EnrollCourseTest extends BaseTest {
 
         logAndReport("Step 1: Navigate to Course Detail page with courseId= " + courseId);
         CourseDetailPage courseDetailPage = navigateToCourseDetailPage(courseId);
+        courseDetailPage.waitCourseNameLoaded(api.getCourseNameById(courseId));
         String courseName = courseDetailPage.getCourseName();
 
         logAndReport("Step 2: Click on \"Đăng Ký\" button");

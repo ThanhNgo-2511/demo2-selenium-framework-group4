@@ -106,6 +106,16 @@ public class APIAction {
                 .as(CourseModel.class);
     }
 
+    public String getCourseNameById(String courseId) {
+        CourseModel course = getCourseDetail(courseId);
+
+        if (course != null) {
+            return course.getTenKhoaHoc();
+        }
+
+        return null;
+    }
+
     public UserModel loginViaAPI(String username, String password) {
         String jsonBody = String.format("""
                 {

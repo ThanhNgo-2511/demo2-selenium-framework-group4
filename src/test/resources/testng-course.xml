@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Course Suite" thread-count="3">
+    <test name="Course Tests" parallel="methods">
+        <classes>
+            <class name="testcases.course.CourseListTest"/>
+            <class name="testcases.course.CourseDetailTest"/>
+            <class name="testcases.course.EnrollCourseTest"/>
+            <class name="testcases.course.CancelCourseTest"/>
+        </classes>
+    </test>
+</suite>

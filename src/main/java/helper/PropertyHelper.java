@@ -1,13 +1,10 @@
 package helper;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import static helper.TestCaseHelper.logAndReport;
-
 public class PropertyHelper {
+
     private static final Properties properties = new Properties();
 
     static {
@@ -17,13 +14,13 @@ public class PropertyHelper {
 
             if (input == null) {
                 throw new RuntimeException(
-                        "Cannot find accounts.properties"
+                        "Cannot find accounts.properties in resources!"
                 );
             }
 
             properties.load(input);
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new RuntimeException(
                     "Failed to load accounts.properties", e
             );
@@ -31,9 +28,17 @@ public class PropertyHelper {
     }
 
     public static String get(String key) {
-        String value = properties.getProperty(key);
 
-        if (value == null) {
+        // 1. Get value from command line first
+        String value = System.getProperty(key);
+
+        // 2. Fallback to properties file
+        if (value == null || value.trim().isEmpty()) {
+            value = properties.getProperty(key);
+        }
+
+        // 3. Validate property
+        if (value == null || value.trim().isEmpty()) {
             throw new RuntimeException(
                     "Missing property: " + key
             );
