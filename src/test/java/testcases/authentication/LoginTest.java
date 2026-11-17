@@ -47,7 +47,15 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void TC_LOGIN_002_LoginSuccessfully() {
-        getLoginPage().login(username, password);
+        logAndReport("Step 1: Enter account");
+        getLoginPage().enterAccount(username);
+
+        logAndReport("Step 2: Enter password");
+        getLoginPage().enterPassword(password);
+
+        logAndReport("Step 3: Click on the Login button");
+        getLoginPage().clickLogin();
+
         logAndReport("Verify Avatar display after login successfully");
         Assert.assertTrue(
                 getLoginPage().isLoginSuccessful(),
@@ -57,7 +65,15 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void TC_LOGIN_003_VerifyLoginWithInvalidAccount() {
-        getLoginPage().login("Test" + username , password);
+        logAndReport("Step 1: Enter account");
+        getLoginPage().enterAccount("Test" + username);
+
+        logAndReport("Step 2: Enter password");
+        getLoginPage().enterPassword(password);
+
+        logAndReport("Step 3: Click on the Login button");
+        getLoginPage().clickLogin();
+
         logAndReport("Verify the message: 'Tài khoản hoặc mật khẩu không đúng!' displays");
         Assert.assertEquals(
                 getLoginPage().getLoginErrorMessage(),
@@ -68,7 +84,15 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void TC_LOGIN_004_VerifyLoginWithWrongPassword() {
-        getLoginPage().login(username, "Test"+ password);
+        logAndReport("Step 1: Enter account");
+        getLoginPage().enterAccount(username);
+
+        logAndReport("Step 2: Enter password");
+        getLoginPage().enterPassword("Test"+password);
+
+        logAndReport("Step 3: Click on the Login button");
+        getLoginPage().clickLogin();
+
         logAndReport("Verify the message: 'Tài khoản hoặc mật khẩu không đúng!' displays");
         Assert.assertEquals(
                 getLoginPage().getLoginErrorMessage(),
@@ -79,7 +103,14 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void TC_LOGIN_005_VerifyLoginWithEmptyAccount() {
-        getLoginPage().login("", password);
+        logAndReport("Step 1: Blank on the account field");
+
+        logAndReport("Step 2: Enter password");
+        getLoginPage().enterPassword(password);
+
+        logAndReport("Step 3: Click on the Login button");
+        getLoginPage().clickLogin();
+
         logAndReport("Verify the message: 'Tài khoản hoặc mật khẩu không đúng!' displays");
         Assert.assertEquals(
                 getLoginPage().getLoginErrorMessage(),
@@ -90,7 +121,14 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void TC_LOGIN_006_VerifyLoginWithEmptyPassword() {
-        getLoginPage().login(username, "");
+        logAndReport("Step 1: Enter account");
+        getLoginPage().enterAccount(username);
+
+        logAndReport("Step 2: Blank on the password field ");
+
+        logAndReport("Step 3: Click on the Login button");
+        getLoginPage().clickLogin();
+
         logAndReport("Verify the message: 'Tài khoản hoặc mật khẩu không đúng!' displays");
         Assert.assertEquals(
                 getLoginPage().getLoginErrorMessage(),
