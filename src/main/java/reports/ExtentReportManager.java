@@ -19,7 +19,10 @@ public class ExtentReportManager {
 
     private static ExtentReports extent;
     private static ThreadLocal<ExtentTest> test = new ThreadLocal<>(); // mỗi thread 1 ExtentTest
-    private static final String REPORT_PATH = "test-output/ExtentReport_" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HH_mm_ss")) + ".html";
+
+    // Lấy tên module từ Gradle truyền sang, mặc định là "Default" nếu chạy trực tiếp trên IDE
+    private static final String MODULE_NAME = System.getProperty("moduleName", "Default");
+    private static final String REPORT_PATH = "test-output/ExtentReport_" + MODULE_NAME + "_" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HH_mm_ss")) + ".html";
     private static final String SCREENSHOT_PATH = "test-output/screenshots/";
 
     public static void initializeExtentReports() {
@@ -27,6 +30,12 @@ public class ExtentReportManager {
         extent = new ExtentReports();
         extent.attachReporter(sparkReporter);
 
+        // === Cấu hình giao diện hiển thị của SparkReporter ===
+        sparkReporter.config().setDocumentTitle("Automation Test Report - Module: " + MODULE_NAME); // Tiêu đề tab trình duyệt
+        sparkReporter.config().setReportName("Test Execution Result: " + MODULE_NAME); // Tên tiêu đề lớn trong báo cáo
+
+        // Hiển thị thêm tên Module vào bảng System Info trên giao diện báo cáo HTML
+        extent.setSystemInfo("Module", MODULE_NAME);
         extent.setSystemInfo("OS", System.getProperty("os.name"));
         extent.setSystemInfo("User", System.getProperty("user.name"));
     }

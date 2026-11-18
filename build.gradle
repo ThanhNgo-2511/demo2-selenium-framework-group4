@@ -34,13 +34,16 @@ dependencies {
 
 
 // Cấu hình chung cho các task TestNG
-def configureTestTask = { Test task, List<String> suiteFiles ->
+def configureTestTask = { Test task, String moduleName, List<String> suiteFiles ->
 
     // Chỉ định thư mục chứa compiled test classes
     task.testClassesDirs = sourceSets.test.output.classesDirs
 
     // Chỉ định classpath để chạy test
     task.classpath = sourceSets.test.runtimeClasspath
+
+    // Truyền tên module sang cho code Java đọc qua System.getProperty("moduleName")
+    task.systemProperty "moduleName", moduleName
 
     task.useTestNG {
         useDefaultListeners = true
@@ -52,7 +55,8 @@ def configureTestTask = { Test task, List<String> suiteFiles ->
     // Nếu TestNG hỗ trợ outputDirectory trực tiếp trong closure useTestNG,
     // hoặc bạn có thể cấu hình report trực tiếp cho task Test:
     task.reports.html.required.set(true)
-    task.reports.html.outputLocation.set(file("$projectDir/testoutput/html"))
+    // Phân tách luôn thư mục HTML report mặc định của Gradle theo module (tùy chọn)
+    task.reports.html.outputLocation.set(file("$projectDir/testoutput/html/$moduleName"))
 
     task.testLogging {
         events "passed", "failed", "skipped"
@@ -61,32 +65,32 @@ def configureTestTask = { Test task, List<String> suiteFiles ->
     }
 }
 
-// 1. Chạy tất cả test
+// Chạy tất cả test
 tasks.named('test', Test) {
-    configureTestTask(delegate, [
+    configureTestTask(delegate, 'AllModules', [
             'src/test/resources/testng-profile.xml',
             'src/test/resources/testng-course.xml',
             'src/test/resources/testng-authentication.xml'
     ])
 }
 
-// 2. Chỉ chạy Profile
+// Chỉ chạy Profile
 tasks.register('testProfile', Test) {
-    configureTestTask(delegate, [
+    configureTestTask(delegate, 'Profile', [
             'src/test/resources/testng-profile.xml'
     ])
 }
 
-// 3. Chỉ chạy Course
+// Chỉ chạy Course
 tasks.register('testCourse', Test) {
-    configureTestTask(delegate, [
+    configureTestTask(delegate, 'Course', [
             'src/test/resources/testng-course.xml'
     ])
 }
 
-// 4. Chỉ chạy Authentication
+// Chỉ chạy Authentication
 tasks.register('testAuthen', Test) {
-    configureTestTask(delegate, [
+    configureTestTask(delegate, 'Authentication', [
             'src/test/resources/testng-authentication.xml'
     ])
 }
