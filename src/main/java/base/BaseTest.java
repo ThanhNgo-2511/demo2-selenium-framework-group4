@@ -4,6 +4,7 @@ import drivers.DriverManager;
 import drivers.DriverManagerFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.ThreadContext;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -30,8 +31,12 @@ public class BaseTest {
     }
 
     @BeforeMethod
-    public void beforeMethod (Method method)
-    {
+    public void beforeMethod(Method method) {
+        String testName = method.getName();
+
+        // Đưa tên Test Case vào ThreadContext để Log4j2 tự động in ra log
+        ThreadContext.put("testName", testName);
+
         LOG.info("beforeMethod executing...");
         ExtentReportManager.createTest(method.getName());
         DriverManager driverManager = DriverManagerFactory.getDriverManager("chrome");
@@ -39,44 +44,48 @@ public class BaseTest {
     }
 
     @AfterMethod
-    public void afterMethod(ITestResult result)
-    {
+    public void afterMethod(ITestResult result) {
         LOG.info("afterMethod ended...");
         WebDriver currentDriver = DriverManager.getDriverOrNull();
+        String methodName = result.getMethod().getMethodName();
+
         try {
+            // Xử lý theo từng trạng thái của TestNG để báo cáo đầy đủ (Pass, Fail, Skip)
             if (result.getStatus() == ITestResult.FAILURE) {
                 Throwable throwable = result.getThrowable();
 
                 // Ghi exception va stack trace vao console va automation.log
-                LOG.error(
-                        "TEST FAILED: " + result.getMethod().getMethodName(),
-                        throwable
-                );
+                LOG.error("TEST FAILED: " + methodName, throwable);
+
+                String errorMessage = (throwable != null) ? throwable.toString() : "Test failed without exception details";
 
                 if (currentDriver != null) {
                     try {
-                        ExtentReportManager.captureScreenshot(
-                                currentDriver,
-                                result.getMethod().getMethodName()
-                        );
+                        // Gộp chung thông báo lỗi và ảnh chụp màn hình vào 1 dòng duy nhất trên báo cáo
+                        ExtentReportManager.getTest().fail(errorMessage,
+                                ExtentReportManager.getScreenshotMedia(currentDriver, methodName));
                     } catch (Exception screenshotException) {
                         LOG.error("Failed to capture screenshot", screenshotException);
+                        ExtentReportManager.fail(errorMessage);
                     }
+                } else {
+                    ExtentReportManager.fail(errorMessage);
                 }
 
-                if (throwable != null) {
-                    ExtentReportManager.fail(
-                            throwable.toString()
-                    );
-                } else {
-                    ExtentReportManager.fail("Test failed without exception details");
-                }
+            } else if (result.getStatus() == ITestResult.SUCCESS) {
+                ExtentReportManager.pass("Test passed successfully");
+            } else if (result.getStatus() == ITestResult.SKIP) {
+                String skipMsg = (result.getThrowable() != null) ? result.getThrowable().toString() : "Test skipped";
+                ExtentReportManager.getTest().skip(skipMsg);
             }
+
         } finally {
             try {
                 DriverManager.quitDriver();
             } finally {
                 ExtentReportManager.removeTest();
+                // Xóa testName khỏi ThreadContext sau khi test chạy xong để dọn sạch luồng
+                ThreadContext.remove("testName");
             }
         }
     }

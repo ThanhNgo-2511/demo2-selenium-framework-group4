@@ -3,6 +3,7 @@ package reports;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
+import com.aventstack.extentreports.model.Media;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.google.common.io.Files;
 import org.openqa.selenium.OutputType;
@@ -18,7 +19,7 @@ public class ExtentReportManager {
 
     private static ExtentReports extent;
     private static ThreadLocal<ExtentTest> test = new ThreadLocal<>(); // mỗi thread 1 ExtentTest
-    private static final String REPORT_PATH = "test-output/ExtentReport_" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_hh_mm_ss")) + ".html";
+    private static final String REPORT_PATH = "test-output/ExtentReport_" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HH_mm_ss")) + ".html";
     private static final String SCREENSHOT_PATH = "test-output/screenshots/";
 
     public static void initializeExtentReports() {
@@ -35,7 +36,7 @@ public class ExtentReportManager {
         test.set(extentTest);
     }
 
-    private static ExtentTest getTest() {
+    public static ExtentTest getTest() {
         return test.get();
     }
 
@@ -55,8 +56,7 @@ public class ExtentReportManager {
         getTest().fail(msg);
     }
 
-    public static void captureScreenshot(WebDriver driver, String testName) {
-        //kiem tra folder screenshots co ton tai ko, neu ko co thi se tao truoc folder
+    public static Media getScreenshotMedia(WebDriver driver, String testName) {
         File destFolder = new File(SCREENSHOT_PATH);
         if(!destFolder.exists())
             destFolder.mkdirs();
@@ -71,9 +71,9 @@ public class ExtentReportManager {
         try {
             Files.copy(sourceFile, destFile);
             String relativePath = "screenshots/" + fileName;
-            getTest().fail("Screenshot captured", MediaEntityBuilder.createScreenCaptureFromPath(relativePath).build());
+            return MediaEntityBuilder.createScreenCaptureFromPath(relativePath).build();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Failed to save screenshot", e);
         }
     }
 
