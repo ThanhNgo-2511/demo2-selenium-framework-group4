@@ -26,6 +26,10 @@ public class ExtentReportManager {
     private static final String SCREENSHOT_PATH = "test-output/screenshots/";
 
     public static void initializeExtentReports() {
+        if (extent != null) {
+            return;
+        }
+
         ExtentSparkReporter sparkReporter = new ExtentSparkReporter(REPORT_PATH);
         extent = new ExtentReports();
         extent.attachReporter(sparkReporter);
