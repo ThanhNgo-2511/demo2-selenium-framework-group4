@@ -26,109 +26,114 @@ public class CancelCourseTest extends BaseTest {
         APIAction api = new APIAction();
         UserModel user = api.loginViaAPI(username, password);
 
-        logAndReport("Pre-condition: User logged in account: "+username);
-        loginViaAPIAndSyncUI(user);
+        try {
+            logAndReport("Pre-condition: User logged in account: " + username);
+            injectUserAndSyncUI(user);
 
-        logAndReport("Pre-condition: The course with id= " + courseId + " has enrolled");
-        api.enrollCourse(user, courseId);
-        int indexCard = 1;
+            logAndReport("Pre-condition: The course with id= " + courseId + " has enrolled");
+            api.enrollCourse(user, courseId);
+            int indexCard = 1;
 
-        logAndReport("Step 1: Open the Profile Page");
-        ProfilePage profilePage = navigateToProfilePage();
+            logAndReport("Step 1: Open the Profile Page");
+            ProfilePage profilePage = navigateToProfilePage();
 
-        logAndReport("Step 2: Click on the \"Khóa học\" tab");
-        profilePage.clickCoursesTab();
+            logAndReport("Step 2: Click on the \"Khóa học\" tab");
+            profilePage.clickCoursesTab();
 
-        RegisteredCourseCard card = profilePage.getCourseCardByIndex(indexCard);
+            RegisteredCourseCard card = profilePage.getCourseCardByIndex(indexCard);
 
-        logAndReport("Check the card at position (" + indexCard + ")");
+            logAndReport("Check the card at position (" + indexCard + ")");
 
-        // Verify Point
-        logAndReport("VP1:The Course Image displays and doesn't break");
-        boolean imgDisplayed = card.isCourseImageDisplayed();
-        logAndReport("Course Image displayed = " + imgDisplayed);
-        Assert.assertTrue(
-                imgDisplayed,
-                "[TC_CAN_001][FAIL] Course Image has displayed"
-        );
-        boolean imgLoaded = card.isCourseImageLoaded();
-        logAndReport("Course Image loaded = " + imgLoaded);
-        Assert.assertTrue(
-                imgLoaded,
-                "[TC_CAN_001][FAIL] Course Image has broken (naturalWidth = 0)"
-        );
+            // Verify Point
+            logAndReport("VP1:The Course Image displays and doesn't break");
+            boolean imgDisplayed = card.isCourseImageDisplayed();
+            logAndReport("Course Image displayed = " + imgDisplayed);
+            Assert.assertTrue(
+                    imgDisplayed,
+                    "[TC_CAN_001][FAIL] Course Image has displayed"
+            );
+            boolean imgLoaded = card.isCourseImageLoaded();
+            logAndReport("Course Image loaded = " + imgLoaded);
+            Assert.assertTrue(
+                    imgLoaded,
+                    "[TC_CAN_001][FAIL] Course Image has broken (naturalWidth = 0)"
+            );
 
-        //-------------------------------------------
-        logAndReport("VP2: The Course Name displays");
-        String courseName = card.getCourseName();
-        logAndReport("Course Name: " + courseName);
-        Assert.assertFalse(
-                courseName.isEmpty(),
-                "[TC_CAN_001][FAIL] Course Name is empty"
-        );
+            //-------------------------------------------
+            logAndReport("VP2: The Course Name displays");
+            String courseName = card.getCourseName();
+            logAndReport("Course Name: " + courseName);
+            Assert.assertFalse(
+                    courseName.isEmpty(),
+                    "[TC_CAN_001][FAIL] Course Name is empty"
+            );
 
-        //-------------------------------------------
-        logAndReport("VP3: The Course Short Description displays");
-        String shortDesc = card.getCourseShortDescription();
-        logAndReport("Short Description: " + shortDesc);
-        Assert.assertFalse(
-                shortDesc.isEmpty(),
-                "[TC_CAN_001][FAIL] Course Short Description is empty"
-        );
+            //-------------------------------------------
+            logAndReport("VP3: The Course Short Description displays");
+            String shortDesc = card.getCourseShortDescription();
+            logAndReport("Short Description: " + shortDesc);
+            Assert.assertFalse(
+                    shortDesc.isEmpty(),
+                    "[TC_CAN_001][FAIL] Course Short Description is empty"
+            );
 
-        //-------------------------------------------
-        logAndReport("VP4: The Specifications displays");
-        boolean specifications = card.isRegisteredCourseCardSpecificationsDisplay();
-        logAndReport("Specifications displayed = " + specifications);
-        Assert.assertTrue(
-                specifications,
-                "[TC_CD_013][FAIL] Specifications doesn't display"
-        );
+            //-------------------------------------------
+            logAndReport("VP4: The Specifications displays");
+            boolean specifications = card.isRegisteredCourseCardSpecificationsDisplay();
+            logAndReport("Specifications displayed = " + specifications);
+            Assert.assertTrue(
+                    specifications,
+                    "[TC_CD_013][FAIL] Specifications doesn't display"
+            );
 
-        //-------------------------------------------
-        logAndReport("VP5: The Star Icons displays");
-        boolean starIcon = card.isRegisteredCourseCardStarIconDisplay();
-        logAndReport("Star icons displayed = " + starIcon);
-        Assert.assertTrue(
-                starIcon,
-                "[TC_CD_013][FAIL] Star Icons doesn't display"
-        );
+            //-------------------------------------------
+            logAndReport("VP5: The Star Icons displays");
+            boolean starIcon = card.isRegisteredCourseCardStarIconDisplay();
+            logAndReport("Star icons displayed = " + starIcon);
+            Assert.assertTrue(
+                    starIcon,
+                    "[TC_CD_013][FAIL] Star Icons doesn't display"
+            );
 
-        //-------------------------------------------
-        logAndReport("VP6: The Instructor Avatar displays and doesn't break");
-        boolean avatarDisplay = card.isAvatarImageDisplayed();
-        logAndReport(" Instructor Avatar display=" + avatarDisplay);
-        Assert.assertTrue(
-                avatarDisplay,
-                "[TC_CAN_001][FAIL] Instructor Avatar displayed"
-        );
-        boolean avatarLoaded = card.isAvatarImageLoaded();
-        logAndReport(" Instructor Avatar loaded=" + avatarLoaded);
-        Assert.assertTrue(
-                avatarLoaded,
-                "[TC_CAN_001][FAIL] Instructor Avatar has broken (naturalWidth = 0)"
-        );
+            //-------------------------------------------
+            logAndReport("VP6: The Instructor Avatar displays and doesn't break");
+            boolean avatarDisplay = card.isAvatarImageDisplayed();
+            logAndReport(" Instructor Avatar display=" + avatarDisplay);
+            Assert.assertTrue(
+                    avatarDisplay,
+                    "[TC_CAN_001][FAIL] Instructor Avatar displayed"
+            );
+            boolean avatarLoaded = card.isAvatarImageLoaded();
+            logAndReport(" Instructor Avatar loaded=" + avatarLoaded);
+            Assert.assertTrue(
+                    avatarLoaded,
+                    "[TC_CAN_001][FAIL] Instructor Avatar has broken (naturalWidth = 0)"
+            );
 
-        //-------------------------------------------
-        logAndReport("VP7: The Instructor Name displays");
-        String instructor = card.getCourseInstructorName();
-        logAndReport("Instructor Name: " + instructor);
-        Assert.assertFalse(
-                instructor.isEmpty(),
-                "[TC_CAN_001][FAIL] Instructor Name is empty"
-        );
+            //-------------------------------------------
+            logAndReport("VP7: The Instructor Name displays");
+            String instructor = card.getCourseInstructorName();
+            logAndReport("Instructor Name: " + instructor);
+            Assert.assertFalse(
+                    instructor.isEmpty(),
+                    "[TC_CAN_001][FAIL] Instructor Name is empty"
+            );
 
-        //-------------------------------------------
-        String nameButton = "HỦY KHÓA HỌC";
-        logAndReport("VP8: The \""+nameButton +"\" button display and enable");
-        boolean btnDisplayed = card.isCancelCourseButtonDisplayed();
-        logAndReport("Enroll button displayed = " + btnDisplayed);
-        Assert.assertTrue(btnDisplayed,
-                "[TC_CAN_001][FAIL] The \""+nameButton +"\" button doesn't display");
-        boolean btnEnabled = card.isCancelCourseButtonDisplayed();
-        logAndReport("Enroll button enabled = " + btnEnabled);
-        Assert.assertTrue(btnEnabled,
-                "[TC_CAN_001][FAIL] The \""+nameButton +"\" button is disabled");
+            //-------------------------------------------
+            String nameButton = "HỦY KHÓA HỌC";
+            logAndReport("VP8: The \"" + nameButton + "\" button display and enable");
+            boolean btnDisplayed = card.isCancelCourseButtonDisplayed();
+            logAndReport("Enroll button displayed = " + btnDisplayed);
+            Assert.assertTrue(btnDisplayed,
+                    "[TC_CAN_001][FAIL] The \"" + nameButton + "\" button doesn't display");
+            boolean btnEnabled = card.isCancelCourseButtonEnable();
+            logAndReport("Enroll button enabled = " + btnEnabled);
+            Assert.assertTrue(btnEnabled,
+                    "[TC_CAN_001][FAIL] The \"" + nameButton + "\" button is disabled");
+        } finally {
+            logAndReport("End Test: Remove courseId = \"" + courseId + "\" after test");
+            api.leaveCourse(user, courseId);
+        }
     }
 
     @Test(priority = 2,
@@ -140,27 +145,28 @@ public class CancelCourseTest extends BaseTest {
         UserModel user = api.loginViaAPI(username, password);
         int indexCard = 1;
 
-        logAndReport("Pre-condition: User logged in account: "+username);
-        loginViaAPIAndSyncUI(user);
-
-        logAndReport("Pre-condition: The course with id= " + courseId + " has enrolled");
-        api.enrollCourse(user, courseId);
-
-        logAndReport("Step 1: Open the Profile Page");
-        ProfilePage profilePage = navigateToProfilePage();
-
-        logAndReport("Step 2: Click on the \"Khóa học\" tab");
-        profilePage.clickCoursesTab();
-        int beforeCount= profilePage.getCourseCardCount();
-        RegisteredCourseCard card = profilePage.getCourseCardByIndex(indexCard);
-
-        logAndReport("Step 3: Click on the HỦY KHÓA HỌC button on the card at position (" + indexCard + ")");
-        String removedNameCourse = card.getCourseName();
-        card.clickOnCancelCourseButton();
-        profilePage.waitForCourseCardsCountToBe(beforeCount -1);
-        int afterCount= profilePage.getCourseCardCount();
-
         try {
+            logAndReport("Pre-condition: User logged in account: " + username);
+            injectUserAndSyncUI(user);
+
+            logAndReport("Pre-condition: The course with id= " + courseId + " has enrolled");
+            api.enrollCourse(user, courseId);
+
+            logAndReport("Step 1: Open the Profile Page");
+            ProfilePage profilePage = navigateToProfilePage();
+
+            logAndReport("Step 2: Click on the \"Khóa học\" tab");
+            profilePage.clickCoursesTab();
+            int beforeCount = profilePage.getCourseCardCount();
+            RegisteredCourseCard card = profilePage.getCourseCardByIndex(indexCard);
+
+            logAndReport("Step 3: Click on the HỦY KHÓA HỌC button on the card at position (" + indexCard + ")");
+            String removedNameCourse = card.getCourseName();
+            card.clickOnCancelCourseButton();
+            profilePage.waitForCourseCardsCountToBe(beforeCount - 1);
+            int afterCount = profilePage.getCourseCardCount();
+
+
             // Verify Point
             logAndReport("VP1: The count of the course on My course decreases");
             Assert.assertEquals(
@@ -198,30 +204,29 @@ public class CancelCourseTest extends BaseTest {
             courseIDs.add(api.getRandomCourseId(COURSE_PAGE, COURSE_PAGESIZE, COURSE_GROUPID));
         }
 
-        logAndReport("Pre-condition: User logged in account: "+username);
-        loginViaAPIAndSyncUI(user);
-
-        logAndReport("Pre-condition: Add some course");
-        for(String courseId: courseIDs)
-        {
-            api.enrollCourse(user, courseId);
-        }
-
-        logAndReport("Step 1: Open the Profile Page");
-        ProfilePage profilePage = navigateToProfilePage();
-
-        logAndReport("Step 2: Click on the \"Khóa học\" tab");
-        profilePage.clickCoursesTab();
-        int beforeCount= profilePage.getCourseCardCount();
-        RegisteredCourseCard card = profilePage.getCourseCardByIndex(1);
-
-        logAndReport("Step 3: Click on the HỦY KHÓA HỌC button on the first card");
-        String removedNameCourse = card.getCourseName();
-        card.clickOnCancelCourseButton();
-        profilePage.waitForCourseCardsCountToBe(beforeCount -1);
-        int afterCount= profilePage.getCourseCardCount();
-
         try {
+            logAndReport("Pre-condition: User logged in account: " + username);
+            injectUserAndSyncUI(user);
+
+            logAndReport("Pre-condition: Add some course");
+            for (String courseId : courseIDs) {
+                api.enrollCourse(user, courseId);
+            }
+
+            logAndReport("Step 1: Open the Profile Page");
+            ProfilePage profilePage = navigateToProfilePage();
+
+            logAndReport("Step 2: Click on the \"Khóa học\" tab");
+            profilePage.clickCoursesTab();
+            int beforeCount = profilePage.getCourseCardCount();
+            RegisteredCourseCard card = profilePage.getCourseCardByIndex(1);
+
+            logAndReport("Step 3: Click on the HỦY KHÓA HỌC button on the first card");
+            String removedNameCourse = card.getCourseName();
+            card.clickOnCancelCourseButton();
+            profilePage.waitForCourseCardsCountToBe(beforeCount - 1);
+            int afterCount = profilePage.getCourseCardCount();
+
             // Verify Assert
             logAndReport("VP1: The count of the course on My course decreases");
             Assert.assertEquals(
@@ -244,8 +249,7 @@ public class CancelCourseTest extends BaseTest {
             );
         } finally {
             logAndReport("End Test: Remove course after test");
-            for(String courseId: courseIDs)
-            {
+            for (String courseId : courseIDs) {
                 api.leaveCourse(user, courseId);
             }
         }
@@ -263,35 +267,34 @@ public class CancelCourseTest extends BaseTest {
             courseIDs.add(api.getRandomCourseId(COURSE_PAGE, COURSE_PAGESIZE, COURSE_GROUPID));
         }
 
-        logAndReport("Pre-condition: User logged in account: "+username);
-        loginViaAPIAndSyncUI(user);
-
-        logAndReport("Pre-condition: Add some courses");
-        for(String courseId: courseIDs)
-        {
-            api.enrollCourse(user, courseId);
-        }
-
-        logAndReport("Step 1: Open the Profile Page");
-        ProfilePage profilePage = navigateToProfilePage();
-
-        logAndReport("Step 2: Click on the \"Khóa học\" tab");
-        profilePage.clickCoursesTab();
-        RegisteredCourseCard secondCard = profilePage.getCourseCardByIndex(2);
-        String secondCardName = secondCard.getCourseName();
-
-        logAndReport("Step 3: Input the \""+ secondCardName +"\" on the Search field");
-        profilePage.inputTextSearchField(secondCardName);
-        int beforeResultCount = profilePage.getCourseCardCount();
-
-        logAndReport("Step 4: Click on the HỦY KHÓA HỌC button on the first card");
-        RegisteredCourseCard firstCard = profilePage.getCourseCardByIndex(1);
-        String removedNameCourse = firstCard.getCourseName();
-        firstCard.clickOnCancelCourseButton();
-        profilePage.waitForCourseCardsCountToBe(beforeResultCount -1);
-        int afterResultCount = profilePage.getCourseCardCount();
-
         try {
+            logAndReport("Pre-condition: User logged in account: " + username);
+            injectUserAndSyncUI(user);
+
+            logAndReport("Pre-condition: Add some courses");
+            for (String courseId : courseIDs) {
+                api.enrollCourse(user, courseId);
+            }
+
+            logAndReport("Step 1: Open the Profile Page");
+            ProfilePage profilePage = navigateToProfilePage();
+
+            logAndReport("Step 2: Click on the \"Khóa học\" tab");
+            profilePage.clickCoursesTab();
+            RegisteredCourseCard secondCard = profilePage.getCourseCardByIndex(2);
+            String secondCardName = secondCard.getCourseName();
+
+            logAndReport("Step 3: Input the \"" + secondCardName + "\" on the Search field");
+            profilePage.inputTextSearchField(secondCardName);
+            int beforeResultCount = profilePage.getCourseCardCount();
+
+            logAndReport("Step 4: Click on the HỦY KHÓA HỌC button on the first card");
+            RegisteredCourseCard firstCard = profilePage.getCourseCardByIndex(1);
+            String removedNameCourse = firstCard.getCourseName();
+            firstCard.clickOnCancelCourseButton();
+            profilePage.waitForCourseCardsCountToBe(beforeResultCount - 1);
+            int afterResultCount = profilePage.getCourseCardCount();
+
             // Verify Assert
             logAndReport("VP1: The count of the result on decreases");
             Assert.assertEquals(
@@ -314,8 +317,7 @@ public class CancelCourseTest extends BaseTest {
             );
         } finally {
             logAndReport("End Test: Remove course after test");
-            for(String courseId: courseIDs)
-            {
+            for (String courseId : courseIDs) {
                 api.leaveCourse(user, courseId);
             }
         }

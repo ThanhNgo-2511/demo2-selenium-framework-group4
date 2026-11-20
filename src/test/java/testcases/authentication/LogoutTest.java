@@ -4,6 +4,7 @@ package testcases.authentication;
 import base.BaseTest;
 import helper.PropertyHelper;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.LoginPage;
@@ -25,6 +26,11 @@ public class LogoutTest extends BaseTest {
                 "Precondition failed: Login was not successful"
         );
         loginPage.set(page); // Lưu instance vào luồng hiện tại
+    }
+
+    @AfterMethod(alwaysRun = true)
+    public void cleanUpLoginPage() {
+        loginPage.remove();
     }
 
     // Hàm lấy LoginPage của đúng luồng đang chạy

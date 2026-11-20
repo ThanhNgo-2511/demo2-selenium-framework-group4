@@ -52,8 +52,9 @@ public class EnrollCourseTest extends BaseTest {
         UserModel user = api.loginViaAPI(username, password);
         String courseId = api.getRandomCourseId(COURSE_PAGE, COURSE_PAGESIZE, COURSE_GROUPID);
 
+        try {
         logAndReport("Pre-condition: User logged in account: " + username);
-        loginViaAPIAndSyncUI(user);
+        injectUserAndSyncUI(user);
 
         logAndReport("Pre-condition: The course with id= " + courseId + " has not enrolled");
         api.leaveCourse(user, courseId);
@@ -64,7 +65,7 @@ public class EnrollCourseTest extends BaseTest {
         logAndReport("Step 2: Click on \"Đăng Ký\" button");
         courseDetailPage.clickEnrollButton();
 
-        try {
+
             // Verify Point
             logAndReport("VP1: Message \"Đăng ký thành công\" displays");
             CommonModal commonModal = new CommonModal(DriverManager.getDriver());
@@ -92,8 +93,9 @@ public class EnrollCourseTest extends BaseTest {
         UserModel user = api.loginViaAPI(username, password);
         String courseId = api.getRandomCourseId(COURSE_PAGE, COURSE_PAGESIZE, COURSE_GROUPID);
 
+        try {
         logAndReport("Pre-condition: User logged in account: " + username);
-        loginViaAPIAndSyncUI(user);
+        injectUserAndSyncUI(user);
 
         logAndReport("Pre-condition: The course with id= " + courseId + " has enrolled");
         api.enrollCourse(user, courseId);
@@ -104,7 +106,7 @@ public class EnrollCourseTest extends BaseTest {
         logAndReport("Step 2: Click on \"Đăng Ký\" button");
         courseDetailPage.clickEnrollButton();
 
-        try {
+
             // Verify Point
             logAndReport("VP1: Message \"Đã đăng ký khóa học này rồi!\" displays ");
             CommonModal commonModal = new CommonModal(DriverManager.getDriver());
@@ -132,8 +134,9 @@ public class EnrollCourseTest extends BaseTest {
         APIAction api = new APIAction();
         UserModel user = api.loginViaAPI(username, password);
 
+        try {
         logAndReport("Pre-condition: User logged in account: " + username);
-        loginViaAPIAndSyncUI(user);
+        injectUserAndSyncUI(user);
 
         logAndReport("Pre-condition: The course with id= " + courseId + " has not enrolled");
         api.leaveCourse(user, courseId);
@@ -150,7 +153,7 @@ public class EnrollCourseTest extends BaseTest {
         commonModal.waitModalAppear();
         commonModal.waitModalDisappear();
 
-        try {
+
             logAndReport("VP: Verify enrolled course is added to \"Khóa học\" (My Courses) list");
             courseDetailPage.getTopNavigation().navigateToProfilePage();
             ProfilePage profilePage = new ProfilePage(DriverManager.getDriver());

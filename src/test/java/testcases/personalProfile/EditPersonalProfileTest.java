@@ -4,6 +4,7 @@ import base.BaseTest;
 import drivers.DriverManager;
 import helper.PropertyHelper;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.LoginPage;
@@ -32,6 +33,11 @@ public class EditPersonalProfileTest extends BaseTest {
 
         profilePage.set(page);
         logAndReport("Opened Edit Personal Profile popup");
+    }
+
+    @AfterMethod(alwaysRun = true)
+    public void cleanUpProfilePage() {
+        profilePage.remove();
     }
 
     // Hàm tiện ích lấy ProfilePage của đúng luồng đang chạy

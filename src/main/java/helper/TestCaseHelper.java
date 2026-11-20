@@ -1,6 +1,7 @@
 package helper;
 
-import apiHelper.APIAction;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import drivers.DriverManager;
 import models.UserModel;
 import org.apache.logging.log4j.LogManager;
@@ -14,6 +15,7 @@ import static config.urlConfig.*;
 
 public class TestCaseHelper {
     private static final Logger LOG = LogManager.getLogger(TestCaseHelper.class);
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     public static void logAndReport(String message) {
         LOG.info(message);
@@ -55,28 +57,26 @@ public class TestCaseHelper {
         return new ProfilePage(DriverManager.getDriver());
     }
 
-    public static void loginViaAPIAndSyncUI(UserModel user) {
+    public static void injectUserAndSyncUI(UserModel user) {
+        if (user == null) {
+            throw new IllegalArgumentException("UserModel cannot be null");
+        }
         WebDriver driver = DriverManager.getDriver();
         driver.get(BASE_URL_PATTERN); // Dùng URL chuẩn từ config
 
-        String userJson = "{"
-                + "\"accessToken\":\"" + user.getAccessToken() + "\","
-                + "\"taiKhoan\":\"" + user.getTaiKhoan() + "\","
-                + "\"email\":\"" + user.getEmail() + "\","
-                + "\"soDT\":\"" + user.getSoDT() + "\","
-                + "\"maNhom\":\"" + user.getMaNhom() + "\","
-                + "\"maLoaiNguoiDung\":\"" + user.getMaLoaiNguoiDung() + "\","
-                + "\"hoTen\":\"" + user.getHoTen() + "\""
-                + "}";
+        logAndReport("Set user credentials into localStorage for user: " + user.getTaiKhoan());
+        try {
+            String userJson = OBJECT_MAPPER.writeValueAsString(user);
 
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript(
-                "window.localStorage.setItem('credentials', arguments[0]);"
-                , userJson);
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("window.localStorage.setItem('credentials', arguments[0]);", userJson);
 
-        driver.navigate().refresh();
-
-        HomePage homePage = new HomePage(driver);
-        homePage.getTopNavigation().waitAvatarAppear();
+            driver.navigate().refresh();
+            HomePage homePage = new HomePage(driver);
+            homePage.getTopNavigation().waitAvatarAppear();
+        } catch (JsonProcessingException e) {
+            LOG.error("Failed to serialize UserModel to JSON", e);
+            throw new RuntimeException("Không thể chuyển đổi UserModel sang chuỗi JSON", e);
+        }
     }
 }

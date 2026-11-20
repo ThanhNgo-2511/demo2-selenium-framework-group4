@@ -248,7 +248,7 @@ public class ProfilePage extends CommonPage {
      * Check Name Course is in the registered course card
      */
     public boolean isCourseNameInCourseList(String courseName) {
-        if (courseName == null /*|| !isRegistedCardDisplayed()*/) {
+        if (courseName == null ) {
             return false;
         }
         int totalCards = getCourseCardCount();

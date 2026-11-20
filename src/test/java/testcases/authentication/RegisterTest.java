@@ -4,6 +4,7 @@ package testcases.authentication;
 import base.BaseTest;
 import helper.PropertyHelper;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -30,6 +31,11 @@ public class RegisterTest extends BaseTest {
         RegisterPage page = new RegisterPage(loginPage.getDriver());
         page.openRegisterForm();
         registerPage.set(page);// Lưu instance vào luồng hiện tại
+    }
+
+    @AfterMethod(alwaysRun = true)
+    public void cleanUpRegisterPage() {
+        registerPage.remove();
     }
 
     // Hàm lấy RegisterPage của đúng luồng đang chạy
